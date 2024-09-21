@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="immuniCareBlue">#FF0D99FF</color>
+    <color name="immuniCareGreen">#FF00FF00</color>
+    <color name="immuniCareRed">#FFFF0000</color>
+    <color name="immuniCareYellow">#FFFFCC00</color>
+    <color name="immuniCarePurple">#FF9900FF</color>
+    <color name="immuniCareOrange">#FFFF9900</color>
+    <color name="immuniCareGrey">#FF999999</color>
+</resources>

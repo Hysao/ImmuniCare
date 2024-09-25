@@ -43,6 +43,6 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation(libs.datastore.preferences)
+    implementation(libs.datastore.preferences.v100)
 
 }

@@ -43,6 +43,14 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation(libs.datastore.preferences.v100)
+    implementation(libs.datastore.preferences)
+
+    // optional - RxJava2 support
+    implementation(libs.datastore.preferences.rxjava2)
+
+    // optional - RxJava3 support
+    implementation(libs.datastore.preferences.rxjava3)
+
+    implementation(libs.lifecycle.livedata)
 
 }

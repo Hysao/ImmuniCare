@@ -27,6 +27,10 @@ public class AdminActivity extends AppCompatActivity {
         });
 
 
+        userName = findViewById(R.id.userName);
+        password = findViewById(R.id.password);
+        login = findViewById(R.id.login);
+
 
     }
 }

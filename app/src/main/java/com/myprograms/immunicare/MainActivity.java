@@ -1,6 +1,9 @@
 package com.myprograms.immunicare;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +11,11 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.myprograms.immunicare.auth.SignupActivity;
+
 public class MainActivity extends AppCompatActivity {
+
+    private TextView signUpBtn, loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,15 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        signUpBtn = findViewById(R.id.signUpButton);
+        loginBtn = findViewById(R.id.loginButton);
+
+
+        signUpBtn.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, SignupActivity.class);
+            startActivity(i);
         });
     }
 }

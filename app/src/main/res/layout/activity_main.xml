@@ -31,7 +31,6 @@
             android:fontFamily="@font/poppins_medium"
             android:text="LOGIN"
             android:textColor="@color/immuniCareBlue"
-
             android:textSize="18sp"
             android:textStyle="bold" />
 

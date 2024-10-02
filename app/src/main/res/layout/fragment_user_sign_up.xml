@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".auth.UserSignUpFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stay Connected!"
+                    android:textColor="@color/immuniCareBlue"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="24sp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Fill out the following information to be \n to be validated by the barangay"
+
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp"
+                    />
+
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/userFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="Full Name"
+                android:background="@drawable/bg_et"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="text"
+                android:layout_marginVertical="8dp"
+                />
+
+            <EditText
+                android:id="@+id/userEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="Email"
+                android:background="@drawable/bg_et"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="textEmailAddress"
+                android:layout_marginVertical="8dp"
+                />
+
+            <EditText
+                android:id="@+id/userAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:hint="Address"
+                android:background="@drawable/bg_et"
+                android:fontFamily="@font/poppins_regular"
+                android:inputType="text"
+                android:layout_marginVertical="8dp"/>
+
+            <EditText
+                android:id="@+id/userPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:background="@drawable/bg_et"
+                android:fontFamily="@font/poppins_regular"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:layout_marginVertical="8dp"
+                />
+
+
+            <Button
+                android:id="@+id/userValidateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Validate"
+                android:layout_gravity="center"
+                android:fontFamily="@font/poppins_regular"
+                android:backgroundTint="@color/immuniCareBlue"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:layout_marginVertical="16dp"
+                />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

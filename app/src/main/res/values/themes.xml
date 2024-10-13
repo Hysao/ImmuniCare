@@ -3,6 +3,7 @@
     <style name="Base.Theme.ImmuniCare" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/immuniCareBlue</item>
     </style>
 
     <style name="Theme.ImmuniCare" parent="Base.Theme.ImmuniCare" />

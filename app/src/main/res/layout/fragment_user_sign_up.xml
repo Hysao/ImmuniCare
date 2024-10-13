@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="100dp"
         >
 
 
@@ -33,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Stay Connected!"
-                    android:textColor="@color/immuniCareBlue"
+                    android:textColor="@color/immuniCareGreen"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="24sp"
@@ -107,7 +108,7 @@
                 android:text="Validate"
                 android:layout_gravity="center"
                 android:fontFamily="@font/poppins_regular"
-                android:backgroundTint="@color/immuniCareBlue"
+                android:backgroundTint="@color/immuniCareRed"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:layout_marginVertical="16dp"

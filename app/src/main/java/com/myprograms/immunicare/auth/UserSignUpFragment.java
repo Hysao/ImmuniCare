@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.myprograms.immunicare.R;
-import com.myprograms.immunicare.calendar.CalendarActivity;
 
 
 public class UserSignUpFragment extends Fragment {
@@ -29,8 +28,10 @@ public class UserSignUpFragment extends Fragment {
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 // Handle button click here
-                Intent intent = new Intent(getActivity(), CalendarActivity.class);
+                Intent intent = new Intent(getActivity(), SuccessfulActivity.class);
 
                 startActivity(intent);
             }

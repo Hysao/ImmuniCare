@@ -4,4 +4,21 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="forward"><![CDATA[->]]></string>
     <string name="back"><![CDATA[<-]]></string>
+    <string name="immuni">Immuni</string>
+    <string name="care">Care</string>
+    <string name="wait">Wait for 2–3 Days us to \n validate your account</string>
+    <string name="ty">Thank you!</string>
+    <string name="back_login">Go back to login</string>
+    <string name="validate_here">Validate here!</string>
+    <string name="not_yet_connected">Not yet connected?</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="be_informed">Be informed about vaccination schedule \n and other important information.</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="parent">Parent</string>
+    <string name="good_day">Good day!</string>
+
+
 </resources>

@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.auth.SignupActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,5 +37,11 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, SignupActivity.class);
             startActivity(i);
         });
+
+        loginBtn.setOnClickListener(v -> {
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(i);
+        });
+
     }
 }

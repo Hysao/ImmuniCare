@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.ChildInputActivity"
+    android:background="@color/immuniCareBlue">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Child's Detail"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="50dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="@color/white"
+            android:elevation="5dp"
+            app:cardPreventCornerOverlap="true"
+            >
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/add_your_child_s_image"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="name"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/enter_child_s_name"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:background="@drawable/bg_et"
+                android:hint="@string/birth_date"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:inputType="date"
+
+                />
+
+            <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="16sp"
+                    android:text="@string/male"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="16sp"
+                    android:text="@string/female"
+                    android:textColor="@color/white"
+                    android:buttonTint="@color/white"
+                    />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/place_of_birth"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            />
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/address"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="16dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/mother_s_name"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/father_s_name"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            >
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:background="@drawable/bg_et"
+                android:hint="@string/height"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cm"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:background="@drawable/bg_et"
+                android:hint="Weight"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/kg"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                />
+
+        </LinearLayout>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:hint="@string/barangay"
+            android:background="@drawable/bg_et"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            />
+
+
+        <LinearLayout
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp">
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/cancel"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:background="@color/immuniCareBlue"
+                android:layout_gravity="center" />
+
+            <Button
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/save"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/immuniCareBlue"
+                android:backgroundTint="@color/white"
+                android:elevation="10dp"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

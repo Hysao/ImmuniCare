@@ -46,6 +46,8 @@
     <string name="height">Height</string>
     <string name="father_s_name">Father\'s Name</string>
     <string name="address">Address</string>
-
+    <string name="add_child_info">If you wish to edit your child information \n go here and you can also \n add more child information</string>
+    <string name="child_info">Add child info</string>
+    <string name="barangay_389">Barangay 389</string>
 
 </resources>

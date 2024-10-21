@@ -49,5 +49,12 @@
     <string name="add_child_info">If you wish to edit your child information \n go here and you can also \n add more child information</string>
     <string name="child_info">Add child info</string>
     <string name="barangay_389">Barangay 389</string>
+    <string name="hepatitis_b_vaccine">Hepatitis B Vaccine</string>
+    <string name="bcg_vaccine">BCG Vaccine</string>
+    <string name="pentavalent_vaccine">Pentavalent Vaccine \n (DPT-Hep B-HIB)</string>
+    <string name="pneumococcal_conjugate">Pneumococcal Conjugate \n Vaccine (PCV)</string>
+    <string name="inactivated_polio">Inactivated Polio \n Vaccine (IPV)</string>
+    <string name="meassles_mumps_rubella">Meassles, Mumps, Rubella \n Vaccine (MMR)</string>
+    <string name="at_birth">At Birth</string>
 
 </resources>

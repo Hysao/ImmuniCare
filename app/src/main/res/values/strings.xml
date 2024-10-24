@@ -57,4 +57,42 @@
     <string name="meassles_mumps_rubella">Meassles, Mumps, Rubella \n Vaccine (MMR)</string>
     <string name="at_birth">At Birth</string>
 
+    <string name="bcg_txt1"><![CDATA[The dose of BCG is 0.05 ml for children < 12 months and 0.1 ml for children ≥ 12 months]]></string>
+    <string name="bcg_txt2">Given at the earliest possible age after birth preferably within the first 2 months of life</string>
+    <string name="bcg_txt3"><![CDATA[For healthy infants and children > 2 months who are not given BCG at birth, PPD prior to BCG vaccination is not necessary. However, PPD is recommended prior to BCG vaccination if any of the following is present:]]></string>
+    <string name="bcg_txt4">Congenital TB</string>
+    <string name="bcg_txt5">History of close contact to known or suspected infectious cases</string>
+    <string name="bcg_txt6">Clinical findings suggestive of TB and/or chest x-ray suggestive of TB</string>
+    <string name="bcg_txt7">In the presence of any of these conditions, an induration of 5 mm is considered positive and BCG is no longer recommended</string>
+
+    <string name="hep_txt1">Given intramuscularly (IM)</string>
+    <string name="hep_txt2">Administer the first dose of covalent HBV to all newborns ≥2kgs within 24 hours of life </string>
+    <string name="hep_txt4">The final dose is administered not earlier than 24 weeks of age </string>
+    <string name="hep_txt3">A second dose is given 1–2 months after the birth dose </string>
+    <string name="hep_txt5">Another dose is needed if the last dose was given at age &lt; 24 weeks </string>
+    <string name="hep_txt6">Administer HBV* and HBIG (0.5ml) within 12 hours of life. HBIG should be administered not later than 7 days of age, if not immediately available. </string>
+    <string name="hep_txt7">With birth weight ≥2 kgs, administer HBV within 12 hours of birth and determine the mother’s HBsAg as soon as possible. If HBsAg (+), administer HBIG not later than 7 days of age.</string>
+    <string name="hep_txt8">With birth weight &lt; 2 kgs, administer HBIG in addition to HBV* within 12 hours of life</string>
+    <string name="hep_txt9">For infants born &lt;2 kgs, the 1st dose received at birth is not counted as part of the vaccine series. Additional 3 HBV doses are needed</string>
+
+    <string name="dpt_txt1">Given intramuscularly (IM)</string>
+    <string name="dpt_txt2">Given at a minimum age of 6 weeks. </string>
+    <string name="dpt_txt3">The primary series consists of 3 doses with a minimum interval of 4 weeks </string>
+    <string name="dpt_txt4">Booster series consists of 3 doses until adolescence with the following schedule: </string>
+    <string name="dpt_txt5">2–23 months (DTP) </string>
+    <string name="dpt_txt6">4–7 years (DTP) </string>
+    <string name="dpt_txt7">9–15 years (Td/Tdap)  </string>
+
+    <string name="opv_txt1">The Oral Polio Vaccine is available as part of the government’s National Immunization Program </string>
+    <string name="opv_txt2">The primary series consists of 3 doses beginning at age 6 weeks with a minimum interval of ≥4 weeks IPV </string>
+    <string name="opv_txt3">The first dose of IPV is given together with the third dose of OPV </string>
+    <string name="opv_txt4">The second dose of IPV is given together with the measles vaccine at 9 months</string>
+    <string name="hep_2">For infants born to HBsAg (+) mothers (preterm or term infants):</string>
+    <string name="hep_3">For infants born to mothers with unknown HBsAg status:</string>
+
+    <string name="dpt_1">DIPHTHERIA, TETANUS, PERTUSSIS VACCINE (DTP)</string>
+    <string name="dpt_2">Ideally, the minimum interval between booster doses should be at least 4 years</string>
+    <string name="dpt_3">Full-dose DTP should preferably be used only until age 7 years, but package inserts should be consulted for maximum age indications of specific products</string>
+
+
 </resources>

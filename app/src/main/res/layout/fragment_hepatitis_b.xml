@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user.articles.HepatitisBFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Hepatitis B"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginHorizontal="8dp"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+        <TextView
+            android:id="@+id/hepDesc1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_txt1"
+            android:layout_marginBottom="4dp"
+            />
+
+        <TextView
+            android:id="@+id/hepDesc2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_txt1"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_2"
+            android:layout_marginBottom="8dp"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_txt6"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_3"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/hepDesc3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_txt7"
+            android:layout_marginBottom="16dp"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/immuniCareBlue"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/hep_txt9"
+            />
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>

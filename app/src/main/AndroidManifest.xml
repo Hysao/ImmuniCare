@@ -13,6 +13,9 @@
         android:theme="@style/Theme.ImmuniCare"
         tools:targetApi="31">
         <activity
+            android:name=".user.articles.ArticleDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.ArticleActivity"
             android:exported="false" />
         <activity

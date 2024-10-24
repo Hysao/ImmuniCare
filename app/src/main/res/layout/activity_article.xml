@@ -11,10 +11,11 @@
     android:padding="10dp">
 
     <ImageButton
+        android:id="@+id/articleBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/vc_back_48_white"
-        />
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="match_parent"
@@ -72,7 +73,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="18sp"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     />
 
 
@@ -109,16 +110,7 @@
                             />
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Read More"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="end"
-                        />
+
 
                 </LinearLayout>
 
@@ -163,7 +155,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="18sp"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     />
 
 
@@ -200,16 +192,6 @@
                             />
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Read More"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="end"
-                        />
 
                 </LinearLayout>
 
@@ -253,7 +235,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="18sp"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     />
 
 
@@ -290,16 +272,7 @@
                             />
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Read More"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="end"
-                        />
+
 
                 </LinearLayout>
 
@@ -343,7 +316,7 @@
                     android:fontFamily="@font/poppins_regular"
                     android:textSize="18sp"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="28dp"
+                    android:layout_marginBottom="20dp"
                     />
 
 
@@ -380,16 +353,6 @@
                             />
                     </LinearLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Read More"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/poppins_regular"
-                        android:textSize="16sp"
-                        android:layout_marginStart="8dp"
-                        android:layout_gravity="end"
-                        />
 
                 </LinearLayout>
 
@@ -398,6 +361,20 @@
 
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/readArticlesBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/immuniCareBlue"
+            android:text="Read Articles Here!"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="16dp"
+            />
 
     </LinearLayout>
 

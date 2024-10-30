@@ -93,6 +93,10 @@
     <string name="dpt_1">DIPHTHERIA, TETANUS, PERTUSSIS VACCINE (DTP)</string>
     <string name="dpt_2">Ideally, the minimum interval between booster doses should be at least 4 years</string>
     <string name="dpt_3">Full-dose DTP should preferably be used only until age 7 years, but package inserts should be consulted for maximum age indications of specific products</string>
+    <string name="settings_txt1">In this settings, you can set the \nreminder, notifications, \ndate</string>
+    <string name="reminder">Reminder</string>
+    <string name="notification">Notification</string>
+    <string name="notification_txt1">In this notification, you can turn on your\nnotification so that it can appear on your\ntop of your phone or on your lock screen\nfor the admin\'s announcement, etc</string>
 
 
 </resources>

@@ -1,4 +1,4 @@
-package com.myprograms.immunicare.user;
+package com.myprograms.immunicare.user.setting.reminder;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -17,26 +17,24 @@ import com.myprograms.immunicare.R;
 
 import java.util.Calendar;
 
-public class ChildInputActivity extends AppCompatActivity {
+public class AddReminderActivity extends AppCompatActivity {
 
+    private Button dateButton;
     private DatePickerDialog datePickerDialog;
-    private Button submitButton, dateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_child_input);
+        setContentView(R.layout.activity_add_reminder);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-
         initDatePicker();
-        dateButton = findViewById(R.id.datePickerButton);
-
+        dateButton = findViewById(R.id.dateButton);
         dateButton.setText(getTodaysDate());
 
 
@@ -72,7 +70,7 @@ public class ChildInputActivity extends AppCompatActivity {
         int month = cal.get(Calendar.MONTH);
         int day = cal.get(Calendar.DAY_OF_MONTH);
 
-        int style = AlertDialog.THEME_HOLO_LIGHT;
+        int style = AlertDialog.THEME_DEVICE_DEFAULT_LIGHT;
 
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         //datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());

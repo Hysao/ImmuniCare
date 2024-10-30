@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".user.setting.SettingsActivity"
+    android:background="@color/immuniCareBlue"
+    android:padding="10dp">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settingsBack"
+        android:background="@drawable/vc_back_48_white"
+        android:importantForAccessibility="no"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="@string/settings"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/settings_txt1"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="16dp"
+        />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reminder"
+        android:background="@drawable/txt_bg"
+        android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:paddingStart="16dp"
+        android:paddingVertical="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/vc_arrow_forward_24"
+        tools:ignore="UseCompatTextViewDrawableXml"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notification"
+        android:background="@drawable/txt_bg"
+        android:layout_marginHorizontal="16dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:paddingStart="16dp"
+        android:paddingVertical="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="16dp"
+        android:drawableEnd="@drawable/vc_arrow_forward_24"
+        tools:ignore="UseCompatTextViewDrawableXml"
+        android:layout_marginBottom="16dp"
+        />
+
+
+
+
+</LinearLayout>

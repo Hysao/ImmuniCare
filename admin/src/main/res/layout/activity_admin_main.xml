@@ -205,7 +205,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:drawableEnd="@drawable/vc_right_"
                 android:fontFamily="@font/poppins_regular"
-                android:drawableStart="@drawable/vc_announcement_48"
+                android:drawableStart="@drawable/vc_email_24"
                 android:padding="4dp"/>
 
 

@@ -1,9 +1,7 @@
 package com.myprograms.immunicare.healthworker.update;
 
-import static com.myprograms.immunicare.Manifest.*;
 
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;

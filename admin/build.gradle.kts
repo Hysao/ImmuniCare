@@ -53,4 +53,14 @@ dependencies {
 
     implementation(libs.lifecycle.livedata)
 
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+
+    implementation(libs.firebase.auth)
+
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation(libs.firebase.firestore)
+
 }

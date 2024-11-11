@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImmuniCare">
         <activity
+            android:name=".validating.ValidatingUserActivity"
+            android:exported="false" />
+        <activity
             android:name=".AdminMainActivity"
             android:exported="false" />
         <activity

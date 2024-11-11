@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/immuniCareBlue"
+    tools:context=".validating.ValidatingUserActivity">
+
+    <ImageButton
+        android:id="@+id/validateBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vc_back_48_white"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Validating Users"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/validatingTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/tablayout_bg"
+        app:tabSelectedTextColor="@color/immuniCareBlue"
+        app:tabTextColor="@color/white"
+
+        />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/validatingViewPager"
+        android:layout_marginHorizontal="16dp"
+        />
+
+
+
+</LinearLayout>

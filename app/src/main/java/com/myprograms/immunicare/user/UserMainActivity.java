@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
 
@@ -12,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.user.setting.UserMenuActivity;
 
 public class UserMainActivity extends AppCompatActivity {
 
@@ -31,13 +33,8 @@ public class UserMainActivity extends AppCompatActivity {
         btn_menu = findViewById(R.id.userMenuBtn);
 
         btn_menu.setOnClickListener(v -> {
-            FragmentManager fragmentManager =
-                    getSupportFragmentManager();
-
-            FragmentTransaction fragmentTransaction =
-                    fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.main, new UserMenuFragment());
-            fragmentTransaction.commit();
+            Intent intent = new Intent(UserMainActivity.this, UserMenuActivity.class);
+            startActivity(intent);
 
         });
 

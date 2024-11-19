@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.auth.model.Users;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,18 +64,32 @@ public class UserSignUpFragment extends Fragment {
         passwordLayout = view.findViewById(R.id.passwordLayout);
 
         passwordEditText = passwordLayout.getEditText();
+
         passwordLayout.setEndIconOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 3. Toggle the visibility of the EditText content
-                if (passwordEditText.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                    passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
-                   // passwordLayout.setEndIconDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_visibility_off)); // Replace with your visibility off icon
-                } else {
-                    passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                   // passwordLayout.setEndIconDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_visibility)); // Replace with your visibility icon
+                int inputType = passwordEditText.getInputType(); // Get the current input type
+
+                switch (inputType) {
+                    case InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD:
+                        passwordEditText.setInputType(InputType.TYPE_CLASS_TEXT);
+                        // Uncomment and use the appropriate drawable for visibility off icon
+                        // passwordLayout.setEndIconDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_visibility_off));
+                        break;
+
+                    case InputType.TYPE_CLASS_TEXT:
+                        passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        // Uncomment and use the appropriate drawable for visibility on icon
+                        // passwordLayout.setEndIconDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_visibility));
+                        break;
+
+                    default:
+                        passwordEditText.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        break;
                 }
-                passwordEditText.setSelection(passwordEditText.getText().length()); // Set cursor to the end
+
+                // Set the cursor to the end of the text
+                passwordEditText.setSelection(passwordEditText.getText().length());
             }
         });
 
@@ -82,55 +99,17 @@ public class UserSignUpFragment extends Fragment {
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = nameEditText.getText().toString().trim();
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-                String address = addressEditText.getText().toString().trim();
 
-                if (name.isEmpty() || email.isEmpty() || password.isEmpty() || address.isEmpty()) {
-                    // Handle empty fields (e.g., show an error message)
-                    Toast.makeText(getActivity(), "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
+                if (passwordEditText.length() >= 6){
+                    CreateUserEmailAccount(
+                            nameEditText.getText().toString(),
+                            emailEditText.getText().toString(),
+                            addressEditText.getText().toString(),
+                            passwordEditText.getText().toString()
+                    );
+                }else {
+                    passwordLayout.setError("Password must be at least 6 characters");
                 }
-
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign-up success, update UI with the signed-in user's information
-                                    currentUser = mAuth.getCurrentUser();
-                                    // ... (save user data to database or perform other actions)
-                                    assert currentUser != null;
-                                    sendEmailVerification(currentUser);
-
-                                    Map<String, Object> userData = new HashMap<>();
-                                    userData.put("uid", currentUser.getUid());
-                                    userData.put("name", name);
-                                    userData.put("email", email);
-                                    userData.put("address", address);
-                                    userData.put("status", "pending");
-                                    userData.put("isHw", false);
-
-                                    FirebaseFirestore.getInstance().collection("users")
-                                            .document(currentUser.getUid())
-                                            .set(userData)
-                                            .addOnSuccessListener(aVoid -> {
-                                                Toast.makeText(getActivity(), "User registered successfully", Toast.LENGTH_SHORT).show();
-                                            })
-                                            .addOnFailureListener(e -> {
-                                                Toast.makeText(getActivity(), "Failed to register user", Toast.LENGTH_SHORT).show();
-                                            });
-
-                                    Intent intent = new Intent(getActivity(), SuccessfulActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    // If sign-up fails, display a message to the user.
-                                    Toast.makeText(getActivity(), "Authentication failed.", Toast.LENGTH_SHORT).show();
-
-                                }
-                            }
-                        });
 
             }
         });
@@ -151,4 +130,59 @@ public class UserSignUpFragment extends Fragment {
                 });
 
     }
+
+    private void CreateUserEmailAccount(String name, String email,  String address, String password)  {
+        if (!TextUtils.isEmpty(name)
+                && !TextUtils.isEmpty(email)
+                && !TextUtils.isEmpty(address)
+                && !TextUtils.isEmpty(password)) {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+
+                        if (task.isSuccessful()){
+                            currentUser = mAuth.getCurrentUser();
+
+                            if (currentUser != null){
+                                sendEmailVerification(currentUser);
+                            }else{
+                                Toast.makeText(getActivity(), "User not found", Toast.LENGTH_SHORT).show();
+                            }
+
+                            String uid = currentUser.getUid();
+                            String status = "pending";
+                            Boolean isHw = false;
+
+                            Map<String, Object> userMap = new HashMap<>();
+                            userMap.put("uid", uid);
+                            userMap.put("name", name);
+                            userMap.put("email", email);
+                            userMap.put("address", address);
+                            userMap.put("status", status);
+                            userMap.put("isHw", isHw);
+
+                            usersCollection.document(uid).set(userMap);
+
+
+
+//                            Users user = new Users(uid, name, email, address, status, isHw);
+//
+//                            usersCollection.document(uid).set(user);
+
+
+                        }else {
+                            Toast.makeText(getActivity(), "Authentication failed", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Intent i = new Intent(getActivity(), SuccessfulActivity.class);
+                            startActivity(i);
+                        }
+                    });
+        }
+    }
+
+
     }

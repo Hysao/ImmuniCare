@@ -9,6 +9,9 @@ public class Users {
     String status;
     Boolean isHw;
 
+    public Users() {
+    }
+
     public Users(String uid, String name, String email, String address, String status, Boolean isHw) {
         this.uid = uid;
         this.name = name;

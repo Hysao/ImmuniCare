@@ -27,7 +27,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.mlkit.vision.barcode.common.Barcode;
-import com.myprograms.immunicare.Manifest;
 import com.myprograms.immunicare.R;
 
 import org.jetbrains.annotations.NotNull;

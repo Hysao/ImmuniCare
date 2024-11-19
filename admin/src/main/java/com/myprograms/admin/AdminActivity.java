@@ -13,9 +13,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -53,26 +56,36 @@ public class AdminActivity extends AppCompatActivity {
             }
 
             // Query Firestore for admin with matching username and password
-            Query query = usersRef.whereEqualTo("username", username)
-                    .whereEqualTo("password", pass); // Assuming you store plain text passwords (not recommended)
+            Query query = usersRef.whereEqualTo("userName", username);
+            query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+                if (!queryDocumentSnapshots.isEmpty()) {
+                    // Assuming you expect only one document with the given username
+                    DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(0);
+                    Admin user = document.toObject(Admin.class);
 
-            query.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    if (task.getResult() != null && !task.getResult().isEmpty()) {
-                        // Admin found, grant access
-                        Toast.makeText(AdminActivity.this, "Admin login successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AdminActivity.this, AdminMainActivity.class);
-                        startActivity(intent);
+                    // Now you have the user object, you can access its properties
+                    assert user != null;
+                    String name = user.getUserName();
+                    String password1 = user.getPassword();
 
-                    } else {
-                        // Invalid credentials
+                    if (!username.equals(name) && !pass.equals(password1)){
                         Toast.makeText(AdminActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Intent i = new Intent(AdminActivity.this, AdminMainActivity.class);
+                        startActivity(i);
                     }
+
+                    // ... access other properties
                 } else {
-                    // Error fetching data from Firestore
-                    Toast.makeText(AdminActivity.this, "Error during login", Toast.LENGTH_SHORT).show();
+                    // Handle the case where no document is found with the given username
+                    Toast.makeText(AdminActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
+            }).addOnFailureListener(e -> {
+                // Handle error
             });
+
+
+
         });
 
     }

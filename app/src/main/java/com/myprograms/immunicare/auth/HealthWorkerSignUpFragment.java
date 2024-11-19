@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.media3.common.util.Log;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,10 +74,6 @@ public class HealthWorkerSignUpFragment extends Fragment {
                 if (name.isEmpty() || email.isEmpty() || address.isEmpty() || password.isEmpty()){
                     Toast.makeText(getActivity(), "Please fill up all the fields", Toast.LENGTH_SHORT).show();
                 }
-                else if (password.length() < 6){
-                    passwordLayout.setError("Password must be at least 6 characters");
-                }
-
                 mAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                             @Override
@@ -114,6 +111,9 @@ public class HealthWorkerSignUpFragment extends Fragment {
 
                                 }
                             }
+                        }).addOnFailureListener(e -> {
+                            Log.e("RegistrationError", "Failed to register user", e);
+                            Toast.makeText(getActivity(), "Failed to register user", Toast.LENGTH_SHORT).show();
                         });
 
             }

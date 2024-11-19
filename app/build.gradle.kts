@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.vision.common)
     implementation(libs.play.services.mlkit.barcode.scanning)
     implementation(libs.play.services.vision)
+    implementation(libs.media3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

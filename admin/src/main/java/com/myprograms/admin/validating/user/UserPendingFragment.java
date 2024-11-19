@@ -45,7 +45,7 @@ public class UserPendingFragment extends Fragment {
         pendingAccountRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         pendingAccountRecycler.setHasFixedSize(true);
 
-        Query query = usersRef.whereEqualTo("status", "pending").whereEqualTo("isHw", false);
+        Query query = usersRef.whereEqualTo("isHw", false);
 
         pendingAccountList = new ArrayList<>();
 

@@ -18,6 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.admin.R;
 
 import java.util.List;
+import java.util.Objects;
 
 public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.AccountViewHolder> implements OnUserStatusChangeListener {
 
@@ -62,6 +63,15 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
                 }
             }
         });
+
+        if (!Objects.equals(users.getStatus(), "pending")) {
+            holder.btnLinear.setVisibility(View.GONE);
+            holder.userStatus.setVisibility(View.VISIBLE);
+            holder.userStatus.setText(users.getStatus());
+        } else {
+            holder.btnLinear.setVisibility(View.VISIBLE);
+            holder.userStatus.setVisibility(View.GONE);
+        }
 
         holder.approve.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -119,8 +129,8 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
 
     public static class AccountViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView userName, userId, userEmail, userAddress;
-        public LinearLayout userData, moreData;
+        public TextView userName, userId, userEmail, userAddress, userStatus;
+        public LinearLayout userData, moreData, btnLinear;
         public Button approve, reject;
 
         public AccountViewHolder(@NonNull View itemView) {
@@ -135,7 +145,8 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
             moreData = itemView.findViewById(R.id.moreData);
             approve = itemView.findViewById(R.id.ApprovedBtn);
             reject = itemView.findViewById(R.id.rejectBtn);
-
+            btnLinear = itemView.findViewById(R.id.btnLinear);
+            userStatus = itemView.findViewById(R.id.userStatus);
 
 
         }

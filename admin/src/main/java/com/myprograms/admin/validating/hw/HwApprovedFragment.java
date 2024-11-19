@@ -55,11 +55,17 @@ public class HwApprovedFragment extends Fragment {
                         approvedAccountList.add(users);
                     }
 
-                    adapter = new AccountViewAdapter(approvedAccountList, getContext());
+            if (approvedRecycler != null) { // Null check
+                approvedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+                approvedRecycler.setHasFixedSize(true);
 
-                    approvedRecycler.setAdapter(adapter);
+                adapter = new AccountViewAdapter(approvedAccountList, getContext());
+                approvedRecycler.setAdapter(adapter);
 
-                    adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+            } else {
+                Toast.makeText(getContext(), "Something went wrong Fetching Data", Toast.LENGTH_SHORT).show();
+            }
 
                 }
         ).addOnFailureListener(new OnFailureListener() {

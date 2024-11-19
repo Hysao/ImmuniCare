@@ -30,9 +30,9 @@ public class HwAccountFragment extends Fragment {
         viewPager = view.findViewById(R.id.hwAccountViewPager);
         tabLayout = view.findViewById(R.id.hwAccountTabLayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Pending"));
-        tabLayout.addTab(tabLayout.newTab().setText("Accepted"));
-        tabLayout.addTab(tabLayout.newTab().setText("Rejected"));
+        tabLayout.addTab(tabLayout.newTab().setText("Healthcare Worker Accounts"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Accepted"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Rejected"));
 
         FragmentManager fragmentManager = getChildFragmentManager();
         hwAccountAdapter = new HwAccountAdapter( fragmentManager, getLifecycle());

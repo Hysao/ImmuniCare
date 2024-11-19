@@ -32,9 +32,9 @@ public class UserAccountFragment extends Fragment {
         tabLayout = view.findViewById(R.id.userAccountTabLayout);
 
 
-        tabLayout.addTab(tabLayout.newTab().setText("Pending"));
-        tabLayout.addTab(tabLayout.newTab().setText("Accepted"));
-        tabLayout.addTab(tabLayout.newTab().setText("Rejected"));
+        tabLayout.addTab(tabLayout.newTab().setText("User Accounts"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Accepted"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Rejected"));
 
         FragmentManager fragmentManager = getChildFragmentManager();
         userAccountAdapter = new UserAccountAdapter(fragmentManager,getLifecycle());

@@ -1,11 +1,14 @@
 package com.myprograms.immunicare.auth;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.media3.common.util.Log;
 
 import android.text.InputType;
 import android.text.TextUtils;
@@ -100,16 +103,14 @@ public class UserSignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (passwordEditText.length() >= 6){
-                    CreateUserEmailAccount(
-                            nameEditText.getText().toString(),
-                            emailEditText.getText().toString(),
-                            addressEditText.getText().toString(),
-                            passwordEditText.getText().toString()
-                    );
-                }else {
-                    passwordLayout.setError("Password must be at least 6 characters");
-                }
+              CreateUserEmailAccount(
+                      nameEditText.getText().toString().trim(),
+                      emailEditText.getText().toString().trim(),
+                      addressEditText.getText().toString().trim(),
+                      passwordEditText.getText().toString().trim()
+              );
+
+
 
             }
         });
@@ -152,21 +153,23 @@ public class UserSignUpFragment extends Fragment {
                             String status = "pending";
                             Boolean isHw = false;
 
-                            Map<String, Object> userMap = new HashMap<>();
-                            userMap.put("uid", uid);
-                            userMap.put("name", name);
-                            userMap.put("email", email);
-                            userMap.put("address", address);
-                            userMap.put("status", status);
-                            userMap.put("isHw", isHw);
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("uid", uid);
+                            userData.put("name", name);
+                            userData.put("email", email);
+                            userData.put("address", address);
+                            userData.put("status", status);
+                            userData.put("isHw", isHw);
 
-                            usersCollection.document(uid).set(userMap);
+                            usersCollection.document(uid)
+                                    .set(userData)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(getActivity(), "User registered successfully", Toast.LENGTH_SHORT).show();
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        Toast.makeText(getActivity(), "Failed to register user", Toast.LENGTH_SHORT).show();
+                                    });
 
-
-
-//                            Users user = new Users(uid, name, email, address, status, isHw);
-//
-//                            usersCollection.document(uid).set(user);
 
 
                         }else {

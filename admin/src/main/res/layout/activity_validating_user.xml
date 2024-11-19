@@ -41,7 +41,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/tablayout_bg"
         app:tabSelectedTextColor="@color/immuniCareBlue"
-        app:tabTextColor="@color/white"
+        app:tabTextColor="@color/immuniCareGrey"
 
         />
 

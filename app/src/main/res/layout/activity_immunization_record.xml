@@ -108,6 +108,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/aBbcgVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -136,6 +137,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/aBHepatitisBVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -227,6 +229,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/fVpentavalentVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -255,6 +258,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/fVOpvVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -283,6 +287,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/fVpneumococcalVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -372,6 +377,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/sVPentavalentVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -400,6 +406,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/sVOpvVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -428,6 +435,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/sVpneumococcalVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -494,7 +502,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
 
                     >
 
@@ -517,6 +525,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/tVPentavalentVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -545,6 +554,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/tVOpvVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -573,6 +583,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/tVinactivatedPolio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -601,6 +612,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/tVpneumococcalVaccine"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -693,6 +705,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/foVinactivatedPolio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -721,6 +734,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/foVmeasslesMumpsRubella"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"
@@ -812,6 +826,7 @@
                             />
 
                         <ImageView
+                            android:id="@+id/fiVmeasslesMumpsRubella"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/vc_none_24_gray"

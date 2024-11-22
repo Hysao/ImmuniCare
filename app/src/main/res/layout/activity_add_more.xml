@@ -9,9 +9,10 @@
     android:orientation="vertical"
     android:background="@color/immuniCareBlue"
     tools:context=".user.AddMoreActivity"
-    android:padding="20dp">
+    android:padding="10dp">
 
     <ImageButton
+        android:id="@+id/backBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/vc_back_48_white"
@@ -54,9 +55,11 @@
             android:layout_weight="8"
             android:id="@+id/rv_child_info"
             android:layout_marginVertical="8dp"
+            android:visibility="gone"
             />
 
         <TextView
+            android:id="@+id/addMoreTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Or"
@@ -66,9 +69,11 @@
             android:layout_marginBottom="8dp"
             android:textStyle="bold"
             android:gravity="center"
+            android:visibility="gone"
             />
 
         <Button
+            android:id="@+id/addMoreBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/child_info"

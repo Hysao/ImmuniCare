@@ -12,12 +12,18 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.user.setting.UserMenuActivity;
 
 public class UserMainActivity extends AppCompatActivity {
 
     private ImageButton btn_menu;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +36,18 @@ public class UserMainActivity extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.getCurrentUser();
+
         btn_menu = findViewById(R.id.userMenuBtn);
+
 
         btn_menu.setOnClickListener(v -> {
             Intent intent = new Intent(UserMainActivity.this, UserMenuActivity.class);
             startActivity(intent);
 
         });
+
 
     }
 }

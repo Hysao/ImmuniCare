@@ -45,7 +45,14 @@ public class UserMenuActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
+
+        if (mUser != null){
+            String uid = mUser.getUid();
+        }else {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
 
 
         menuChildProfile = findViewById(R.id.menuChildProfile);
@@ -65,26 +72,31 @@ public class UserMenuActivity extends AppCompatActivity {
         menuImmunizationRecord.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, ImmunizationRecordListActivity.class);
             startActivity(i);
+            finish();
         });
 
         menuArticles.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, ArticleActivity.class);
             startActivity(i);
+            finish();
         });
 
         menuCalendar.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, CalendarActivity.class);
             startActivity(i);
+            finish();
         });
 
         menuConcern.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, ConcernActivity.class);
             startActivity(i);
+            finish();
         });
 
         menuSettings.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, SettingsActivity.class);
             startActivity(i);
+            finish();
         });
 
         menuLogout.setOnClickListener(v -> {

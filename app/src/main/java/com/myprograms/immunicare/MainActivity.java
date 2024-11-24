@@ -11,12 +11,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.auth.SignupActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView signUpBtn, loginBtn;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        if (mUser != null){
+            String uid = mUser.getUid();
+        }else {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
 
         signUpBtn = findViewById(R.id.signUpButton);
         loginBtn = findViewById(R.id.loginButton);

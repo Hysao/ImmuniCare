@@ -3,13 +3,15 @@ package com.myprograms.immunicare.user.setting.reminder;
 public class Children {
 
     String childName;
-    String childDOB;
+    String childDateOfBirth;
     String childGender;
     String childHeight;
     String childWeight;
     String accountId;
     String childBarangay;
-    String childPOB;
+    String childMotherName;
+    String childFatherName;
+    String childPlaceOfBirth;
     String childAddress;
     Boolean aBBcgVaccine;
     Boolean aBHepaVaccine;
@@ -42,15 +44,29 @@ public class Children {
         this.documentId = documentId;
     }
 
-    public Children(String childName, String childDOB, String childGender, String childHeight, String childWeight, String accountId, String childBarangay, String childPOB, String childAddress, Boolean aBBcgVaccine, Boolean aBHepaVaccine, Boolean fVOpvVaccine, Boolean fVPentavalentVaccine, Boolean fVpneumococcalVaccine, Boolean sVOpvVaccine, Boolean sVPentavalentVaccine, Boolean sVpneumococcalVaccine, Boolean tVOpvVaccine, Boolean tVPentavalentVaccine, Boolean tVinnactivatePolioVaccine, Boolean tVpneumococcalVaccine, Boolean foVinactivatedPolio, Boolean foVmeasslesMumpsRubella, Boolean fiVmeasslesMumpsRubella) {
+    public Children(String childName, String childDateOfBirth,
+                    String childGender, String childHeight,
+                    String childWeight, String accountId,
+                    String childBarangay, String childMotherName,
+                    String childFatherName, String childPlaceOfBirth,
+                    String childAddress, Boolean aBBcgVaccine,
+                    Boolean aBHepaVaccine, Boolean fVOpvVaccine,
+                    Boolean fVPentavalentVaccine, Boolean fVpneumococcalVaccine,
+                    Boolean sVOpvVaccine, Boolean sVPentavalentVaccine,
+                    Boolean sVpneumococcalVaccine, Boolean tVOpvVaccine,
+                    Boolean tVPentavalentVaccine, Boolean tVinnactivatePolioVaccine,
+                    Boolean tVpneumococcalVaccine, Boolean foVinactivatedPolio,
+                    Boolean foVmeasslesMumpsRubella, Boolean fiVmeasslesMumpsRubella) {
         this.childName = childName;
-        this.childDOB = childDOB;
+        this.childDateOfBirth = childDateOfBirth;
         this.childGender = childGender;
         this.childHeight = childHeight;
         this.childWeight = childWeight;
         this.accountId = accountId;
         this.childBarangay = childBarangay;
-        this.childPOB = childPOB;
+        this.childMotherName = childMotherName;
+        this.childFatherName = childFatherName;
+        this.childPlaceOfBirth = childPlaceOfBirth;
         this.childAddress = childAddress;
         this.aBBcgVaccine = aBBcgVaccine;
         this.aBHepaVaccine = aBHepaVaccine;
@@ -80,12 +96,12 @@ public class Children {
         this.childName = childName;
     }
 
-    public String getChildDOB() {
-        return childDOB;
+    public String getChildDateOfBirth() {
+        return childDateOfBirth;
     }
 
-    public void setChildDOB(String childDOB) {
-        this.childDOB = childDOB;
+    public void setChildDateOfBirth(String childDateOfBirth) {
+        this.childDateOfBirth = childDateOfBirth;
     }
 
     public String getChildGender() {
@@ -128,12 +144,28 @@ public class Children {
         this.childBarangay = childBarangay;
     }
 
-    public String getChildPOB() {
-        return childPOB;
+    public String getChildMotherName() {
+        return childMotherName;
     }
 
-    public void setChildPOB(String childPOB) {
-        this.childPOB = childPOB;
+    public void setChildMotherName(String childMotherName) {
+        this.childMotherName = childMotherName;
+    }
+
+    public String getChildFatherName() {
+        return childFatherName;
+    }
+
+    public void setChildFatherName(String childFatherName) {
+        this.childFatherName = childFatherName;
+    }
+
+    public String getChildPlaceOfBirth() {
+        return childPlaceOfBirth;
+    }
+
+    public void setChildPlaceOfBirth(String childPlaceOfBirth) {
+        this.childPlaceOfBirth = childPlaceOfBirth;
     }
 
     public String getChildAddress() {

@@ -11,6 +11,7 @@
     android:background="@color/immuniCareBlue">
 
     <ImageButton
+        android:id="@+id/qrBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/vc_back_48_white"
@@ -54,7 +55,21 @@
             android:layout_marginHorizontal="16dp"
             >
 
+            <TextView
+                android:id="@+id/childID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="childId"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
+                />
+
             <ImageView
+                android:id="@+id/qrCodeImage"
                 android:layout_width="250dp"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
@@ -88,6 +103,7 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
+                        android:id="@+id/qrChildName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ChildName"
@@ -117,6 +133,7 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
+                        android:id="@+id/qrChildSex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ChildSex"
@@ -157,6 +174,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/qrChildBirthDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/birth_date"
@@ -186,6 +204,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/qrChildPlaceOfBirth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/place_of_birth"
@@ -219,6 +238,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/qrChildAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -233,6 +253,7 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -251,6 +272,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/qrChildBarangay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -283,6 +305,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/qrChildMotherName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -316,6 +339,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/qrChildFatherName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -357,6 +381,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/qrChildWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/birth_date"
@@ -386,6 +411,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/qrChildHeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/place_of_birth"
@@ -401,6 +427,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/downloadQrCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"

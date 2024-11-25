@@ -54,6 +54,7 @@
 
 
         <TextView
+            android:id="@+id/dataChildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Child's Name"
@@ -75,6 +76,7 @@
             >
 
             <TextView
+                android:id="@+id/dataChildBirthDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Birth Date"
@@ -87,6 +89,7 @@
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <TextView
+                android:id="@+id/dataChildGender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gender"
@@ -102,6 +105,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/dataChildBirthPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
@@ -116,6 +120,7 @@
             />
 
         <TextView
+            android:id="@+id/dataChildAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
@@ -130,6 +135,7 @@
             />
 
         <TextView
+            android:id="@+id/dataChildBarangay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
@@ -144,6 +150,7 @@
             />
 
         <TextView
+            android:id="@+id/dataChildMother"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
@@ -158,6 +165,7 @@
             />
 
         <TextView
+            android:id="@+id/dataChildFather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
@@ -181,6 +189,7 @@
             >
 
             <TextView
+                android:id="@+id/dataChildHeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Height"
@@ -193,6 +202,7 @@
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <TextView
+                android:id="@+id/dataChildWeight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Weight"
@@ -209,6 +219,7 @@
 
 
         <Button
+            android:id="@+id/seeQrCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="See your QR Code"

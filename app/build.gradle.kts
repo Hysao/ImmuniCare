@@ -71,6 +71,9 @@ dependencies {
     implementation(libs.camera.view)
     implementation(libs.camera.extensions)
 
+    //qr code
+    implementation(libs.zxing.core)
+
     
 
 }

@@ -27,6 +27,7 @@
             />
 
         <ImageButton
+            android:id="@+id/qrImageBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/vc_qr_code_100"
@@ -34,6 +35,7 @@
             />
 
         <Button
+            android:id="@+id/qrBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Scan QR Code"

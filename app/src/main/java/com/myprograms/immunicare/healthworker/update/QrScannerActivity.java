@@ -1,35 +1,33 @@
 package com.myprograms.immunicare.healthworker.update;
 
-
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Size;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageAnalysis;
-import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.mlkit.vision.barcode.common.Barcode;
+import com.google.mlkit.vision.barcode.BarcodeScanning;
+import com.google.mlkit.vision.common.InputImage;
 import com.myprograms.immunicare.R;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -42,6 +40,10 @@ public class QrScannerActivity extends AppCompatActivity {
     private PreviewView previewView;
     private MyImageAnalyzer analyzer;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,9 @@ public class QrScannerActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
 
         previewView = findViewById(R.id.previewView);
         this.getWindow().setFlags(1024, 1024);
@@ -79,7 +84,7 @@ public class QrScannerActivity extends AppCompatActivity {
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
 
             } catch (ExecutionException | InterruptedException e) {
-                // Handle any errors
+                e.printStackTrace();
             }
         }, ContextCompat.getMainExecutor(this));
     }
@@ -97,24 +102,38 @@ public class QrScannerActivity extends AppCompatActivity {
         public void analyze(@NonNull ImageProxy image) {
             @SuppressLint("UnsafeOptInUsageError") Image mediaImage = image.getImage();
             if (mediaImage != null) {
-                com.google.mlkit.vision.common.InputImage inputImage = com.google.mlkit.vision.common.InputImage.fromMediaImage(mediaImage, image.getImageInfo().getRotationDegrees());
-                com.google.mlkit.vision.barcode.BarcodeScanning.getClient()
+                InputImage inputImage = InputImage.fromMediaImage(mediaImage, image.getImageInfo().getRotationDegrees());
+                BarcodeScanning.getClient()
                         .process(inputImage)
                         .addOnSuccessListener(barcodes -> {
                             for (Barcode barcode : barcodes) {
                                 String rawValue = barcode.getRawValue();
-                                // Process the scanned QR code data (rawValue) here
-                                // For example, display it in a Toast or navigate to another activity
-                                activity.runOnUiThread(() -> {
-                                    Toast.makeText(activity, rawValue, Toast.LENGTH_SHORT).show();
-                                });
+                                if (rawValue != null) {
+                                    activity.handleScannedQrCode(rawValue);
+                                    break;
+                                }
                             }
                         })
                         .addOnFailureListener(e -> {
-                            // Handle any errors
+                            e.printStackTrace();
+                            Toast.makeText(activity, "Failed to process QR Code", Toast.LENGTH_SHORT).show();
                         })
                         .addOnCompleteListener(task -> image.close());
             }
         }
+    }
+
+    /**
+     * Handles the scanned QR code and navigates to the next activity.
+     *
+     * @param documentId The document ID extracted from the QR code.
+     */
+    private void handleScannedQrCode(String documentId) {
+
+        Intent intent = new Intent(this, ChildInfoActivity.class);
+        intent.putExtra("documentId", documentId);
+        startActivity(intent);
+
+        finish();
     }
 }

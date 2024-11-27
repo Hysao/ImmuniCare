@@ -180,7 +180,7 @@
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
             android:hint="@string/father_s_name"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:background="@drawable/bg_et"
             android:inputType="textPersonName"
             android:padding="10dp"

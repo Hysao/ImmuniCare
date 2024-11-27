@@ -117,8 +117,7 @@ public class ChildInputActivity extends AppCompatActivity {
         }
 
         Random random = new Random();
-
-        // Generate a unique reference number
+        
         int randomNum1 = 1000 + random.nextInt(9000);
         int randomNum2 = 100 + random.nextInt(900);
         char randomLetter1 = (char) ('A' + random.nextInt(26));

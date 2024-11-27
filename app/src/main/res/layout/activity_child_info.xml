@@ -108,6 +108,7 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
+                        android:id="@+id/infoChildName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ChildName"
@@ -137,6 +138,7 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
+                        android:id="@+id/infoChildGender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ChildSex"
@@ -177,6 +179,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/infoChildBirthDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/birth_date"
@@ -206,6 +209,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/infoChildPlaceBirth"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/place_of_birth"
@@ -239,6 +243,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/infoChildAddress"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -271,6 +276,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/infoChildBarangay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -303,6 +309,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/infoChildMother"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -336,6 +343,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/infoChildFather"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
@@ -377,6 +385,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/infoChildWeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/birth_date"
@@ -406,6 +415,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/infoChildHeight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/place_of_birth"
@@ -420,6 +430,7 @@
             </LinearLayout>
 
                 <Button
+                    android:id="@+id/viewRecordBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

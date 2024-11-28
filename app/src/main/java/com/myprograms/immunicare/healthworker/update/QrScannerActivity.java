@@ -89,7 +89,7 @@ public class QrScannerActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
-    // Inner class for image analysis
+    //  image analysis
     public static class MyImageAnalyzer implements ImageAnalysis.Analyzer {
 
         private final QrScannerActivity activity;

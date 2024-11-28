@@ -35,7 +35,7 @@ public class HWMainActivity extends AppCompatActivity {
         hwMainViewPager = findViewById(R.id.hwMainViewPager);
 
         hwMainTab.addTab(hwMainTab.newTab().setText("History"));
-        hwMainTab.addTab(hwMainTab.newTab().setText("QR"));
+        hwMainTab.addTab(hwMainTab.newTab().setText("Scan"));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         hwMainAdapter = new HwMainAdapter(fragmentManager, getLifecycle());

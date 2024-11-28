@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -30,6 +31,8 @@ public class ChildDataActivity extends AppCompatActivity {
             dataChildMother, dataChildFather,
             dataChildHeight, dataChildWeight;
     private Button seeQrCode;
+
+    private ImageButton backBtn;
 
     private String documentId;
 
@@ -67,6 +70,9 @@ public class ChildDataActivity extends AppCompatActivity {
         dataChildFather = findViewById(R.id.dataChildFather);
         dataChildHeight = findViewById(R.id.dataChildHeight);
         dataChildWeight = findViewById(R.id.dataChildWeight);
+        backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(v -> finish());
 
         seeQrCode = findViewById(R.id.seeQrCode);
 

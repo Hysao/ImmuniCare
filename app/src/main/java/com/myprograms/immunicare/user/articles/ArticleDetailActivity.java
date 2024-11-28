@@ -1,6 +1,7 @@
 package com.myprograms.immunicare.user.articles;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.R;
 
 public class ArticleDetailActivity extends AppCompatActivity {
@@ -19,6 +22,11 @@ public class ArticleDetailActivity extends AppCompatActivity {
     private TabLayout articleTabLayout;
     private ArticlePagerAdapter articlePagerAdapter;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
+
+    private ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +39,9 @@ public class ArticleDetailActivity extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         articleTabLayout = findViewById(R.id.articleTab);
         articleViewPager = findViewById(R.id.articleViewPager);
 
@@ -38,6 +49,12 @@ public class ArticleDetailActivity extends AppCompatActivity {
         articleTabLayout.addTab(articleTabLayout.newTab().setText("HEP B"));
         articleTabLayout.addTab(articleTabLayout.newTab().setText("DPT"));
         articleTabLayout.addTab(articleTabLayout.newTab().setText("OPV"));
+
+        backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(v -> {
+            finish();
+        });
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         articlePagerAdapter = new ArticlePagerAdapter(fragmentManager, getLifecycle());

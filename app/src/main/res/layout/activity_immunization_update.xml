@@ -109,6 +109,7 @@
                             />
 
                        <CheckBox
+                           android:id="@+id/birthBgcCheckbox"
                            android:layout_width="wrap_content"
                            android:layout_height="wrap_content"
                            android:layout_weight=".5"
@@ -137,6 +138,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/birthHepCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -228,6 +230,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/firstPentaCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -256,6 +259,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/firstOPVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -284,6 +288,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/firstPCVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -373,6 +378,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/secondPentaCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -401,6 +407,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/secondOPVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -429,6 +436,7 @@
 
 
                         <CheckBox
+                            android:id="@+id/secondPCVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -494,7 +502,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:visibility="visible"
 
                     >
 
@@ -517,6 +525,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/thirdPentaCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -544,6 +553,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/thirdOPVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -571,6 +581,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/thirdInactivatedCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -598,6 +609,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/thirdPCVCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -606,6 +618,8 @@
 
 
                     </LinearLayout>
+
+
 
 
                 </LinearLayout>
@@ -689,6 +703,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/fourthInactivatedCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -716,6 +731,7 @@
                             />
 
                         <CheckBox
+                            android:id="@+id/fourthMeaslesCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight=".5"
@@ -805,10 +821,10 @@
                             android:textSize="20sp"
                             />
 
-                        <ImageView
+                        <CheckBox
+                            android:id="@+id/fifthMeaslesCheckbox"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/vc_none_24_gray"
                             android:layout_weight=".5"
                             android:layout_gravity="center"
                             />
@@ -824,6 +840,41 @@
         </androidx.cardview.widget.CardView>
 
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="16dp"
+            >
+
+            <Button
+                android:id="@+id/cancelBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cancel"
+                android:textAllCaps="true"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+
+                />
+
+            <Button
+                android:id="@+id/saveBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Save"
+                android:textAllCaps="true"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="20sp"
+                />
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

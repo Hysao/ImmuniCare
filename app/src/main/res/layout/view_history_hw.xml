@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardViewHistory"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="vertical"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textAllCaps="true"
+            android:text="childName"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+        <LinearLayout
+            android:id="@+id/updatedMore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            >
+
+
+
+            <TextView
+                android:id="@+id/childId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="childId"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+            <TextView
+                android:id="@+id/historyDocumentId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="historyDocumentId"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+
+            <TextView
+                android:id="@+id/updatedCheckboxes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="updatedCheckboxes"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Updated By: "
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/hWorkerName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hWorkerName"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/hWorkerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="hWorkerId"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textStyle="bold"
+                />
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/updatedDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="updatedDate"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

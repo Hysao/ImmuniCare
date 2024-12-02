@@ -249,6 +249,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
         historyEntry.put("changes", changes);
         historyEntry.put("timestamp", System.currentTimeMillis());
         historyEntry.put("hWorkerId", mUser.getUid());
+        historyEntry.put("hWorkerName", mUser.getDisplayName());
         historyEntry.put("childId", documentId);
 
         Query query = userRef.whereEqualTo("uid", mUser.getUid());
@@ -260,6 +261,15 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+        Query query1 = childRef.whereEqualTo("childId", documentId);
+        query1.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (DocumentSnapshot document : task.getResult()) {
+                    historyEntry.put("childName", document.getString("childName"));
+                }
+            }
+        });
 
         historyRef.add(historyEntry).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {

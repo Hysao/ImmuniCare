@@ -53,6 +53,7 @@ public class HistoryFragment extends Fragment {
 
         // Fetch top 3 recent history records
         historyRef.orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .whereEqualTo("hWorkerId", mUser.getUid())
                 .limit(3)
                 .get()
                 .addOnCompleteListener(task -> {

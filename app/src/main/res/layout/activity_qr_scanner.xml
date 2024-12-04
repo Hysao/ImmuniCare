@@ -11,8 +11,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
-        android:id="@+id/container">
+        android:background="#000000">
+
 
         <androidx.camera.view.PreviewView
             android:layout_width="match_parent"
@@ -21,20 +21,14 @@
 
         </androidx.camera.view.PreviewView>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="718dp">
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/qr_image_bg" />
-            
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/qrOverlay"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:src="@drawable/qr_image_bg"
+            tools:ignore="ContentDescription" />
+
     </FrameLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-

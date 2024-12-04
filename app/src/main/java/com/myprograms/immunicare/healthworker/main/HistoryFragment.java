@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.healthworker.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -47,6 +48,16 @@ public class HistoryFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+
+        viewHistory = view.findViewById(R.id.viewHistoryBtn);
+
+        viewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), HwHistoryActivity.class);
+                startActivity(i);
+            }
+        });
 
         historyRecycler = view.findViewById(R.id.historyRecycler);
         historyRecycler.setLayoutManager(new LinearLayoutManager(getContext()));

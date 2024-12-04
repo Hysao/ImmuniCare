@@ -46,34 +46,33 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.play.services.maps)
     implementation(libs.vision.common)
-    implementation(libs.play.services.mlkit.barcode.scanning)
     implementation(libs.play.services.vision)
     implementation(libs.media3.common)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Google Play Services
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.vision)
 
+    // ML Kit (QR Code Scanning and Vision)
+    implementation(libs.barcode.scanning.v1730)
+
+    // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
-
     implementation(libs.firebase.auth)
-
-
-    // Declare the dependency for the Cloud Firestore library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.firestore)
 
+    // CameraX Dependencies (all CameraX dependencies with same version)
+    implementation(libs.camera.core.v150)
+    implementation(libs.camera.camera2.v150)
+    implementation(libs.camera.lifecycle.v150)
+    implementation(libs.camera.view.v150)
+    implementation(libs.camera.extensions.v150)
 
-    implementation(libs.camera.core)
-    implementation(libs.camera.camera2)
-    implementation(libs.camera.lifecycle)
-    implementation(libs.camera.view)
-    implementation(libs.camera.extensions)
-
-    //qr code
+    //qr generator
     implementation(libs.zxing.core)
-
-    
 
 }

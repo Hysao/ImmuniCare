@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".AdminMainActivity">
 
     <LinearLayout
@@ -206,6 +207,35 @@
                 android:drawableEnd="@drawable/vc_right_"
                 android:fontFamily="@font/poppins_regular"
                 android:drawableStart="@drawable/vc_email_24"
+                android:padding="4dp"/>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/listOfVaccines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/immuniCareBlue"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="List of Vaccines"
+                android:textColor="@color/white"
+                android:layout_marginVertical="8dp"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_marginHorizontal="8dp"
+                android:drawableEnd="@drawable/vc_right_"
+                android:fontFamily="@font/poppins_regular"
+                android:drawableStart="@drawable/vc_white_shield_hp_48"
                 android:padding="4dp"/>
 
 

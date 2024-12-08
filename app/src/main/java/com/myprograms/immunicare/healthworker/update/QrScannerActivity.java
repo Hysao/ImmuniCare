@@ -5,6 +5,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -156,14 +157,17 @@ public class QrScannerActivity extends AppCompatActivity {
             @SuppressLint("UnsafeOptInUsageError") Image mediaImage = image.getImage();
             if (mediaImage != null) {
                 InputImage inputImage = InputImage.fromMediaImage(mediaImage, image.getImageInfo().getRotationDegrees());
+
                 BarcodeScanning.getClient()
                         .process(inputImage)
                         .addOnSuccessListener(barcodes -> {
                             for (Barcode barcode : barcodes) {
-                                String rawValue = barcode.getRawValue();
-                                if (rawValue != null && !rawValue.isEmpty()) {
-                                    activity.handleScannedQrCode(rawValue);
-                                    break;
+                                if (barcode.getBoundingBox() != null && isBarcodeInOverlay(barcode.getBoundingBox())) {
+                                    String rawValue = barcode.getRawValue();
+                                    if (rawValue != null && !rawValue.isEmpty()) {
+                                        activity.handleScannedQrCode(rawValue);
+                                        break;
+                                    }
                                 }
                             }
                         })
@@ -176,6 +180,23 @@ public class QrScannerActivity extends AppCompatActivity {
                 image.close(); // Always release the resource
             }
         }
+
+        private boolean isBarcodeInOverlay(Rect barcodeBounds) {
+            // Get the overlay bounds in screen coordinates
+            int[] overlayPosition = new int[2];
+            activity.qrOverlay.getLocationOnScreen(overlayPosition);
+
+            Rect overlayBounds = new Rect(
+                    overlayPosition[0],
+                    overlayPosition[1],
+                    overlayPosition[0] + activity.qrOverlay.getWidth(),
+                    overlayPosition[1] + activity.qrOverlay.getHeight()
+            );
+
+            // Check if the barcode bounds are within the overlay bounds
+            return overlayBounds.contains(barcodeBounds);
+        }
     }
+
 
 }

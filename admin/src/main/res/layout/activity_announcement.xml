@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/immuniCareBlue"
+    android:orientation="vertical"
+    tools:context=".announcements.AnnouncementActivity">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/vc_back_48_white"
+        android:id="@+id/backBtn"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="24sp"
+        android:text="Announcements"
+        android:textColor="@color/white"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
+        android:id="@+id/noAnnouncementsTxt"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="No announcements available"
+        android:visibility="gone"
+        android:padding="16dp"
+        android:textSize="24sp"
+        android:textColor="@color/immuniCareGrey" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="16dp"
+        android:id="@+id/announcementList"
+        android:layout_marginBottom="16dp"
+        app:layout_behavior="floating"/>
+
+
+
+
+
+        <Button
+            android:id="@+id/addAnnouncementBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="32dp"
+            android:textColor="@color/immuniCareBlue"
+            android:text="Add New Announcement"
+            android:backgroundTint="@color/white"
+            android:textSize="24sp"
+            android:layout_marginHorizontal="16dp"
+
+            />
+
+
+
+
+
+
+
+
+</LinearLayout>

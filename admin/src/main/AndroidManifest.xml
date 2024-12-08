@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImmuniCare">
         <activity
+            android:name=".announcements.MakeAnnouncementActivity"
+            android:exported="false" />
+        <activity
+            android:name=".announcements.AnnouncementActivity"
+            android:exported="false" />
+        <activity
             android:name=".validating.ValidatingUserActivity"
             android:exported="false" />
         <activity

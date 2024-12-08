@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.myprograms.admin.announcements.AnnouncementActivity;
 import com.myprograms.admin.validating.ValidatingUserActivity;
 
 public class AdminMainActivity extends AppCompatActivity {
@@ -43,6 +44,14 @@ public class AdminMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminMainActivity.this, ValidatingUserActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        announcements.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminMainActivity.this, AnnouncementActivity.class);
+                startActivity(i);
             }
         });
 

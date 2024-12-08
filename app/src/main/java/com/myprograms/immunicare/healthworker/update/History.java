@@ -11,10 +11,10 @@ public class History {
     private String childName;
     private String hWorkerName;
 
-    // Default constructor for Firestore
+
     public History() {}
 
-    // Parameterized constructor
+
     public History(String hWorkerId, String childId, List<String> changes, long timestamp, String historyDocumentId, String childName, String hWorkerName) {
         this.hWorkerId = hWorkerId;
         this.childId = childId;
@@ -25,7 +25,7 @@ public class History {
         this.hWorkerName = hWorkerName;
     }
 
-    // Getters and setters
+
     public String gethWorkerId() { return hWorkerId; }
     public void sethWorkerId(String hWorkerId) { this.hWorkerId = hWorkerId; }
 
@@ -49,13 +49,13 @@ public class History {
 
 
 
-    // Derived field: formatted date
+
     public String getUpdatedDate() {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM dd, yyyy HH:mm", java.util.Locale.getDefault());
         return sdf.format(new java.util.Date(timestamp));
     }
 
-    // Derived field: formatted changes
+
     public String getUpdatedCheckboxes() {
         return String.join("\n", changes);
     }

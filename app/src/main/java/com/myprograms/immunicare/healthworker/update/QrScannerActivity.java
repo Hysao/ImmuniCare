@@ -143,7 +143,7 @@ public class QrScannerActivity extends AppCompatActivity {
         }
     }
 
-    // Custom Image Analyzer class
+
     public static class MyImageAnalyzer implements ImageAnalysis.Analyzer {
 
         private final QrScannerActivity activity;
@@ -177,12 +177,11 @@ public class QrScannerActivity extends AppCompatActivity {
                         })
                         .addOnCompleteListener(task -> image.close());
             } else {
-                image.close(); // Always release the resource
+                image.close();
             }
         }
 
         private boolean isBarcodeInOverlay(Rect barcodeBounds) {
-            // Get the overlay bounds in screen coordinates
             int[] overlayPosition = new int[2];
             activity.qrOverlay.getLocationOnScreen(overlayPosition);
 
@@ -193,7 +192,7 @@ public class QrScannerActivity extends AppCompatActivity {
                     overlayPosition[1] + activity.qrOverlay.getHeight()
             );
 
-            // Check if the barcode bounds are within the overlay bounds
+
             return overlayBounds.contains(barcodeBounds);
         }
     }

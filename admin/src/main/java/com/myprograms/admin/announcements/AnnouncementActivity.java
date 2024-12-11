@@ -66,7 +66,9 @@ public class AnnouncementActivity extends AppCompatActivity {
     }
 
     private void loadAnnouncements() {
-        announcementsRef.get().addOnCompleteListener(task -> {
+        announcementsRef
+                .orderBy("announcementDate", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null) {
                 announcements = task.getResult().toObjects(Announcements.class);
 

@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ImmuniCare" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.ImmuniCare" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/immuniCareBlue</item>
+        <item name="colorPrimaryDark">@color/immuniCareBlue</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+
     </style>
 
     <style name="Theme.ImmuniCare" parent="Base.Theme.ImmuniCare" />

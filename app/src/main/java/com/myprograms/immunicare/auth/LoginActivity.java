@@ -51,8 +51,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginBtn);
         emailEditText = findViewById(R.id.emailLogin);
         passwordEditText = findViewById(R.id.passwordLogin);
-        passwordInputLayout = findViewById(R.id.passwordLayoutLogin);
-
         mAuth = FirebaseAuth.getInstance();
 
         loginButton.setOnClickListener(v -> {
@@ -60,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordEditText.getText().toString().trim();
 
             if (email.isEmpty() || password.isEmpty()) {
-                // Handle empty fields (e.g., show an error message)
+                // Handle empty fields
                 Toast.makeText(LoginActivity.this, "Please enter both email and password.", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -94,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
-                        String status = documentSnapshot.getString("status");
+                        String status = documentSnapshot.getString("isVerified");
                         Boolean isHw = documentSnapshot.getBoolean("isHw");
                         if (status != null && status.equals("approved")) {
 

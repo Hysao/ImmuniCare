@@ -14,6 +14,7 @@ lifecycleLivedata = "2.8.6"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
+materialVersion = "1.9.0"
 playServicesMaps = "19.0.0"
 visionCommon = "17.3.0"
 playServicesMlkitBarcodeScanning = "18.3.1"
@@ -25,6 +26,8 @@ media3CommonVersion = "1.5.0"
 zxing = "3.5.1"
 
 [libraries]
+firebase-storage = { module = "com.google.firebase:firebase-storage" }
+material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 zxing-core = { module = "com.google.zxing:core", version.ref = "zxing" }
 barcode-scanning = { group = "com.google.mlkit", name = "barcode-scanning", version.ref = "mlkit-barcode" }
 

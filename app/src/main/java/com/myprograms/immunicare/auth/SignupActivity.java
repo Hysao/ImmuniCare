@@ -11,60 +11,42 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.myprograms.immunicare.R;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private TabLayout signUpTab;
-    private ViewPager2 viewPager2;
-    private SignUpPagerAdapter signUpPagerAdapter;
-
+    private MaterialButton userBtn, hwBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        signUpTab = findViewById(R.id.tab_signup);
-        viewPager2 = findViewById(R.id.signup_pager);
+        userBtn = findViewById(R.id.userBtn);
+        hwBtn = findViewById(R.id.hwBtn);
 
-        signUpTab.addTab(signUpTab.newTab().setText("User"));
-        signUpTab.addTab(signUpTab.newTab().setText("Health Worker"));
+        userBtn.setOnClickListener(v -> showFragment(new UserSignUpFragment()));
+        hwBtn.setOnClickListener(v -> showFragment(new HealthWorkerSignUpFragment()));
+    }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        signUpPagerAdapter = new SignUpPagerAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(signUpPagerAdapter);
-
-        signUpTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                signUpTab.selectTab(signUpTab.getTabAt(position));
-            }
-        });
-
+    private void showFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setCustomAnimations(
+                        R.anim.slide_in_up,
+                        R.anim.slide_out_down
+                )
+                .replace(R.id.main, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

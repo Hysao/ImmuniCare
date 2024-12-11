@@ -75,4 +75,8 @@ dependencies {
     //qr generator
     implementation(libs.zxing.core)
 
+    implementation(libs.material.v190)
+
+    implementation(libs.firebase.storage)
+
 }

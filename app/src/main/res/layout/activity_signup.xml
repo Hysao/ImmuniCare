@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,9 +7,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:background="@color/white"
     tools:context=".auth.SignupActivity">
 
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout7"
@@ -45,67 +51,48 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="380dp"
-        android:layout_height="0dp"
-        android:background="@drawable/viewpager_bg"
-        android:orientation="vertical"
-        app:flow_verticalBias="1"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent=".78"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_signup"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/tab_bg"
-            app:layout_constraintVertical_bias="0" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/signup_pager"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            app:layout_constraintVertical_bias="0" />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/linearLayout7"
         android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_marginHorizontal="16dp"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/userBtn"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:text="User"
             android:fontFamily="@font/poppins_regular"
-            android:text="Already have account?"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:layout_marginVertical="8dp"
+            android:textSize="18sp"
+            android:textColor="@color/immuniCareBlue"
+            android:backgroundTint="@color/white"
+            android:layout_marginHorizontal="8dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/immuniCareBlue"
+            />
 
-
-        <TextView
-            android:layout_width="wrap_content"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/hwBtn"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:text="Health Worker"
             android:fontFamily="@font/poppins_regular"
-            android:text="Login Here!"
-            android:textColor="@color/immuniCareRed"
-            android:textSize="14sp" />
+            android:textSize="18sp"
+            android:layout_marginVertical="8dp"
+            android:textColor="@color/immuniCareBlue"
+            android:backgroundTint="@color/white"
+            android:layout_marginHorizontal="8dp"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/immuniCareBlue"
+
+            />
+
 
 
     </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

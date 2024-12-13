@@ -1,32 +1,37 @@
 package com.myprograms.admin.validating;
 
 public class Users {
-
-    String uid;
-    String name;
-    String email;
-    String address;
-    String status;
-    Boolean isHw;
+    private String userId;
+    private String name;
+    private String email;
+    private String phone;
+    private String address;
+    private boolean isHw;
+    private String isVerified;
+    private String photo;
 
     public Users() {
     }
 
-    public Users(String uid, String name, String email, String address, String status, Boolean isHw) {
-        this.uid = uid;
+
+    public Users(String userId, String name, String email, String phone, String address, boolean isHw, String isVerified, String photo) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.address = address;
-        this.status = status;
         this.isHw = isHw;
+        this.isVerified = isVerified;
+        this.photo = photo;
     }
 
-    public String getUid() {
-        return uid;
+    // Getters and Setters
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {
@@ -45,6 +50,14 @@ public class Users {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -53,19 +66,28 @@ public class Users {
         this.address = address;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Boolean getHw() {
+    public boolean isHw() {
         return isHw;
     }
 
-    public void setHw(Boolean hw) {
-        isHw = hw;
+    public void setHw(boolean isHw) {
+        this.isHw = isHw;
     }
+
+    public String getIsVerified() {
+        return isVerified;
+    }
+
+    public void setIsVerified(String isVerified) {
+        this.isVerified = isVerified;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
 }

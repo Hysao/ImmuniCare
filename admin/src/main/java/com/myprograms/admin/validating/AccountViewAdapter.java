@@ -2,6 +2,7 @@ package com.myprograms.admin.validating;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.admin.R;
@@ -45,75 +48,26 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull AccountViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        Users user = usersList.get(position);
 
-        Users users = usersList.get(position);
+        // Bind user data to the views
+        holder.userName.setText(user.getName());
+        holder.userEmail.setText(user.getEmail());
+        holder.userPhone.setText(user.getPhone());
+        holder.userAddress.setText(user.getAddress());
 
-        holder.userName.setText(users.getName());
-        holder.userId.setText(users.getUid());
-        holder.userEmail.setText(users.getEmail());
-        holder.userAddress.setText(users.getAddress());
+        // Set click listener for the card view
+        holder.cardView.setOnClickListener(v -> {
+            // Retrieve documentId
+            String documentId = user.getUserId(); // Assuming userId is the documentId
 
-        holder.userData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (holder.moreData.getVisibility() == View.GONE) {
-                    holder.moreData.setVisibility(View.VISIBLE);
-                } else {
-                    holder.moreData.setVisibility(View.GONE);
-                }
-            }
+            // Start the next activity and pass documentId
+            Intent intent = new Intent(context, UserDetailsActivity.class);
+            intent.putExtra("documentId", documentId);
+            context.startActivity(intent);
         });
-
-        if (!Objects.equals(users.getStatus(), "pending")) {
-            holder.btnLinear.setVisibility(View.GONE);
-            holder.userStatus.setVisibility(View.VISIBLE);
-            holder.userStatus.setText(users.getStatus());
-        } else {
-            holder.btnLinear.setVisibility(View.VISIBLE);
-            holder.userStatus.setVisibility(View.GONE);
-        }
-
-        holder.approve.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onClick(View v) {
-                usersRef.document(users.getUid()).update("status", "approved")
-                        .addOnSuccessListener(aVoid -> {
-
-                            usersList.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position, usersList.size());
-
-                        })
-                        .addOnFailureListener(e -> {
-
-                            Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
-
-
-                        });
-            }
-        });
-
-        holder.reject.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onClick(View v) {
-                usersRef.document(users.getUid()).update("status", "rejected")
-                        .addOnSuccessListener(aVoid -> {
-
-                            usersList.remove(position);
-                            notifyItemRemoved(position);
-                            notifyItemRangeChanged(position, usersList.size());
-                        })
-
-                        .addOnFailureListener(e -> {
-
-                            Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
-                        });
-            }
-        });
-
     }
+
 
     @Override
     public int getItemCount() {
@@ -129,24 +83,19 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
 
     public static class AccountViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView userName, userId, userEmail, userAddress, userStatus;
-        public LinearLayout userData, moreData, btnLinear;
-        public Button approve, reject;
+        public MaterialTextView userName, userEmail, userPhone, userAddress;
+        public MaterialCardView cardView;
 
         public AccountViewHolder(@NonNull View itemView) {
             super(itemView);
 
 
             userName = itemView.findViewById(R.id.userName);
-            userId = itemView.findViewById(R.id.userId);
             userEmail = itemView.findViewById(R.id.userEmail);
+            userPhone = itemView.findViewById(R.id.userPhone);
             userAddress = itemView.findViewById(R.id.userAddress);
-            userData = itemView.findViewById(R.id.userData);
-            moreData = itemView.findViewById(R.id.moreData);
-            approve = itemView.findViewById(R.id.ApprovedBtn);
-            reject = itemView.findViewById(R.id.rejectBtn);
-            btnLinear = itemView.findViewById(R.id.btnLinear);
-            userStatus = itemView.findViewById(R.id.userStatus);
+            cardView = itemView.findViewById(R.id.cardView);
+
 
 
         }

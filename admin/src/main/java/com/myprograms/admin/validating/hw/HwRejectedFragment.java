@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,30 +45,46 @@ public class HwRejectedFragment extends Fragment {
         rejectedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         rejectedRecycler.setHasFixedSize(true);
 
-        Query query = usersRef.whereEqualTo("status", "rejected").whereEqualTo("isHw", true);
-
-        rejectedAccountList = new ArrayList<>();
-
-        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        Users users = documentSnapshot.toObject(Users.class);
-                        rejectedAccountList.add(users);
-                    }
-
-                    adapter = new AccountViewAdapter(rejectedAccountList, getContext());
-
-                    rejectedRecycler.setAdapter(adapter);
-
-                    adapter.notifyDataSetChanged();
-
-                }
-        ).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadRejected();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadRejected();
+    }
+
+    private void loadRejected(){
+        Query query = usersRef.whereEqualTo("isHw", true).whereEqualTo("isVerified", "rejected");
+
+        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if (queryDocumentSnapshots.isEmpty()) {
+                Toast.makeText(getContext(), "No pending users found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            rejectedAccountList.clear();
+            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                Users users = documentSnapshot.toObject(Users.class);
+                rejectedAccountList.add(users);
+            }
+
+            if (adapter == null) {
+                adapter = new AccountViewAdapter(rejectedAccountList, requireContext());
+                rejectedRecycler.setAdapter(adapter);
+            } else {
+                adapter.notifyDataSetChanged();
+            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
+            Log.e("UserPendingFragment", "Error loading data", e);
+        });
     }
 }

@@ -31,6 +31,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+
 }
 
 dependencies {
@@ -63,4 +65,10 @@ dependencies {
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation(libs.firebase.firestore)
 
+    implementation(libs.firebase.storage)
+
+    implementation (libs.glide)
+    annotationProcessor (libs.compiler)
+
 }
+

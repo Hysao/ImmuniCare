@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImmuniCare">
         <activity
+            android:name=".validating.UserDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".concerns.ConcernsActivity"
             android:exported="false" />
         <activity

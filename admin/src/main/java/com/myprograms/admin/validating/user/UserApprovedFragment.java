@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,31 +47,47 @@ public class UserApprovedFragment extends Fragment {
         approvedRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         approvedRecycler.setHasFixedSize(true);
 
-        Query query = usersRef.whereEqualTo("status", "approved").whereEqualTo("isHw", false);
-
-        approvedAccountList = new ArrayList<>();
-
-        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                        Users users = documentSnapshot.toObject(Users.class);
-                        approvedAccountList.add(users);
-                    }
-
-                    adapter = new AccountViewAdapter(approvedAccountList, getContext());
-
-                    approvedRecycler.setAdapter(adapter);
-
-                    adapter.notifyDataSetChanged();
-
-                }
-        ).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        loadApprove();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadApprove();
+    }
+
+    private void loadApprove(){
+        Query query = usersRef.whereEqualTo("isHw", false).whereEqualTo("isVerified", "approved");
+
+        query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if (queryDocumentSnapshots.isEmpty()) {
+                Toast.makeText(getContext(), "No pending users found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            approvedAccountList.clear();
+            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                Users users = documentSnapshot.toObject(Users.class);
+                approvedAccountList.add(users);
+            }
+
+            if (adapter == null) {
+                adapter = new AccountViewAdapter(approvedAccountList, requireContext());
+                approvedRecycler.setAdapter(adapter);
+            } else {
+                adapter.notifyDataSetChanged();
+            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
+            Log.e("UserPendingFragment", "Error loading data", e);
+        });
     }
 }

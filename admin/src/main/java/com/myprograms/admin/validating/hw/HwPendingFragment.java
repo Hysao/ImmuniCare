@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,36 +47,45 @@ public class HwPendingFragment extends Fragment {
         pendingAccountRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         pendingAccountRecycler.setHasFixedSize(true);
 
+        loadPending();
+
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        loadPending();
+
+
+    }
+
+    private void loadPending() {
         Query query = usersRef.whereEqualTo("isHw", true);
 
-        pendingAccountList = new ArrayList<>();
-
         query.get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if (queryDocumentSnapshots.isEmpty()) {
+                Toast.makeText(getContext(), "No pending users found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            pendingAccountList.clear();
             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 Users users = documentSnapshot.toObject(Users.class);
                 pendingAccountList.add(users);
             }
 
-            adapter = new AccountViewAdapter(pendingAccountList, getContext());
-
-            pendingAccountRecycler.setAdapter(adapter);
-
-            adapter.notifyDataSetChanged();
-
+            if (adapter == null) {
+                adapter = new AccountViewAdapter(pendingAccountList, requireContext());
+                pendingAccountRecycler.setAdapter(adapter);
+            } else {
+                adapter.notifyDataSetChanged();
             }
-            ).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
-            }
+        }).addOnFailureListener(e -> {
+            Toast.makeText(getContext(), "Loading Data Failed", Toast.LENGTH_SHORT).show();
+            Log.e("UserPendingFragment", "Error loading data", e);
         });
-
-
-
-
-
-
-
-        return view;
     }
 }

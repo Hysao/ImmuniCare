@@ -38,6 +38,12 @@
         android:layout_height="fill_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@color/white"
+
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="10dp"
+
         >
 
         <ScrollView

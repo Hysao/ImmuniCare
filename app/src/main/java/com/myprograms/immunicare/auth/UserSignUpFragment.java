@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -150,7 +151,14 @@ public class UserSignUpFragment extends Fragment {
         }
 
         userRef.document(userId).set(userData)
-                .addOnSuccessListener(aVoid -> Toast.makeText(getActivity(), "Sign-up successful", Toast.LENGTH_SHORT).show())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Intent i = new Intent(getActivity(), SuccessfulActivity.class);
+                        Toast.makeText(getActivity(), "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(i);
+                    }
+                })
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }

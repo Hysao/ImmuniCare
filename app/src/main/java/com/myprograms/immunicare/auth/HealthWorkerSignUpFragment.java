@@ -163,6 +163,7 @@ public class HealthWorkerSignUpFragment extends Fragment {
                     public void onSuccess(Void unused) {
                         Intent i = new Intent(getActivity(), SuccessfulActivity.class);
                         Toast.makeText(getActivity(), "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                        startActivity(i);
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());

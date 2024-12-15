@@ -1,6 +1,9 @@
 package com.myprograms.admin.validating;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.admin.R;
@@ -64,6 +68,9 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         approveBtn.setOnClickListener(v -> approveUser(documentId));
         rejectBtn.setOnClickListener(v -> showRejectDialog(documentId));
+
+        setupPhotoView();
+
     }
 
     private void loadUserDetails(String documentId) {
@@ -82,12 +89,32 @@ public class UserDetailsActivity extends AppCompatActivity {
                             btnContainer.setVisibility(View.GONE);
                         }
 
-                        String imageUrl = documentSnapshot.getString("barangayIdImageUrl");
-                        if (imageUrl != null && !imageUrl.isEmpty()) {
-                            Glide.with(this).load(imageUrl).into(barangayIdImage);
+                        if (Boolean.TRUE.equals(documentSnapshot.getBoolean("isHw"))){
+                            isHw.setText("Health Care ID");
+                        }else {
+                            isHw.setText("Barangay ID");
+                        }
+
+                        String base64Image = documentSnapshot.getString("photo");
+                        if (base64Image != null && !base64Image.isEmpty()) {
+                            try {
+                                // Decode the Base64 string into a byte array
+                                byte[] decodedBytes = android.util.Base64.decode(base64Image, android.util.Base64.DEFAULT);
+
+                                // Convert the byte array into a Bitmap
+                                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+
+                                // Set the Bitmap to the ImageView
+                                barangayIdImage.setImageBitmap(decodedBitmap);
+                            } catch (IllegalArgumentException e) {
+                                Log.e("UserDetailsActivity", "Error decoding Base64 image", e);
+                                Toast.makeText(this, "Error decoding image", Toast.LENGTH_SHORT).show();
+                            }
                         } else {
+                            Log.e("UserDetailsActivity", "Base64 image string is null or empty");
                             Toast.makeText(this, "Barangay ID image not found", Toast.LENGTH_SHORT).show();
                         }
+
                     } else {
                         Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show();
                         finish();
@@ -150,5 +177,28 @@ public class UserDetailsActivity extends AppCompatActivity {
                 .addOnFailureListener(e ->
                         Toast.makeText(this, "Error rejecting user: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                 );
+    }
+
+    private void setupPhotoView() {
+        barangayIdImage.setOnClickListener(v -> showZoomDialog());
+    }
+
+    private void showZoomDialog() {
+        // Create a dialog with a custom layout
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_zoom_image, null);
+
+        PhotoView photoView = dialogView.findViewById(R.id.photoView);
+
+        // Load the image from the current ImageView into PhotoView
+        photoView.setImageDrawable(barangayIdImage.getDrawable());
+
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Dismiss the dialog when PhotoView is clicked
+        photoView.setOnClickListener(v -> dialog.dismiss());
     }
 }

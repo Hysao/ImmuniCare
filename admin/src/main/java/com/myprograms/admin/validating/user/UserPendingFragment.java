@@ -30,8 +30,12 @@ public class UserPendingFragment extends Fragment {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = db.collection("users");
     private RecyclerView pendingAccountRecycler;
-    private List<Users> pendingAccountList;
+    private List<Users> pendingAccountList = new ArrayList<>();
+
     private AccountViewAdapter adapter;
+
+
+
 
 
     @Override
@@ -63,6 +67,7 @@ public class UserPendingFragment extends Fragment {
 
     private void loadPending() {
         Query query = usersRef.whereEqualTo("isHw", false);
+
 
         query.get().addOnSuccessListener(queryDocumentSnapshots -> {
             if (queryDocumentSnapshots.isEmpty()) {

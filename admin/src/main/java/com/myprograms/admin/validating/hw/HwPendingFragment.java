@@ -29,7 +29,7 @@ import java.util.List;
 public class HwPendingFragment extends Fragment {
 
     private RecyclerView pendingAccountRecycler;
-    private List<Users> pendingAccountList;
+    private List<Users> pendingAccountList = new ArrayList<>();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference usersRef = db.collection("users");
     private AccountViewAdapter adapter;

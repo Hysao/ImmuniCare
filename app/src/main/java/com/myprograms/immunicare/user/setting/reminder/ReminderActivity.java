@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.user.setting.reminder;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.R;
 
 import java.time.LocalDate;
@@ -27,17 +30,40 @@ public class ReminderActivity extends AppCompatActivity implements ReminderCalen
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
+
+    private View addReminderBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_reminder);
         initWidgets();
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.getCurrentUser();
+
+        addReminderBtn = findViewById(R.id.addReminderBtn);
+
+        addReminderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ReminderActivity.this, AddReminderActivity.class);
+                startActivity(i);
+            }
+        });
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             selectedDate = LocalDate.now();
         }
         setMonthView();
     }
+
+
 
     private void initWidgets()
     {

@@ -190,6 +190,7 @@
             android:layout_marginBottom="8dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/upcomingEventRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginHorizontal="16dp"

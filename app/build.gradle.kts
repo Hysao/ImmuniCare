@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "com.myprograms.immunicare"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -62,8 +62,12 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
-    implementation(libs.firebase.auth)
-    implementation(libs.firebase.firestore)
+//    implementation(libs.firebase.auth)
+//    implementation(libs.firebase.firestore)
+
+    implementation (libs.play.services.auth)  // For Google authentication
+    implementation (libs.google.firebase.auth)  // Firebase Authentication
+    implementation (libs.google.firebase.firestore)
 
     // CameraX Dependencies (all CameraX dependencies with same version)
     implementation(libs.camera.core.v150)
@@ -78,5 +82,10 @@ dependencies {
     implementation(libs.material.v190)
 
     implementation(libs.firebase.storage)
+
+    implementation(libs.threetenabp)
+
+    implementation(libs.play.services.maps.v1820)
+
 
 }

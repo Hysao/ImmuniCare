@@ -2,6 +2,7 @@ package com.myprograms.immunicare.calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Build;
@@ -10,8 +11,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.user.setting.reminder.Reminder;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
@@ -23,16 +31,38 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
     private RecyclerView calendarRecyclerView;
     private LocalDate selectedDate;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference reminderRef = db.collection("reminder");
+
+    private RecyclerView upcomingEventRecyclerView;
+
+    private ArrayList<String> reminderDates = new ArrayList<>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+
+        upcomingEventRecyclerView = findViewById(R.id.upcomingEventRecyclerView);
+        setupUpcomingEvents();
+
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         initWidgets();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            selectedDate = LocalDate.now();
-        }
+
+        AndroidThreeTen.init(this);
+        selectedDate = LocalDate.now();
         setMonthView();
+
+
     }
 
     private void initWidgets()
@@ -46,10 +76,19 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
         monthYearText.setText(monthYearFromDate(selectedDate));
         ArrayList<String> daysInMonth = daysInMonthArray(selectedDate);
 
-        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, this);
+        fetchReminders();
+
+        if (selectedDate == null) {
+            selectedDate = LocalDate.now();
+        }
+        CalendarAdapter calendarAdapter = new CalendarAdapter(daysInMonth, reminderDates, this, selectedDate);
+
+
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
         calendarRecyclerView.setLayoutManager(layoutManager);
         calendarRecyclerView.setAdapter(calendarAdapter);
+
+
     }
 
     private ArrayList<String> daysInMonthArray(LocalDate date)
@@ -125,4 +164,46 @@ public class CalendarActivity extends AppCompatActivity implements CalendarAdapt
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }
+
+    private void fetchReminders() {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            FirebaseFirestore.getInstance().collection("reminders")
+                    .whereEqualTo("userId", currentUser.getUid())
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        reminderDates.clear();
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                            Reminder reminder = doc.toObject(Reminder.class);
+                            if (reminder != null && reminder.getDate() != null) {
+                                reminderDates.add(reminder.getDate());
+                            }
+                        }
+                        setMonthView();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to load reminders", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    private void setupUpcomingEvents() {
+        FirebaseFirestore.getInstance().collection("reminders")
+                .whereEqualTo("userId", mUser.getUid())
+                .get()
+                .addOnSuccessListener(querySnapshot -> {
+                    ArrayList<Reminder> reminders = new ArrayList<>();
+                    for (DocumentSnapshot doc : querySnapshot) {
+                        reminders.add(doc.toObject(Reminder.class));
+                    }
+                    UpcomingEventsAdapter adapter = new UpcomingEventsAdapter(reminders);
+                    upcomingEventRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+                    upcomingEventRecyclerView.setAdapter(adapter);
+                });
+    }
+
+
 }

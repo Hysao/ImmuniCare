@@ -2,8 +2,10 @@ package com.myprograms.immunicare.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEditText, passwordEditText;
     private TextInputLayout passwordInputLayout;
 
+    private TextView validateBtn, forgotPassword;
+
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser currentUser;
@@ -51,7 +55,18 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginBtn);
         emailEditText = findViewById(R.id.emailLogin);
         passwordEditText = findViewById(R.id.passwordLogin);
+        validateBtn = findViewById(R.id.validateBtn);
+        forgotPassword = findViewById(R.id.forgotPassword);
+
         mAuth = FirebaseAuth.getInstance();
+
+        validateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(i);
+            }
+        });
 
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();

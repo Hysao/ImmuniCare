@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
 
 import java.util.Calendar;
@@ -21,6 +26,13 @@ public class AddReminderActivity extends AppCompatActivity {
 
     private Button dateButton;
     private DatePickerDialog datePickerDialog;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser mUser;
+
+    private EditText reminderTitle, reminderDescription;
+    private Button addReminderBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +45,19 @@ public class AddReminderActivity extends AppCompatActivity {
             return insets;
         });
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         initDatePicker();
         dateButton = findViewById(R.id.dateButton);
         dateButton.setText(getTodaysDate());
 
 
+        reminderTitle = findViewById(R.id.titleEditText);
+        reminderDescription = findViewById(R.id.detailsEditText);
+
+        addReminderBtn = findViewById(R.id.addReminder);
+        addReminderBtn.setOnClickListener(v -> addReminderToFirestore());
 
 
     }
@@ -116,6 +136,30 @@ public class AddReminderActivity extends AppCompatActivity {
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
+    }
+
+    private void addReminderToFirestore() {
+        String title = reminderTitle.getText().toString().trim();
+        String description = reminderDescription.getText().toString().trim();
+        String date = dateButton.getText().toString();
+
+        if (title.isEmpty() || description.isEmpty() || date.isEmpty()) {
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Reminder reminder = new Reminder(title, description, date, mUser.getUid());
+
+
+        FirebaseFirestore.getInstance().collection("reminders")
+                .add(reminder)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(this, "Reminder Added", Toast.LENGTH_SHORT).show();
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Failed to Add Reminder", Toast.LENGTH_SHORT).show();
+                });
     }
 
 }

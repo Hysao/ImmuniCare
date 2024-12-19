@@ -1,6 +1,8 @@
 package com.myprograms.immunicare.user.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +10,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.calendar.CalendarActivity;
+import com.myprograms.immunicare.user.setting.notification.NotificationActivity;
+import com.myprograms.immunicare.user.setting.reminder.AddReminderActivity;
+import com.myprograms.immunicare.user.setting.reminder.ReminderActivity;
 
 public class SettingsActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
+    private TextView reminderBtn, notificationBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +37,22 @@ public class SettingsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.getCurrentUser();
+
+        reminderBtn = findViewById(R.id.reminderBtn);
+        notificationBtn = findViewById(R.id.notificationBtn);
+
+        reminderBtn.setOnClickListener(v -> {
+            Intent i = new Intent(SettingsActivity.this, ReminderActivity.class);
+            startActivity(i);
+        });
+
+        notificationBtn.setOnClickListener(v -> {
+            Intent i = new Intent(SettingsActivity.this, NotificationActivity.class);
+            startActivity(i);
+        });
+
     }
 }

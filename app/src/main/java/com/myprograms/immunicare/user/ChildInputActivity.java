@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -37,6 +38,8 @@ public class ChildInputActivity extends AppCompatActivity {
     private EditText childName, childPlaceOfBirth, childAddress, childMotherName, childFatherName,
             childHeight, childWeight, childBarangay;
     private RadioButton male, female;
+
+   private ImageView childPhoto;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;

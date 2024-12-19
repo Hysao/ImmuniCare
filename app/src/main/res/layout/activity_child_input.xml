@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -40,6 +41,15 @@
             app:cardPreventCornerOverlap="true"
             >
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/childPhoto"
+                android:background="@drawable/vc_add_photo_100"
+                android:backgroundTint="@color/black"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"
+                />
 
 
         </androidx.cardview.widget.CardView>
@@ -55,27 +65,42 @@
             android:textColor="@color/white"
             />
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:textSize="16sp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            android:hint="@string/enter_child_s_name"
+
+            >
+
         <EditText
             android:id="@+id/childName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="name"
+            android:padding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
-            android:hint="@string/enter_child_s_name"
-            android:background="@drawable/bg_et"
             android:inputType="textPersonName"
-            android:padding="10dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
+            android:backgroundTint="@color/white"
             />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="8dp"
             >
 
@@ -130,63 +155,121 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/childPlaceOfBirth"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:hint="@string/place_of_birth"
-            android:background="@drawable/bg_et"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            />
 
+            >
+            <EditText
+                android:id="@+id/childPlaceOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:padding="10dp"
+                android:backgroundTint="@color/white"
+                />
 
-        <EditText
-            android:id="@+id/childAddress"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:hint="@string/address"
-            android:background="@drawable/bg_et"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:layout_marginVertical="8dp"
-            android:layout_marginHorizontal="16dp"
-            />
 
-        <EditText
-            android:id="@+id/childMotherName"
+            >
+
+            <EditText
+                android:id="@+id/childAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+
+                android:padding="10dp"
+                android:backgroundTint="@color/white"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
             android:hint="@string/mother_s_name"
-            android:background="@drawable/bg_et"
-            android:inputType="textPersonName"
-            android:padding="10dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp"
-            />
+            >
+            <EditText
+                android:id="@+id/childMotherName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:backgroundTint="@color/white"
+                />
 
-        <EditText
-            android:id="@+id/childFatherName"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
-            android:hint="@string/father_s_name"
-            android:textColor="@color/black"
-            android:background="@drawable/bg_et"
-            android:inputType="textPersonName"
-            android:padding="10dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            />
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            android:hint="@string/father_s_name"
+
+            >
+
+            <EditText
+                android:id="@+id/childFatherName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:backgroundTint="@color/white"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,17 +279,33 @@
             android:layout_marginVertical="8dp"
             >
 
-            <EditText
-                android:id="@+id/childHeight"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/bg_et"
-                android:hint="@string/height"
                 android:fontFamily="@font/poppins_regular"
-                />
+                android:textSize="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:hint="@string/height"
+                android:layout_weight="3"
+                >
+                <EditText
+                    android:id="@+id/childHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:backgroundTint="@color/white"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -218,17 +317,35 @@
                 android:textColor="@color/white"
                 />
 
-            <EditText
-                android:id="@+id/childWeight"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/bg_et"
-                android:hint="Weight"
                 android:fontFamily="@font/poppins_regular"
-                />
+                android:textSize="16sp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                app:boxCornerRadiusBottomEnd="10dp"
+                app:boxCornerRadiusBottomStart="10dp"
+                app:boxCornerRadiusTopEnd="10dp"
+                app:boxCornerRadiusTopStart="10dp"
+                android:layout_weight="3"
+                android:hint="Weight"
+
+                >
+                <EditText
+                    android:id="@+id/childWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+
+                    android:fontFamily="@font/poppins_regular"
+                    android:backgroundTint="@color/white"
+                    />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -243,19 +360,37 @@
         </LinearLayout>
 
 
-        <EditText
-            android:id="@+id/childBarangay"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
-            android:hint="@string/barangay"
-            android:background="@drawable/bg_et"
-            android:inputType="textPersonName"
-            android:padding="10dp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            />
+            android:padding="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            app:boxCornerRadiusTopStart="10dp"
+            android:hint="@string/barangay"
+
+            >
+
+            <EditText
+                android:id="@+id/childBarangay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="16sp"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:backgroundTint="@color/white"
+
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
         <LinearLayout

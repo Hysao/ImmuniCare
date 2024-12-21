@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".vaccines.VaccineEditActivity"
+    android:background="@color/immuniCareBlue"
+    android:gravity="center">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="EDIT VACCINE"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/vaccineName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"
+                android:text="Vaccine Name"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                 />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:hint="Vaccine Stock"
+                >
+
+                <EditText
+                    android:id="@+id/vaccineStock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:background="@color/white"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/black" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Manufactured Date:"
+                android:textColor="@color/immuniCareBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/mdfDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Select Date"
+                android:fontFamily="@font/poppins_regular"
+                app:elevation="10dp"
+                app:strokeWidth="2dp"
+                style="@style/Widget.AppCompat.Spinner" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Expiry Date:"
+                android:textColor="@color/immuniCareBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/expDatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Select Date"
+                android:fontFamily="@font/poppins_regular"
+                app:elevation="10dp"
+                app:strokeWidth="2dp"
+                style="@style/Widget.AppCompat.Spinner" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cancel"
+                    android:fontFamily="@font/poppins_regular"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/immuniCareRed"
+                    app:elevation="10dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/immuniCareRed"
+                    android:layout_marginHorizontal="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/saveBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Save Changes"
+                    android:fontFamily="@font/poppins_regular"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/immuniCareBlue"
+                    app:elevation="10dp"
+                    android:backgroundTint="@color/white"
+                    android:textColor="@color/immuniCareBlue"
+                    android:layout_marginHorizontal="8dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</RelativeLayout>

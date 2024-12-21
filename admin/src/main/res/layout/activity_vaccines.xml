@@ -36,10 +36,29 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginHorizontal="16dp"
         android:id="@+id/vaccinesRecycler"
         android:layout_marginBottom="32dp"
         />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/addVaccineBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center"
+        android:text="Add Vaccine"
+        android:fontFamily="@font/poppins_regular"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/white"
+        app:elevation="10dp"
+        android:shadowColor="@color/immuniCareGrey"
+        android:shadowRadius="20"
+        android:shadowDx="@integer/material_motion_duration_medium_1"
+        />
+
 
 </LinearLayout>

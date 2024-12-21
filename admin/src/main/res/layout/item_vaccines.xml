@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="8dp"
+
+    app:strokeWidth="2dp"
+    app:strokeColor="@color/immuniCareBlue"
+
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+
+    android:id="@+id/cardVaccine"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="8dp"
+        >
+
+
+        <TextView
+            android:id="@+id/vaccineName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="vaccineName"
+            android:textSize="24sp"
+            android:fontFamily="@font/poppins_regular"
+            />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal"
+           android:layout_marginBottom="16dp"
+           >
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Stock:"
+               android:textStyle="bold"
+               android:textColor="@color/immuniCareBlue"
+               android:fontFamily="@font/poppins_regular"
+               android:textSize="20sp"
+               />
+
+           <TextView
+               android:id="@+id/vaccinesStocks"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:fontFamily="@font/poppins_regular"
+               android:layout_weight="1"
+               android:text="vaccineStocks"
+               android:textStyle="bold"
+               android:textColor="@color/black"
+               android:textSize="20sp"
+               />
+
+
+       </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:ignore="DisableBaselineAlignment"
+            android:layout_marginBottom="32dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/immuniCareBlue"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:text="MFD: "
+
+                    />
+
+                <TextView
+                    android:id="@+id/vaccineMFD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:text="vaccineMFD"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/immuniCareBlue"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:text="EXP: "
+                    />
+
+                <TextView
+                    android:id="@+id/vaccineEXP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textStyle="bold"
+                    android:text="vaccineEXP"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            >
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/vaccineEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="Edit"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginHorizontal="8dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/immuniCareBlue"
+                app:elevation="10dp"
+                android:shadowColor="@color/immuniCareGrey"
+                android:shadowRadius="20"
+                android:shadowDx="@integer/material_motion_duration_medium_1"
+                android:textColor="@color/immuniCareBlue"
+                android:backgroundTint="@color/white"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/vaccineDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:text="Delete"
+                android:fontFamily="@font/poppins_regular"
+                android:layout_marginHorizontal="8dp"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/immuniCareRed"
+                app:elevation="10dp"
+                android:shadowColor="@color/immuniCareGrey"
+                android:shadowRadius="20"
+                android:shadowDx="@integer/material_motion_duration_medium_1"
+                android:textColor="@color/immuniCareRed"
+                android:backgroundTint="@color/white"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

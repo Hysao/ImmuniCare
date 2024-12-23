@@ -52,9 +52,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    // Google Play Services
-    implementation(libs.play.services.maps)
-    implementation(libs.play.services.vision)
+
 
     // ML Kit (QR Code Scanning and Vision)
     implementation(libs.barcode.scanning.v1730)
@@ -62,8 +60,7 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
-//    implementation(libs.firebase.auth)
-//    implementation(libs.firebase.firestore)
+
 
     implementation (libs.play.services.auth)  // For Google authentication
     implementation (libs.google.firebase.auth)  // Firebase Authentication
@@ -85,7 +82,6 @@ dependencies {
 
     implementation(libs.threetenabp)
 
-    implementation(libs.play.services.maps.v1820)
 
 
 }

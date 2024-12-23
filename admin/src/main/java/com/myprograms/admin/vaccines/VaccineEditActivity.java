@@ -2,6 +2,7 @@ package com.myprograms.admin.vaccines;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class VaccineEditActivity extends AppCompatActivity {
     private MaterialButton saveBtn, cancelBtn;
 
     private String vaccineName;
-    private String documentId; // Store document ID for saving changes
+    private String documentId;
 
     private String selectedManufacturedDate;
     private String selectedExpiryDate;
@@ -66,16 +67,28 @@ public class VaccineEditActivity extends AppCompatActivity {
         query.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    documentId = document.getId(); // Get the document ID for saving changes
-                    String stock = document.getString("stock");
-                    vaccineStock.setText(stock);
+                    documentId = document.getId();
 
+                    // Fetch the numeric stock value and convert it to String
+                    Integer stockValue = document.get("stock", Integer.class);
+                    if (stockValue != null) {
+                        vaccineStock.setText(String.valueOf(stockValue));
+                    }
+
+                    // Fetch the manufactured date and expiry date
                     selectedManufacturedDate = document.getString("manufacturedDate");
-                    mdfDatePicker.setText(selectedManufacturedDate);
+                    if (selectedManufacturedDate != null) {
+                        mdfDatePicker.setText(selectedManufacturedDate);
+                    }
 
                     selectedExpiryDate = document.getString("expiryDate");
-                    expDatePicker.setText(selectedExpiryDate);
+                    if (selectedExpiryDate != null) {
+                        expDatePicker.setText(selectedExpiryDate);
+                    }
                 }
+            } else {
+                // Handle task failure
+                Log.e("Firestore Query", "Error fetching document: ", task.getException());
             }
         });
 

@@ -40,9 +40,9 @@ public class VaccineAdapter extends RecyclerView.Adapter<VaccineAdapter.VaccineV
         Context context = holder.itemView.getContext();
 
         holder.vaccineNameTextView.setText(vaccine.getName());
-        holder.stockTextView.setText(String.format("Stock: %s", vaccine.getStock()));
-        holder.manufacturedDateTextView.setText(String.format("MFD: %s", vaccine.getManufacturedDate()));
-        holder.expiryDateTextView.setText(String.format("EXP: %s", vaccine.getExpiryDate()));
+        holder.stockTextView.setText(String.valueOf(vaccine.getStock()));
+        holder.manufacturedDateTextView.setText(vaccine.getManufacturedDate());
+        holder.expiryDateTextView.setText(vaccine.getExpiryDate());
 
         holder.editBtn.setOnClickListener(v -> {
             Intent intent = new Intent(context, VaccineEditActivity.class);

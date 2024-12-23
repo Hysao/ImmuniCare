@@ -3,7 +3,7 @@ package com.myprograms.admin.vaccines;
 public class Vaccines {
     private String id;
     private String name;
-    private String stock;
+    private int stock;
     private String manufacturedDate;
     private String expiryDate;
 
@@ -11,7 +11,7 @@ public class Vaccines {
 
     }
 
-    public Vaccines(String id, String name, String stock, String manufacturedDate, String expiryDate) {
+    public Vaccines(String id, String name, int stock, String manufacturedDate, String expiryDate) {
         this.id = id;
         this.name = name;
         this.stock = stock;
@@ -36,11 +36,11 @@ public class Vaccines {
         this.name = name;
     }
 
-    public String getStock() {
+    public int getStock() {
         return stock;
     }
 
-    public void setStock(String stock) {
+    public void setStock(int stock) {
         this.stock = stock;
     }
 

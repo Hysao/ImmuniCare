@@ -100,11 +100,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="JAN 15, 2023"
+                android:text="ENTER DATE"
                 android:fontFamily="@font/poppins_regular"
                 app:strokeWidth="2dp"
-                app:elevation="10dp"
-                style="@style/Widget.AppCompat.Spinner"
+                app:strokeColor="@color/immuniCareBlue"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/immuniCareBlue"
                 />
 
 
@@ -125,13 +126,13 @@
                 android:id="@+id/expDatePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.AppCompat.Spinner"
                 android:layout_marginBottom="16dp"
-                android:text="Add Vaccine"
+                android:text="ENTER DATE"
                 android:fontFamily="@font/poppins_regular"
                 app:strokeWidth="2dp"
-                app:strokeColor="@color/white"
-                app:elevation="10dp"
+                app:strokeColor="@color/immuniCareBlue"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/immuniCareBlue"
                 />
 
 

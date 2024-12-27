@@ -20,8 +20,12 @@ public class HwMainAdapter  extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         if (position == 1) {
             return new QRFragment();
+        } else if (position == 2) {
+            return new EnterRefFragment();
+        } else {
+            return new HistoryFragment();
         }
-        return new HistoryFragment();
+
     }
 
     @Override

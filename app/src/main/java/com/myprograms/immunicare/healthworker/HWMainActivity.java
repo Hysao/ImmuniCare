@@ -116,6 +116,7 @@ public class HWMainActivity extends AppCompatActivity {
 
         hwMainTab.addTab(hwMainTab.newTab().setText("History"));
         hwMainTab.addTab(hwMainTab.newTab().setText("Scan"));
+        hwMainTab.addTab(hwMainTab.newTab().setText("Enter Ref"));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         hwMainAdapter = new HwMainAdapter(fragmentManager, getLifecycle());

@@ -117,7 +117,7 @@ public class QrScannerActivity extends AppCompatActivity {
     private void handleScannedQrCode(String documentId) {
         if (documentId != null && !documentId.isEmpty()) {
             Intent intent = new Intent(this, ChildInfoActivity.class);
-            intent.putExtra("documentId", documentId); // Pass the documentId to the next activity
+            intent.putExtra("documentId", documentId);
             startActivity(intent);
             finish();
         }

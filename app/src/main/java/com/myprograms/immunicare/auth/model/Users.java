@@ -2,15 +2,18 @@ package com.myprograms.immunicare.auth.model;
 
 public class Users {
 
-    String uid;
+    String userId;
     String name;
     String email;
     String address;
     String status;
     Boolean isHw;
 
-    public Users(String uid, String name, String email, String address, String status, Boolean isHw) {
-        this.uid = uid;
+    public Users() {
+    }
+
+    public Users(String userId, String name, String email, String address, String status, Boolean isHw) {
+        this.userId = userId;
         this.name = name;
         this.email = email;
         this.address = address;
@@ -18,12 +21,12 @@ public class Users {
         this.isHw = isHw;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

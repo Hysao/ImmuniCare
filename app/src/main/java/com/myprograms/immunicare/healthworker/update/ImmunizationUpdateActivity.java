@@ -1,6 +1,7 @@
 package com.myprograms.immunicare.healthworker.update;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ImmunizationUpdateActivity extends AppCompatActivity {
 
@@ -249,37 +251,62 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
         historyEntry.put("changes", changes);
         historyEntry.put("timestamp", System.currentTimeMillis());
         historyEntry.put("hWorkerId", mUser.getUid());
-        historyEntry.put("hWorkerName", mUser.getDisplayName());
         historyEntry.put("childId", documentId);
 
-        Query query = userRef.whereEqualTo("uid", mUser.getUid());
+        AtomicInteger pendingTasks = new AtomicInteger(2);
 
-        query.get().addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
+        // Fetch hWorkerName
+        userRef.whereEqualTo("userId", mUser.getUid())
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful() && !task.getResult().isEmpty()) {
                         for (DocumentSnapshot document : task.getResult()) {
-                            historyEntry.put("updatedBy", document.getString("name"));
+                            historyEntry.put("hWorkerName", document.getString("name"));
+                            break; // Only fetch the first document
                         }
+                    } else {
+                        Log.d("Firestore", "No user data found or error occurred.");
                     }
+                    checkAndSaveHistory(historyEntry, pendingTasks);
                 });
 
-        Query query1 = childRef.whereEqualTo("childId", documentId);
-        query1.get().addOnCompleteListener(task -> {
+        // Fetch childName
+        childDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                for (DocumentSnapshot document : task.getResult()) {
-                    historyEntry.put("childName", document.getString("childName"));
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    Log.d("Firestore", "Document data: " + document.getData());
+                    String childName = document.getString("childName");
+                    if (childName != null) {
+                        historyEntry.put("childName", childName);
+                    } else {
+                        Log.d("Firestore", "childName field is null or missing.");
+                    }
+                } else {
+                    Log.d("Firestore", "No such document");
                 }
+            } else {
+                Log.e("Firestore", "Error getting document", task.getException());
             }
+            checkAndSaveHistory(historyEntry, pendingTasks);
         });
 
-        historyRef.add(historyEntry).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                showMessage("Changes saved successfully.");
-                finish();
-            } else {
-                showError("Failed to log changes. Please try again.");
-            }
-        });
     }
+
+    private void checkAndSaveHistory(Map<String, Object> historyEntry, AtomicInteger pendingTasks) {
+        if (pendingTasks.decrementAndGet() == 0) {
+
+            historyRef.add(historyEntry).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    showMessage("Changes saved successfully.");
+                    finish();
+                } else {
+                    showError("Failed to log changes. Please try again.");
+                }
+            });
+        }
+    }
+
 
     private void showMessage(String message) {
 

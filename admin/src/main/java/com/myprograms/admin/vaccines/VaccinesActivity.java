@@ -67,6 +67,12 @@ public class VaccinesActivity extends AppCompatActivity {
         fetchVaccines();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchVaccines();
+    }
+
     private void fetchVaccines() {
         Query query = vaccinesRef.orderBy("name", Query.Direction.ASCENDING);
 

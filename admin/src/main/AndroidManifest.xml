@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImmuniCare">
         <activity
+            android:name=".records.ImmunizationRecordActivity"
+            android:exported="false" />
+        <activity
             android:name=".vaccines.VaccineAddActivity"
             android:exported="false" />
         <activity

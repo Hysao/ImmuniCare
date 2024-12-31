@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.myprograms.admin.announcements.AnnouncementActivity;
+import com.myprograms.admin.records.ImmunizationRecordActivity;
 import com.myprograms.admin.vaccines.VaccinesActivity;
 import com.myprograms.admin.validating.ValidatingUserActivity;
 
@@ -62,6 +63,14 @@ public class AdminMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(AdminMainActivity.this, VaccinesActivity.class);
+                startActivity(i);
+            }
+        });
+
+        immunizationRecords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminMainActivity.this, ImmunizationRecordActivity.class);
                 startActivity(i);
             }
         });

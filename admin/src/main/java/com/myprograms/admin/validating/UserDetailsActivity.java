@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.functions.FirebaseFunctions;
 import com.myprograms.admin.R;
 
 import java.util.HashMap;
@@ -34,6 +35,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     private ImageView barangayIdImage;
     private MaterialButton approveBtn, rejectBtn;
     private FirebaseFirestore db;
+    private FirebaseFunctions functions = FirebaseFunctions.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +68,9 @@ public class UserDetailsActivity extends AppCompatActivity {
 
         backBtn.setOnClickListener(v -> finish());
 
-        approveBtn.setOnClickListener(v -> approveUser(documentId));
+        approveBtn.setOnClickListener(v -> approveUser(documentId, userEmail.getText().toString()));
         rejectBtn.setOnClickListener(v -> showRejectDialog(documentId));
+
 
         setupPhotoView();
 
@@ -126,7 +129,8 @@ public class UserDetailsActivity extends AppCompatActivity {
                 });
     }
 
-    private void approveUser(String documentId) {
+
+    private void approveUser(String documentId, String userEmail) {
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("isVerified", "approved");
         updateData.put("notification", "Your account has been approved.");
@@ -134,13 +138,32 @@ public class UserDetailsActivity extends AppCompatActivity {
         db.collection("users").document(documentId)
                 .update(updateData)
                 .addOnSuccessListener(aVoid -> {
+                    sendApprovalEmail(userEmail); // Send the email
                     Toast.makeText(this, "User approved", Toast.LENGTH_SHORT).show();
                     finish();
                 })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error approving user: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error approving user: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
+
+    private void sendApprovalEmail(String userEmail) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("email", userEmail);
+
+        FirebaseFunctions.getInstance()
+                .getHttpsCallable("sendApprovalEmail")
+                .call(data)
+                .addOnSuccessListener(httpsCallableResult -> {
+                    // Handle success
+                    Log.d("Email", "Email sent successfully");
+                })
+                .addOnFailureListener(e -> {
+                    // Handle failure
+                    Log.e("Email", "Error sending email: " + e.getMessage());
+                });
+    }
+
 
     private void showRejectDialog(String documentId) {
         // Inflate custom dialog layout

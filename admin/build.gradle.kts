@@ -68,6 +68,9 @@ dependencies {
     annotationProcessor (libs.compiler)
     implementation (libs.photoview)
 
+    implementation (libs.firebase.functions)
+
+
 
 }
 

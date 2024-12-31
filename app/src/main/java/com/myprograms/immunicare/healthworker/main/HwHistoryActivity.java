@@ -25,7 +25,6 @@ import java.util.List;
 public class HwHistoryActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser mUser;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -36,7 +35,6 @@ public class HwHistoryActivity extends AppCompatActivity {
 
     private HistoryAdapter historyAdapter;
     private List<History> historyList;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,32 +47,41 @@ public class HwHistoryActivity extends AppCompatActivity {
             return insets;
         });
 
-
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
         backBtn = findViewById(R.id.backBtn);
         historyRecyclerView = findViewById(R.id.historyRecyclerView);
 
-
         backBtn.setOnClickListener(v -> finish());
 
-        historyRecyclerView.setLayoutManager(new LinearLayoutManager(HwHistoryActivity.this));
+        historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        historyList = new ArrayList<>();
+        historyAdapter = new HistoryAdapter(historyList, this);
+        historyRecyclerView.setAdapter(historyAdapter);
 
-        // Fetch top 3 recent history records
-        historyRef.orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING).whereEqualTo("hWorkerId", mUser.getUid())
+        fetchHistoryData();
+    }
+
+    private void fetchHistoryData() {
+        if (mUser == null) return;
+
+        historyRef.whereEqualTo("hWorkerId", mUser.getUid())
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         historyList = task.getResult().toObjects(History.class);
-                        historyAdapter = new HistoryAdapter(historyList, HwHistoryActivity.this);
+                        historyAdapter = new HistoryAdapter(historyList, this);
                         historyRecyclerView.setAdapter(historyAdapter);
                     } else {
-                        System.out.println("Error fetching history: " + task.getException());
+                        System.err.println("Error fetching history: " + task.getException());
                     }
                 });
+    }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchHistoryData();
     }
 }

@@ -46,6 +46,7 @@ public class HistoryFragment extends Fragment {
         mUser = mAuth.getCurrentUser();
 
         viewHistoryBtn = view.findViewById(R.id.viewHistoryBtn);
+        historyRecycler = view.findViewById(R.id.historyRecycler);
 
         viewHistoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +57,10 @@ public class HistoryFragment extends Fragment {
         });
 
         // Initialize RecyclerView
-        historyRecycler = view.findViewById(R.id.historyRecycler);
         historyRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        historyRecycler.setHasFixedSize(true);
+        historyList = new ArrayList<>();
+        historyAdapter = new HistoryAdapter(historyList, getContext());
+        historyRecycler.setAdapter(historyAdapter);
 
         // Fetch and display history data
         fetchHistory();
@@ -77,24 +79,15 @@ public class HistoryFragment extends Fragment {
     private void fetchHistory() {
         if (mUser == null) return;
 
-        historyRef.orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                .whereEqualTo("hWorkerId", mUser.getUid())
-                .limit(3)
+        historyRef.whereEqualTo("hWorkerId", mUser.getUid())
+                .limit(2)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
-                        // Map the Firestore documents to History objects
                         historyList = task.getResult().toObjects(History.class);
-
-
-                        historyList = new ArrayList<>();
-
-                        // Set the adapter for RecyclerView
                         historyAdapter = new HistoryAdapter(historyList, getContext());
                         historyRecycler.setAdapter(historyAdapter);
-                        historyAdapter.notifyDataSetChanged();
                     } else {
-                        // Handle errors here
                         System.err.println("Error fetching history: " + task.getException());
                     }
                 });

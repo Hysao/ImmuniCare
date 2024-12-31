@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<com.google.android.material.card.MaterialCardView
+
     android:id="@+id/cardViewHistory"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,7 +8,11 @@
     android:layout_marginHorizontal="8dp"
     android:layout_marginVertical="8dp"
     android:background="@color/white"
-    >
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    app:strokeColor="@color/immuniCareBlue"
+    app:strokeWidth="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,6 +24,7 @@
         >
 
         <TextView
+            android:id="@+id/childName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -26,6 +32,7 @@
             android:text="childName"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
             />
 
         <LinearLayout
@@ -47,6 +54,7 @@
                 android:text="childId"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -56,6 +64,7 @@
                 android:text="historyDocumentId"
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"
                 />
 
 
@@ -67,6 +76,7 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:layout_marginVertical="16dp"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -76,6 +86,7 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -86,6 +97,7 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 />
 
             <TextView
@@ -96,6 +108,7 @@
                 android:textSize="16sp"
                 android:fontFamily="@font/poppins_regular"
                 android:textStyle="bold"
+                android:textColor="@color/black"
                 />
 
 
@@ -110,8 +123,9 @@
             android:text="updatedDate"
             android:textSize="16sp"
             android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/black"
             />
 
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

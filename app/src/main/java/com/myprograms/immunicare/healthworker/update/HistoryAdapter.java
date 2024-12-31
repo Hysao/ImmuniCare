@@ -53,6 +53,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.hWorkerName.setText(history.gethWorkerName());
         holder.updatedCheckboxes.setText(history.getUpdatedCheckboxes());
         holder.historyDocumentId.setText(history.getHistoryDocumentId());
+
+
     }
 
 
@@ -63,7 +65,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     public static class  HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView historyDate, childName, childId, hWorkerId, hWorkerName, updatedCheckboxes, historyDocumentId;
+        public TextView historyDate, childName, childId, hWorkerId, hWorkerName,
+                updatedCheckboxes, historyDocumentId;
         public CardView cardView;
         public LinearLayout linearLayout;
 

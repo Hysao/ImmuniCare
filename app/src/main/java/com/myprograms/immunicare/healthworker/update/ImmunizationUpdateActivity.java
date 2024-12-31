@@ -271,7 +271,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
                 });
 
         // Fetch childName
-        childDocRef.get().addOnCompleteListener(task -> {
+        childRef.document(documentId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {

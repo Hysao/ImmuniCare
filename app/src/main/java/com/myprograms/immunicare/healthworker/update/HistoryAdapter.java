@@ -44,6 +44,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = historyList.get(position);
+        System.out.println("Binding history: " + history.getChildName()); // Debugging
 
         holder.historyDate.setText(history.getUpdatedDate());
         holder.childName.setText(history.getChildName());
@@ -53,6 +54,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         holder.updatedCheckboxes.setText(history.getUpdatedCheckboxes());
         holder.historyDocumentId.setText(history.getHistoryDocumentId());
     }
+
 
     @Override
     public int getItemCount() {

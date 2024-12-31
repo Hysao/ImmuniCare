@@ -19,6 +19,7 @@ import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.healthworker.update.History;
 import com.myprograms.immunicare.healthworker.update.HistoryAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HwHistoryActivity extends AppCompatActivity {

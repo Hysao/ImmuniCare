@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,22 +66,26 @@ public class UserSignUpFragment extends Fragment {
 
         // Submit Button Click Listener
         view.findViewById(R.id.submitBtn).setOnClickListener(v -> {
-            String email = userEmail.getText().toString();
-            String password = userPassword.getText().toString();
+            if (isWithinAllowedTime()) {
+                String email = userEmail.getText().toString();
+                String password = userPassword.getText().toString();
 
-            if (validateInputs()) {
-                mAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                if (user != null) {
-                                    sendEmailVerification(user);
-                                    saveDataToFirestore(user.getUid());
+                if (validateInputs()) {
+                    mAuth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener(task -> {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        sendEmailVerification(user);
+                                        saveDataToFirestore(user.getUid());
+                                    }
+                                } else {
+                                    Toast.makeText(getActivity(), "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                            } else {
-                                Toast.makeText(getActivity(), "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                            });
+                }
+            } else {
+                Toast.makeText(getActivity(), "Sign-ups are only allowed between 8:00 AM and 5:00 PM", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -160,5 +165,12 @@ public class UserSignUpFragment extends Fragment {
                     }
                 })
                 .addOnFailureListener(e -> Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+    }
+    private boolean isWithinAllowedTime() {
+        Calendar calendar = Calendar.getInstance();
+        int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        // Allowed hours: 8 AM to 5 PM (17 in 24-hour format)
+        return currentHour >= 8 && currentHour < 17;
     }
 }

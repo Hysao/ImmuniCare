@@ -1,6 +1,9 @@
 package com.myprograms.immunicare.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +16,13 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
+import com.myprograms.immunicare.MainActivity;
 import com.myprograms.immunicare.R;
 
 public class SignupActivity extends AppCompatActivity {
 
     private MaterialButton userBtn, hwBtn;
+    private TextView loginBtn, homePageBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,26 @@ public class SignupActivity extends AppCompatActivity {
 
         userBtn = findViewById(R.id.userBtn);
         hwBtn = findViewById(R.id.hwBtn);
+        loginBtn = findViewById(R.id.loginBtn);
+        homePageBtn = findViewById(R.id.homePageBtn);
+
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
+        homePageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+
 
         userBtn.setOnClickListener(v -> showFragment(new UserSignUpFragment()));
         hwBtn.setOnClickListener(v -> showFragment(new HealthWorkerSignUpFragment()));

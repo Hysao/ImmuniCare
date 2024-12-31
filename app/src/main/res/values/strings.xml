@@ -6,7 +6,7 @@
     <string name="back"><![CDATA[<-]]></string>
     <string name="immuni">Immuni</string>
     <string name="care">Care</string>
-    <string name="wait">Wait for 2–3 Days us to \n validate your account</string>
+    <string name="wait">Wait for 24 hours for us to \n validate your account</string>
     <string name="ty">Thank you!</string>
     <string name="back_login">Go back to login</string>
     <string name="validate_here">Validate here!</string>

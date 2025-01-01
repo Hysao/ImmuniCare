@@ -27,6 +27,9 @@
         android:theme="@style/Theme.ImmuniCare"
         tools:targetApi="31">
         <activity
+            android:name=".user.immunization.UserImmunizationHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".healthworker.update.HwEditChildInfoActivity"
             android:exported="false" />
         <activity

@@ -852,6 +852,22 @@
         </androidx.cardview.widget.CardView>
 
 
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/immuniCareBlue"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/immuniCareBlue"
+            android:text="View History"
+            android:id="@+id/viewHistory"
+            app:cornerRadius="10dp"
+            app:elevation="10dp"
+            android:padding="10dp"
+            android:fontFamily="@font/poppins_regular"
+            />
         
     </LinearLayout>
 

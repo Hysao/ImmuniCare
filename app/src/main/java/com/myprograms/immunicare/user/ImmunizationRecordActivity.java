@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -13,16 +14,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.user.immunization.UserImmunizationHistoryActivity;
 
 public class ImmunizationRecordActivity extends AppCompatActivity {
 
     private ImageButton back;
+    private MaterialButton viewHistory;
     private ImageView aBbcgVaccine, aBHepatitisBVaccine,
             fVpentavalentVaccine, fVOpvVaccine, fVpneumococcalVaccine,
             sVPentavalentVaccine, sVOpvVaccine, sVpneumococcalVaccine,
@@ -66,9 +70,19 @@ public class ImmunizationRecordActivity extends AppCompatActivity {
         }
 
         back = findViewById(R.id.back);
+        viewHistory = findViewById(R.id.viewHistory);
         initializeWidgets();
 
         back.setOnClickListener(v -> finish());
+
+        viewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ImmunizationRecordActivity.this, UserImmunizationHistoryActivity.class);
+                i.putExtra("documentId", documentId);
+                startActivity(i);
+            }
+        });
 
         fetchImmunizationRecord();
 

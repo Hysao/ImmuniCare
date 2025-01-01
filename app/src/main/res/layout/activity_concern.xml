@@ -35,44 +35,99 @@
       android:layout_marginBottom="16dp"
     />
 
-  <EditText
+  <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:hint="Name"
-    android:background="@drawable/bg_et"
-    android:textStyle="normal"
-    android:textSize="20sp"
-    android:textColor="@color/black"
-    android:fontFamily="@font/poppins_regular"
-      android:layout_marginBottom="8dp"
-    />
-
-  <EditText
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:hint="Full name"
       android:layout_marginHorizontal="16dp"
+      app:boxBackgroundColor="@color/white"
+      app:boxStrokeColor="@color/immuniCareGrey"
+      app:boxCornerRadiusBottomEnd="10dp"
+      app:boxCornerRadiusTopEnd="10dp"
+      app:boxCornerRadiusTopStart="10dp"
+      app:boxCornerRadiusBottomStart="10dp"
+      app:boxStrokeWidth="1dp"
+      app:hintTextColor="@color/immuniCareBlue"
+
+      >
+    <EditText
+        android:id="@+id/fullNameConcern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_et"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp"
+        />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
       android:hint="Email"
-      android:background="@drawable/bg_et"
-      android:textStyle="normal"
-      android:textSize="20sp"
-      android:textColor="@color/black"
-      android:fontFamily="@font/poppins_regular"
-      android:layout_marginBottom="8dp"
-      />
+      android:layout_marginHorizontal="16dp"
+      app:boxBackgroundColor="@color/white"
+      app:boxStrokeColor="@color/immuniCareGrey"
+      app:boxCornerRadiusBottomEnd="10dp"
+      app:boxCornerRadiusTopEnd="10dp"
+      app:boxCornerRadiusTopStart="10dp"
+      app:boxCornerRadiusBottomStart="10dp"
+      app:boxStrokeWidth="1dp"
+      app:hintTextColor="@color/immuniCareBlue"
 
-  <EditText
+      >
+
+    <EditText
+        android:id="@+id/emailConcern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_et"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp"
+        />
+
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginHorizontal="16dp"
       android:hint="Title"
-      android:background="@drawable/bg_et"
-      android:textStyle="normal"
-      android:textSize="20sp"
-      android:textColor="@color/black"
-      android:fontFamily="@font/poppins_regular"
-      android:layout_marginBottom="8dp"
-      />
+      android:layout_marginHorizontal="16dp"
+      app:boxBackgroundColor="@color/white"
+      app:boxStrokeColor="@color/immuniCareGrey"
+      app:boxCornerRadiusBottomEnd="10dp"
+      app:boxCornerRadiusTopEnd="10dp"
+      app:boxCornerRadiusTopStart="10dp"
+      app:boxCornerRadiusBottomStart="10dp"
+      app:boxStrokeWidth="1dp"
+      app:hintTextColor="@color/immuniCareBlue"
+
+      >
+
+
+    <EditText
+        android:id="@+id/titleConcern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_et"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginBottom="8dp"
+        />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+
 
   <androidx.cardview.widget.CardView
       android:layout_width="match_parent"
@@ -87,23 +142,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
       android:orientation="vertical"
         android:layout_marginVertical="8dp"
         android:layout_marginHorizontal="8dp"
       >
-      <EditText
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_regular"
-        android:hint="Compose your Concern"
-        android:textStyle="normal"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginHorizontal="16dp"
-          android:background="@drawable/edit_text_no_line"
 
-        />
+      <com.google.android.material.textfield.TextInputLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:hint="Compose your Concern"
+          android:layout_marginHorizontal="16dp"
+          app:boxBackgroundColor="@color/white"
+          app:boxStrokeColor="@color/immuniCareGrey"
+          app:boxCornerRadiusBottomEnd="10dp"
+          app:boxCornerRadiusTopEnd="10dp"
+          app:boxCornerRadiusTopStart="10dp"
+          app:boxCornerRadiusBottomStart="10dp"
+          app:boxStrokeWidth="1dp"
+          app:hintTextColor="@color/immuniCareBlue"
+
+          >
+        <EditText
+            android:id="@+id/descConcern"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_regular"
+            android:textStyle="normal"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:background="@drawable/edit_text_no_line"
+
+            />
+
+      </com.google.android.material.textfield.TextInputLayout>
+
 
 
     </LinearLayout>
@@ -111,6 +184,7 @@
   </androidx.cardview.widget.CardView>
 
   <Button
+      android:id="@+id/submitBtn"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
     android:textColor="@color/immuniCareBlue"

@@ -17,6 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.admin.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ImmunizationRecordActivity extends AppCompatActivity {
@@ -69,6 +70,7 @@ public class ImmunizationRecordActivity extends AppCompatActivity {
                 History history = document.toObject(History.class);
                 if (history != null) {
                     historyList.add(history);
+                    Collections.sort(historyList, (h1, h2) -> Long.compare(h2.getTimestamp(), h1.getTimestamp()));
                 }
             }
             adapter.notifyDataSetChanged();

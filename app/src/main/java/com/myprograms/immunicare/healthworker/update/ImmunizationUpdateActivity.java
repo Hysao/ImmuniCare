@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.healthworker.update;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,10 +11,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -42,6 +45,10 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
             listContainerSecond, listContainerThird, listContainerFourth,
             listContainerFifth;
 
+    private CardView cardViewAtBirth,
+            cardViewFirst, cardViewSecond,
+            cardViewThird, cardViewFourth, cardViewFifth;
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference childRef = db.collection("children");
     private DocumentReference childDocRef = childRef.document("childId");
@@ -56,7 +63,8 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
 
     private String documentId;
 
-    private Button saveButton, cancelButton;
+    private MaterialButton saveButton, cancelButton;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -79,6 +87,29 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
         initializeCheckboxes();
         saveButton = findViewById(R.id.saveBtn);
         cancelButton = findViewById(R.id.cancelBtn);
+        cardViewAtBirth = findViewById(R.id.cardViewAtBirth);
+        cardViewFirst = findViewById(R.id.cardViewFirst);
+        cardViewSecond = findViewById(R.id.cardViewSecond);
+        cardViewThird = findViewById(R.id.cardViewThird);
+        cardViewFourth = findViewById(R.id.cardViewFourth);
+        cardViewFifth = findViewById(R.id.cardViewFifth);
+
+        listContainerAtBirth = findViewById(R.id.listContainerAtBirth);
+        listContainerFirst = findViewById(R.id.listContainerFirst);
+        listContainerSecond = findViewById(R.id.listContainerSecond);
+        listContainerThird = findViewById(R.id.listContainerThird);
+        listContainerFourth = findViewById(R.id.listContainerFourth);
+        listContainerFifth = findViewById(R.id.listContainerFifth);
+
+        cardViewAtBirth.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerAtBirth));
+        cardViewFirst.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerFirst));
+        cardViewSecond.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerSecond));
+        cardViewThird.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerThird));
+        cardViewFourth.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerFourth));
+        cardViewFifth.setOnClickListener(v -> toggleVisibilityWithAnimation(listContainerFifth));
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Saving changes...");
 
 
         documentId = getIntent().getStringExtra("documentId");
@@ -103,6 +134,24 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
 
 
     }
+
+    private void toggleVisibilityWithAnimation(View container) {
+        if (container.getVisibility() == View.VISIBLE) {
+            container.animate()
+                    .alpha(0)
+                    .setDuration(300)
+                    .withEndAction(() -> container.setVisibility(View.GONE))
+                    .start();
+        } else {
+            container.setVisibility(View.VISIBLE);
+            container.setAlpha(0);
+            container.animate()
+                    .alpha(1)
+                    .setDuration(300)
+                    .start();
+        }
+    }
+
 
     private void initializeCheckboxes() {
         birthBgcCheckbox = findViewById(R.id.birthBgcCheckbox);
@@ -176,6 +225,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
             boolean fourthMeasles = fourthMeaslesCheckbox.isChecked();
             boolean fifthMeasles = fifthMeaslesCheckbox.isChecked();
 
+            progressDialog.show();
             // Fetch the existing data from Firestore to compare changes
             childRef.document(documentId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

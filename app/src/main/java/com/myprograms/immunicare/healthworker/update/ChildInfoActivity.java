@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +24,9 @@ public class ChildInfoActivity extends AppCompatActivity {
             infoChildPlaceBirth, infoChildAddress, infoChildBarangay,
             infoChildMother, infoChildFather, infoChildWeight, infoChildHeight;
 
-    private Button btnUpdate;
+    private Button btnUpdate, editBtn;
     private String documentId;
+    private ImageButton backBtn;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -32,13 +34,13 @@ public class ChildInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_info);
 
-        // Initialize Firebase Auth
+
         mAuth = FirebaseAuth.getInstance();
 
-        // Get the document ID from Intent
+
         documentId = getIntent().getStringExtra("documentId");
 
-        // Initialize views
+
         infoChildName = findViewById(R.id.infoChildName);
         infoChildGender = findViewById(R.id.infoChildGender);
         infoChildBirthDate = findViewById(R.id.infoChildBirthDate);
@@ -50,8 +52,21 @@ public class ChildInfoActivity extends AppCompatActivity {
         infoChildWeight = findViewById(R.id.infoChildWeight);
         infoChildHeight = findViewById(R.id.infoChildHeight);
         btnUpdate = findViewById(R.id.viewRecordBtn);
+        editBtn = findViewById(R.id.editInfo);
+        backBtn = findViewById(R.id.backBtn);
 
-        // Fetch child data from Firestore
+        editBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ChildInfoActivity.this, HwEditChildInfoActivity.class);
+            intent.putExtra("documentId", documentId);
+            startActivity(intent);
+        });
+
+
+        backBtn.setOnClickListener(v -> {
+            finish();
+        });
+
+
         DocumentReference childDoc = db.collection("children").document(documentId);
 
         childDoc.get()

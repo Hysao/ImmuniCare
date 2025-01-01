@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.myprograms.admin.R;
@@ -59,7 +60,9 @@ public class ConcernsActivity extends AppCompatActivity {
     }
 
     private void fetchConcerns() {
-        concernRef.get()
+        concernRef
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .get()
                 .addOnSuccessListener(querySnapshot -> {
                     concernList.clear(); // Clear list to avoid duplicates
                     for (QueryDocumentSnapshot document : querySnapshot) {

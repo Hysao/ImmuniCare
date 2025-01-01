@@ -12,8 +12,8 @@ public class History {
     private String hWorkerName;
 
 
-    public History() {}
 
+    public History() {}
 
     public History(String hWorkerId, String childId, List<String> changes, long timestamp, String historyDocumentId, String childName, String hWorkerName) {
         this.hWorkerId = hWorkerId;
@@ -47,9 +47,6 @@ public class History {
     public String gethWorkerName() { return hWorkerName; }
     public void sethWorkerName(String hWorkerName) { this.hWorkerName = hWorkerName; }
 
-
-
-
     public String getUpdatedDate() {
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM dd, yyyy HH:mm", java.util.Locale.getDefault());
         return sdf.format(new java.util.Date(timestamp));
@@ -58,5 +55,13 @@ public class History {
 
     public String getUpdatedCheckboxes() {
         return String.join("\n", changes);
+    }
+
+    public String getUpdatedData() {
+        StringBuilder updatedData = new StringBuilder();
+        for (String change : changes) {
+            updatedData.append("- ").append(change).append("\n");
+        }
+        return updatedData.toString().trim();
     }
 }

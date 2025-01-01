@@ -15,11 +15,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.healthworker.update.History;
 import com.myprograms.immunicare.healthworker.update.HistoryAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HwHistoryActivity extends AppCompatActivity {
@@ -63,6 +65,22 @@ public class HwHistoryActivity extends AppCompatActivity {
         fetchHistoryData();
     }
 
+//    private void fetchHistoryData() {
+//        if (mUser == null) return;
+//
+//        historyRef.whereEqualTo("hWorkerId", mUser.getUid())
+//                .get()
+//                .addOnCompleteListener(task -> {
+//                    if (task.isSuccessful() && task.getResult() != null) {
+//                        historyList = task.getResult().toObjects(History.class);
+//                        historyAdapter = new HistoryAdapter(historyList, this);
+//                        historyRecyclerView.setAdapter(historyAdapter);
+//                    } else {
+//                        System.err.println("Error fetching history: " + task.getException());
+//                    }
+//                });
+//    }
+
     private void fetchHistoryData() {
         if (mUser == null) return;
 
@@ -71,6 +89,10 @@ public class HwHistoryActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful() && task.getResult() != null) {
                         historyList = task.getResult().toObjects(History.class);
+
+
+                        Collections.sort(historyList, (h1, h2) -> Long.compare(h2.getTimestamp(), h1.getTimestamp()));
+
                         historyAdapter = new HistoryAdapter(historyList, this);
                         historyRecyclerView.setAdapter(historyAdapter);
                     } else {

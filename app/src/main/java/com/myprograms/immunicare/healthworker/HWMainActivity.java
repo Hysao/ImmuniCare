@@ -1,6 +1,9 @@
 package com.myprograms.immunicare.healthworker;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -21,6 +24,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.healthworker.main.HwMainAdapter;
+import com.myprograms.immunicare.healthworker.menu.HwMenuActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -30,6 +34,7 @@ public class HWMainActivity extends AppCompatActivity {
     private TabLayout hwMainTab;
     private ViewPager2 hwMainViewPager;
     private HwMainAdapter hwMainAdapter;
+    private ImageButton menuBtn;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -64,6 +69,15 @@ public class HWMainActivity extends AppCompatActivity {
         hwMainViewPager = findViewById(R.id.hwMainViewPager);
         totalGivenVaccine = findViewById(R.id.totalGivenVaccine);
         todayGivenVaccine = findViewById(R.id.todayGivenVaccine);
+        menuBtn = findViewById(R.id.menuBtn);
+
+        menuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HWMainActivity.this, HwMenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         Query query = historyRef.whereEqualTo("hWorkerId", mUser.getUid());
 

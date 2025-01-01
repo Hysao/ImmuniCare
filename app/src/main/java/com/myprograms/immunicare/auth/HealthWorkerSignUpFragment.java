@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.auth;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -47,6 +48,7 @@ public class HealthWorkerSignUpFragment extends Fragment {
     private MaterialCardView photoAdded;
     private MaterialButton submitBtn;
     private String encodedImage;
+    private ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,9 +74,14 @@ public class HealthWorkerSignUpFragment extends Fragment {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         });
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Saving changes...");
+
+
         // Submit Button Click Listener
         view.findViewById(R.id.submitBtn).setOnClickListener(v -> {
             if (isWithinAllowedTime()) {
+                progressDialog.show();
                 String email = hwEmail.getText().toString();
                 String password = hwPassword.getText().toString();
 

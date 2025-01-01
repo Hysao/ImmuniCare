@@ -1,10 +1,12 @@
 package com.myprograms.immunicare.user.setting;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,9 +14,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.myprograms.immunicare.MainActivity;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.calendar.CalendarActivity;
+import com.myprograms.immunicare.healthworker.menu.HwMenuActivity;
 import com.myprograms.immunicare.user.AddMoreActivity;
 import com.myprograms.immunicare.user.ArticleActivity;
 import com.myprograms.immunicare.user.ImmunizationRecordActivity;
@@ -100,12 +104,30 @@ public class UserMenuActivity extends AppCompatActivity {
         });
 
         menuLogout.setOnClickListener(v -> {
-            i = new Intent(UserMenuActivity.this, LoginActivity.class);
-            startActivity(i);
-            finish();
+            showLogoutConfirmationDialog();
         });
 
-
-
+    }
+    private void showLogoutConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to log out?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent i = new Intent(UserMenuActivity.this, MainActivity.class);
+                mAuth.signOut();
+                startActivity(i);
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

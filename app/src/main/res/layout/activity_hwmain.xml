@@ -11,6 +11,7 @@
     android:padding="10dp">
 
     <ImageButton
+        android:id="@+id/menuBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/vc_menu_48_white"

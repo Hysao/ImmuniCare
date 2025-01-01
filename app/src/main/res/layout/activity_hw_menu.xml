@@ -11,4 +11,66 @@
     android:background="@color/immuniCareBlue"
     tools:context=".healthworker.menu.HwMenuActivity">
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vc_back_48_white"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:id="@+id/backBtn"
+        android:layout_marginBottom="16dp"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="8dp"
+            android:orientation="vertical"
+            >
+
+
+            <TextView
+                android:id="@+id/changePassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Change Password"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_marginVertical="8dp"
+                />
+
+            <TextView
+                android:id="@+id/logOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="Log out"
+                android:fontFamily="@font/poppins_regular"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_marginVertical="8dp"
+                />
+
+
+
+        </LinearLayout>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
 </LinearLayout>

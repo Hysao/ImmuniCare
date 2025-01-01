@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.auth;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class UserSignUpFragment extends Fragment {
     private EditText userFullName, userEmail, userPhoneNumber, userAddress, userPassword;
     private ImageView photoImageView;
     private String encodedImage;
+    private ProgressDialog progressDialog;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,6 +67,10 @@ public class UserSignUpFragment extends Fragment {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         });
 
+
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Setting up account...");
+
         // Submit Button Click Listener
         view.findViewById(R.id.submitBtn).setOnClickListener(v -> {
             if (isWithinAllowedTime()) {
@@ -71,6 +78,7 @@ public class UserSignUpFragment extends Fragment {
                 String password = userPassword.getText().toString();
 
                 if (validateInputs()) {
+                    progressDialog.show();
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(task -> {
                                 if (task.isSuccessful()) {

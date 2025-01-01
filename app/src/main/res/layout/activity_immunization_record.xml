@@ -17,6 +17,7 @@
         
         
       <ImageButton
+          android:id="@+id/back"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:background="@drawable/vc_back_48_white"
@@ -37,6 +38,7 @@
            />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -158,6 +160,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFirst"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -306,6 +309,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewSecond"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -454,6 +458,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewThird"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -631,6 +636,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -675,7 +681,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/listContainerForth"
+                    android:id="@+id/listContainerFourth"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -753,6 +759,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewFifth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"

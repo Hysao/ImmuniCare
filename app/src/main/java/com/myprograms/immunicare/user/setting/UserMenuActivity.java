@@ -3,6 +3,7 @@ package com.myprograms.immunicare.user.setting;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -33,6 +34,7 @@ public class UserMenuActivity extends AppCompatActivity {
             menuConcern, menuSettings, menuLogout;
 
     private Intent i;
+    private ImageButton menuCloseButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -66,6 +68,11 @@ public class UserMenuActivity extends AppCompatActivity {
         menuConcern = findViewById(R.id.menuConcern);
         menuSettings = findViewById(R.id.menuSettings);
         menuLogout = findViewById(R.id.menuLogout);
+        menuCloseButton = findViewById(R.id.menuCloseButton);
+
+        menuCloseButton.setOnClickListener(v -> {
+            finish();
+        });
 
         menuChildProfile.setOnClickListener(v -> {
             i = new Intent(UserMenuActivity.this, AddMoreActivity.class);

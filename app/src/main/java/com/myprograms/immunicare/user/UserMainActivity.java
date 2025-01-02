@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +16,19 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.user.announcement.AnnouncementAdapter;
 import com.myprograms.immunicare.user.announcement.Announcements;
 import com.myprograms.immunicare.user.setting.UserMenuActivity;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class UserMainActivity extends AppCompatActivity {
@@ -41,6 +46,9 @@ public class UserMainActivity extends AppCompatActivity {
     private List<Announcements> announcements;
     private AnnouncementAdapter announcementAdapter;
     private RecyclerView announcementRecycler;
+    private CollectionReference userRef = db.collection("users");
+
+    private TextView dayTxt, userNameTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,8 @@ public class UserMainActivity extends AppCompatActivity {
         mAuth.getCurrentUser();
 
         btn_menu = findViewById(R.id.userMenuBtn);
+        dayTxt = findViewById(R.id.dayTxt);
+        userNameTxt = findViewById(R.id.userNameTxt);
 
         //Announcement
         announcementRecycler = findViewById(R.id.announcementList);
@@ -70,6 +80,30 @@ public class UserMainActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+
+
+//        Query query1 = userRef.whereEqualTo("userId", mUser.getUid());
+//
+//        query1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+//            @Override
+//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+//                userNameTxt.setText(queryDocumentSnapshots.getDocuments().get(0).get("name").toString());
+//            }
+//        });
+
+
+
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        if (hour >= 18) {
+            dayTxt.setText("Good Evening");
+        } else if (hour >= 12) {
+            dayTxt.setText("Good Afternoon");
+        } else { // Before 12 PM
+            dayTxt.setText("Good Morning");
+        }
 
 
 

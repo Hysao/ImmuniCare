@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,7 +23,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.healthworker.main.HwMainAdapter;
 import com.myprograms.immunicare.healthworker.menu.HwMenuActivity;
 
@@ -47,7 +50,7 @@ public class HWMainActivity extends AppCompatActivity {
     private DocumentReference childDocRef = childRef.document("childId");
     private DocumentReference userDocRef = userRef.document("userId");
 
-    private TextView totalGivenVaccine, todayGivenVaccine;
+    private TextView totalGivenVaccine, todayGivenVaccine, userNameTxt, dayTxt;
 
 
 
@@ -65,11 +68,20 @@ public class HWMainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
+
+        if (mUser== null){
+            Intent i = new Intent(HWMainActivity.this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         hwMainTab = findViewById(R.id.hwMainTab);
         hwMainViewPager = findViewById(R.id.hwMainViewPager);
         totalGivenVaccine = findViewById(R.id.totalGivenVaccine);
         todayGivenVaccine = findViewById(R.id.todayGivenVaccine);
         menuBtn = findViewById(R.id.menuBtn);
+        userNameTxt = findViewById(R.id.userNameTxt);
+        dayTxt = findViewById(R.id.dayTxt);
 
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +139,28 @@ public class HWMainActivity extends AppCompatActivity {
                 todayGivenVaccine.setText("00");
             }
         });
+
+
+        Query query1 = userRef.whereEqualTo("userId", mUser.getUid());
+
+        query1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                userNameTxt.setText(queryDocumentSnapshots.getDocuments().get(0).get("name").toString());
+            }
+        });
+
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        if (hour >= 18) {
+            dayTxt.setText("Good Evening");
+        } else if (hour >= 12) {
+            dayTxt.setText("Good Afternoon");
+        } else { // Before 12 PM
+            dayTxt.setText("Good Morning");
+        }
+
 
         hwMainTab.addTab(hwMainTab.newTab().setText("History"));
         hwMainTab.addTab(hwMainTab.newTab().setText("Scan"));

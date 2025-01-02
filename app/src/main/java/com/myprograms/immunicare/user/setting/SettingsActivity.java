@@ -13,10 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.R;
-import com.myprograms.immunicare.calendar.CalendarActivity;
+import com.myprograms.immunicare.calendar.AddReminderActivity;
 import com.myprograms.immunicare.user.setting.notification.NotificationActivity;
-import com.myprograms.immunicare.user.setting.reminder.AddReminderActivity;
-import com.myprograms.immunicare.user.setting.reminder.ReminderActivity;
+
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -45,7 +44,7 @@ public class SettingsActivity extends AppCompatActivity {
         notificationBtn = findViewById(R.id.notificationBtn);
 
         reminderBtn.setOnClickListener(v -> {
-            Intent i = new Intent(SettingsActivity.this, ReminderActivity.class);
+            Intent i = new Intent(SettingsActivity.this, AddReminderActivity.class);
             startActivity(i);
         });
 

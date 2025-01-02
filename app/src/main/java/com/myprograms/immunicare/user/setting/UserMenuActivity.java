@@ -19,10 +19,8 @@ import com.myprograms.immunicare.MainActivity;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.calendar.CalendarActivity;
-import com.myprograms.immunicare.healthworker.menu.HwMenuActivity;
 import com.myprograms.immunicare.user.AddMoreActivity;
 import com.myprograms.immunicare.user.ArticleActivity;
-import com.myprograms.immunicare.user.ImmunizationRecordActivity;
 import com.myprograms.immunicare.user.ImmunizationRecordListActivity;
 import com.myprograms.immunicare.user.concern.ConcernActivity;
 

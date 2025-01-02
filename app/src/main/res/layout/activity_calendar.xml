@@ -1,206 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/immuniCareBlue"
     tools:context=".calendar.CalendarActivity">
 
-    <LinearLayout
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/vc_back_48_white"
+        android:id="@+id/backBtn"
+        android:layout_marginBottom="16dp"
+        />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:text="Calendar"
+        android:layout_marginHorizontal="16dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_regular"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp"
+        />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginHorizontal="16dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginBottom="8dp"
         >
 
 
 
-
-    <ImageButton
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="TODO"
-        android:padding="8dp"
-        android:background="@drawable/vc_back_48_white"
-        tools:ignore="ContentDescription,HardcodedText" />
-
-        <androidx.cardview.widget.CardView
-
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="10dp"
-            >
+            android:layout_height="match_parent"
+            android:id="@+id/calendarView"
+            app:mcv_showOtherDates="all"
+            app:mcv_tileSize="48dp"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
 
-    <LinearLayout
+
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp">
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Event this week"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginHorizontal="16dp"
 
+        />
 
-        <TextView
-            android:id="@+id/monthYearTV"
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:layout_height="wrap_content"
-            android:text="Feb 2024"
-            android:textSize="20sp"
-            android:fontFamily="@font/poppins_regular"
-            android:textAlignment="textStart"
-            android:paddingStart="16dp"
-            android:textColor="@color/black"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/back"
-            android:textColor="@color/immuniCareBlue"
-            android:backgroundTint="@color/white"
-            android:textStyle="bold"
-            android:onClick="previousMonthAction"
-            android:textSize="15sp"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/forward"
-            android:textColor="@color/immuniCareBlue"
-            android:backgroundTint="@color/white"
-            android:textStyle="bold"
-            android:onClick="nextMonthAction"
-            android:textSize="15sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SUN"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="MON"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TUE"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="WED"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="THUR"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="FRI"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SAT"
-            android:textColor="@color/immuniCareGrey"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-
-    </LinearLayout>
-
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@color/white"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"/>
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Event on this month"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_regular"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            />
-        <View
-            android:layout_marginTop="-5dp"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="@color/white"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/upcomingEventRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            />
-
-    </LinearLayout>
+        android:layout_height="fill_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/upcomingEventRecycler"
+        />
 
 
-
-
-
-</ScrollView>
+</LinearLayout>

@@ -1,6 +1,7 @@
 package com.myprograms.admin.validating;
 
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ public class ValidatingUserActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
     private AccountAdapter accountAdapter;
+    private ImageButton backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,11 @@ public class ValidatingUserActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.validatingViewPager);
         tabLayout = findViewById(R.id.validatingTabLayout);
+        backBtn = findViewById(R.id.validateBackBtn);
+
+        backBtn.setOnClickListener(v -> {
+            finish();
+        });
 
         tabLayout.addTab(tabLayout.newTab().setText("User"));
         tabLayout.addTab(tabLayout.newTab().setText("Health Worker"));

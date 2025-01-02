@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
-import com.myprograms.immunicare.calendar.CalendarActivity;
 import com.myprograms.immunicare.healthworker.HWMainActivity;
 import com.myprograms.immunicare.user.UserMainActivity;
 

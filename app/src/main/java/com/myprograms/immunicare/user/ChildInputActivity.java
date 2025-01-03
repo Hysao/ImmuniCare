@@ -100,6 +100,7 @@ public class ChildInputActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(v -> finish());
 
 
+        childAddphoto.setOnClickListener(v -> showPhotoOptionsDialog());
 
         submitButton.setOnClickListener(v -> addChild(
                 childName.getText().toString(),
@@ -307,7 +308,9 @@ public class ChildInputActivity extends AppCompatActivity {
                 Toast.makeText(this, "Camera permission is required", Toast.LENGTH_SHORT).show();
             }
         } else if (requestCode == GALLERY_REQUEST_CODE) {
+
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                 openGallery();
             } else {
                 Toast.makeText(this, "Storage permission is required", Toast.LENGTH_SHORT).show();

@@ -76,6 +76,7 @@
                 >
 
             <ImageView
+                android:id="@+id/childPhoto"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"

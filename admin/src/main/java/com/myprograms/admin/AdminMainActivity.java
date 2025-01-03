@@ -94,6 +94,18 @@ public class AdminMainActivity extends AppCompatActivity {
             }
         });
 
+        fetchImmunizationHistory();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchImmunizationHistory();
+
+    }
+
+    private void fetchImmunizationHistory() {
 
         Query query = historyRef;
 
@@ -141,7 +153,5 @@ public class AdminMainActivity extends AppCompatActivity {
                 vaccinationGivenToday.setText("00");
             }
         });
-
-
     }
 }

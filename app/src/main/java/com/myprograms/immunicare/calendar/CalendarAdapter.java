@@ -39,23 +39,36 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
         return new CalendarViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(CalendarViewHolder holder, int position) {
         String day = daysOfMonth.get(position);
         holder.dayText.setText(day);
 
+        // Reset to default styles
+        holder.dayText.setBackgroundColor(Color.TRANSPARENT);
+        holder.dayText.setTextColor(Color.BLACK);
 
-        if (!day.isEmpty() && Integer.parseInt(day) == currentDay) {
-            holder.dayText.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.immuniCareBlue));
-            holder.dayText.setTextColor(Color.WHITE);
-        } else {
-            holder.dayText.setBackgroundColor(Color.TRANSPARENT);
-            holder.dayText.setTextColor(Color.BLACK);
-        }
+        // Check if day is valid and non-empty
+        if (!day.isEmpty()) {
+            boolean isCurrentDay = Integer.parseInt(day) == currentDay;
+            boolean isReminderDay = hasReminder(day);
 
+            // Highlight current day
+            if (isCurrentDay) {
+                holder.dayText.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.immuniCareBlue));
+                holder.dayText.setTextColor(Color.WHITE);
+            }
 
-        if (hasReminder(day)) {
-            holder.dayText.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.immuniCareOrange)); // Or another color
+            // Highlight reminder days (override or combine with current day logic)
+            if (isReminderDay) {
+                holder.dayText.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.immuniCareOrange));
+
+                // Optional: Combine styles for current day + reminder
+                if (isCurrentDay) {
+                    holder.dayText.setTextColor(Color.YELLOW); // Example: Use a different text color
+                }
+            }
         }
     }
 

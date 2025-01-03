@@ -1,9 +1,15 @@
 package com.myprograms.immunicare.user;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -14,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -27,6 +34,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Random;
@@ -39,12 +48,16 @@ public class ChildInputActivity extends AppCompatActivity {
             childHeight, childWeight, childBarangay;
     private RadioButton male, female;
 
-   private ImageView childPhoto;
+   private ImageView childAddphoto;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference childRef = db.collection("children");
+    private String encodedImage;
+
+    private static final int CAMERA_REQUEST_CODE = 100;
+    private static final int GALLERY_REQUEST_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +93,13 @@ public class ChildInputActivity extends AppCompatActivity {
         childBarangay = findViewById(R.id.childBarangay);
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
+        childAddphoto = findViewById(R.id.childPhoto);
 
         dateButton.setText(getTodaysDate());
 
         cancelButton.setOnClickListener(v -> finish());
+
+
 
         submitButton.setOnClickListener(v -> addChild(
                 childName.getText().toString(),
@@ -139,6 +155,10 @@ public class ChildInputActivity extends AppCompatActivity {
         child.put("childHeight", childHeight);
         child.put("childWeight", childWeight);
         child.put("childBarangay", childBarangay);
+        if (encodedImage != null) {
+            child.put("childPhoto", encodedImage);
+        }
+
 
         // Default vaccine status
         String[] vaccines = {"aBBcgVaccine", "aBHepatitisBVaccine", "fVPentavalentVaccine", "fVOpvVaccine",
@@ -198,5 +218,100 @@ public class ChildInputActivity extends AppCompatActivity {
 
     public void openDatePicker(View view) {
         datePickerDialog.show();
+    }
+
+    //add photo
+    private void showPhotoOptionsDialog() {
+        String[] options = {"Take Photo", "Choose from Gallery"};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Add Photo")
+                .setItems(options, (dialog, which) -> {
+                    if (which == 0) {
+                        // Take photo
+                        openCamera();
+                    } else if (which == 1) {
+                        // Choose from gallery
+                        openGallery();
+                    }
+                })
+                .show();
+    }
+
+    private void openCamera() {
+        // Check for camera permissions
+        if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST_CODE);
+            return;
+        }
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+        }
+    }
+
+    private void openGallery() {
+        // Check for read storage permissions
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, GALLERY_REQUEST_CODE);
+            return;
+        }
+
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE && data != null) {
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                childAddphoto.setImageBitmap(imageBitmap);
+                childAddphoto.setBackground(null);
+                encodedImage = encodeImageToBase64(imageBitmap);
+            } else if (requestCode == GALLERY_REQUEST_CODE && data != null) {
+                Uri selectedImage = data.getData();
+                try {
+                    Bitmap imageBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                    childAddphoto.setImageBitmap(imageBitmap);
+                    childAddphoto.setBackground(null);
+                    encodedImage = encodeImageToBase64(imageBitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
+    private String encodeImageToBase64(Bitmap imageBitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(byteArray, Base64.DEFAULT);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == CAMERA_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openCamera();
+            } else {
+                Toast.makeText(this, "Camera permission is required", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == GALLERY_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                openGallery();
+            } else {
+                Toast.makeText(this, "Storage permission is required", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

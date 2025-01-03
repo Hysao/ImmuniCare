@@ -29,6 +29,7 @@ public class Children {
     Boolean foVmeasslesMumpsRubella;
     Boolean fiVmeasslesMumpsRubella;
     String documentId;
+    String childPhoto;
 
 
 
@@ -49,7 +50,7 @@ public class Children {
                     String childWeight, String accountId,
                     String childBarangay, String childMotherName,
                     String childFatherName, String childPlaceOfBirth,
-                    String childAddress, Boolean aBBcgVaccine,
+                    String childAddress,  String childPhoto, Boolean aBBcgVaccine,
                     Boolean aBHepaVaccine, Boolean fVOpvVaccine,
                     Boolean fVPentavalentVaccine, Boolean fVpneumococcalVaccine,
                     Boolean sVOpvVaccine, Boolean sVPentavalentVaccine,
@@ -68,6 +69,7 @@ public class Children {
         this.childFatherName = childFatherName;
         this.childPlaceOfBirth = childPlaceOfBirth;
         this.childAddress = childAddress;
+        this.childPhoto = childPhoto;
         this.aBBcgVaccine = aBBcgVaccine;
         this.aBHepaVaccine = aBHepaVaccine;
         this.fVOpvVaccine = fVOpvVaccine;
@@ -294,5 +296,13 @@ public class Children {
 
     public void setFiVmeasslesMumpsRubella(Boolean fiVmeasslesMumpsRubella) {
         this.fiVmeasslesMumpsRubella = fiVmeasslesMumpsRubella;
+    }
+
+    public String getChildPhoto() {
+        return childPhoto;
+    }
+
+    public void setChildPhoto(String childPhoto) {
+        this.childPhoto = childPhoto;
     }
 }

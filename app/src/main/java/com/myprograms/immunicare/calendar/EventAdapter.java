@@ -36,6 +36,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         Reminder reminder = reminders.get(position);
         holder.titleTextView.setText(reminder.getTitle());
         holder.dateTextView.setText(reminder.getDate());
+        holder.descriptionTextView.setText(reminder.getDescription());
     }
 
     @Override
@@ -44,12 +45,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
-        TextView titleTextView, dateTextView;
+        TextView titleTextView, dateTextView, descriptionTextView;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.eventTitle);
             dateTextView = itemView.findViewById(R.id.eventDate);
+            descriptionTextView = itemView.findViewById(R.id.eventDescription);
         }
     }
 }

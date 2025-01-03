@@ -72,7 +72,6 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -87,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:autofillHints="name"
-            android:padding="10dp"
             android:fontFamily="@font/poppins_regular"
             android:textSize="16sp"
             android:inputType="textPersonName"
@@ -162,7 +160,7 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
+
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -176,7 +174,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
-                android:padding="10dp"
                 android:backgroundTint="@color/white"
                 />
 
@@ -189,7 +186,6 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -205,7 +201,6 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
 
-                android:padding="10dp"
                 android:backgroundTint="@color/white"
                 />
 
@@ -219,7 +214,6 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -233,7 +227,6 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
                 android:inputType="textPersonName"
-                android:padding="10dp"
                 android:backgroundTint="@color/white"
                 />
 
@@ -246,7 +239,6 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -263,7 +255,6 @@
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:inputType="textPersonName"
-                android:padding="10dp"
                 android:backgroundTint="@color/white"
                 />
 
@@ -284,7 +275,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -298,7 +288,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:padding="10dp"
                     android:fontFamily="@font/poppins_regular"
                     android:backgroundTint="@color/white"
                     />
@@ -322,7 +311,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
                 app:boxCornerRadiusBottomEnd="10dp"
                 app:boxCornerRadiusBottomStart="10dp"
@@ -337,8 +325,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
-                    android:padding="10dp"
-
                     android:fontFamily="@font/poppins_regular"
                     android:backgroundTint="@color/white"
                     />
@@ -367,7 +353,6 @@
             android:textSize="16sp"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:padding="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
             app:boxCornerRadiusBottomStart="10dp"
             app:boxCornerRadiusTopEnd="10dp"
@@ -383,7 +368,6 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
                 android:inputType="textPersonName"
-                android:padding="10dp"
                 android:backgroundTint="@color/white"
 
                 />

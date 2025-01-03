@@ -2,9 +2,12 @@ package com.myprograms.immunicare.healthworker.update;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +26,7 @@ public class ChildInfoActivity extends AppCompatActivity {
     private TextView infoChildName, infoChildGender, infoChildBirthDate,
             infoChildPlaceBirth, infoChildAddress, infoChildBarangay,
             infoChildMother, infoChildFather, infoChildWeight, infoChildHeight;
+    private ImageView childPhoto;
 
     private Button btnUpdate, editBtn;
     private String documentId;
@@ -54,6 +58,7 @@ public class ChildInfoActivity extends AppCompatActivity {
         btnUpdate = findViewById(R.id.viewRecordBtn);
         editBtn = findViewById(R.id.editInfo);
         backBtn = findViewById(R.id.backBtn);
+        childPhoto = findViewById(R.id.childPhoto);
 
         editBtn.setOnClickListener(v -> {
             Intent intent = new Intent(ChildInfoActivity.this, HwEditChildInfoActivity.class);
@@ -82,6 +87,17 @@ public class ChildInfoActivity extends AppCompatActivity {
                         infoChildFather.setText(documentSnapshot.getString("childFatherName"));
                         infoChildWeight.setText(documentSnapshot.getString("childWeight") + "kg");
                         infoChildHeight.setText(documentSnapshot.getString("childHeight") + "cm");
+
+                        String base64Image = documentSnapshot.getString("childPhoto");
+                        if (base64Image != null && !base64Image.isEmpty()) {
+                            try {
+                                byte[] decodedBytes = android.util.Base64.decode(base64Image, android.util.Base64.DEFAULT);
+                                Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                                childPhoto.setImageBitmap(decodedBitmap);
+                            } catch (IllegalArgumentException e) {
+                                e.printStackTrace();
+                            }
+                        }
                     } else {
                         Toast.makeText(this, "Child data not found", Toast.LENGTH_SHORT).show();
                     }

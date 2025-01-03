@@ -119,20 +119,17 @@ public class CalendarActivity extends AppCompatActivity {
 
     }
 
-    private void getCurrentDay(){
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy", Locale.getDefault());
-    }
 
     private void populateCalendar() {
 
+        Calendar today = Calendar.getInstance();
+        int currentDay = today.get(Calendar.DAY_OF_MONTH);
+        int currentMonth = today.get(Calendar.MONTH);
+        int currentYear = today.get(Calendar.YEAR);
+
+        // Set calendar to the first day of the current month
         Calendar calendar = Calendar.getInstance();
-
-
         calendar.set(currentYear, currentMonth, 1);
-
-        // Get the current day of the month
-        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
 
         // Get the total number of days in the current month
         int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);

@@ -1,10 +1,13 @@
 package com.myprograms.immunicare.user;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +34,7 @@ public class ChildDataActivity extends AppCompatActivity {
             dataChildMother, dataChildFather,
             dataChildHeight, dataChildWeight;
     private Button seeQrCode;
+    private ImageView dataChildPhoto;
 
     private ImageButton backBtn;
 
@@ -42,6 +46,7 @@ public class ChildDataActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference childRef = db.collection("children");
+
 
 
     private List<Children> childrenList;
@@ -70,6 +75,7 @@ public class ChildDataActivity extends AppCompatActivity {
         dataChildFather = findViewById(R.id.dataChildFather);
         dataChildHeight = findViewById(R.id.dataChildHeight);
         dataChildWeight = findViewById(R.id.dataChildWeight);
+        dataChildPhoto = findViewById(R.id.dataChildPhoto);
         backBtn = findViewById(R.id.backBtn);
 
         backBtn.setOnClickListener(v -> finish());
@@ -107,8 +113,19 @@ public class ChildDataActivity extends AppCompatActivity {
                     dataChildHeight.setText(String.format("%s cm", child.getChildHeight()));
                     dataChildWeight.setText(String.format("%s kg", child.getChildWeight()));
 
-                }
+                    String base64Image = child.getChildPhoto();
 
+                    if (base64Image != null && !base64Image.isEmpty()) {
+                        try {
+                            byte[] decodedBytes = android.util.Base64.decode(base64Image, android.util.Base64.DEFAULT);
+                            Bitmap decodedBitmap = BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
+                            dataChildPhoto.setImageBitmap(decodedBitmap);
+                        } catch (IllegalArgumentException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }
 
             }
         });

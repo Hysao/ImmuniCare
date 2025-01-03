@@ -6,12 +6,14 @@ import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,8 +26,13 @@ import com.myprograms.immunicare.R;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
+import java.text.DateFormatSymbols;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
 
@@ -33,12 +40,14 @@ public class CalendarActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser mUser;
 
-    private MaterialCalendarView calendarView;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView, calendarRecyclerView;
     private ImageButton backBtn;
 
     private List<Reminder> remindersList = new ArrayList<>();
+    private List<String> daysOfMonth = new ArrayList<>();
 
+    private TextView monthName;
+    private int currentMonth, currentYear;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference remindersRef = db.collection("reminders");
@@ -59,23 +68,135 @@ public class CalendarActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
 
-        calendarView = findViewById(R.id.calendarView);
         recyclerView = findViewById(R.id.upcomingEventRecycler);
         backBtn = findViewById(R.id.backBtn);
+        calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
+        monthName = findViewById(R.id.monthName);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        calendarRecyclerView.setLayoutManager(new GridLayoutManager(this, 7));
+
+        for (int i = 1; i <= 31; i++) {
+            daysOfMonth.add(String.valueOf(i));
+        }
+
+        Calendar calendar = Calendar.getInstance();
+        currentMonth = calendar.get(Calendar.MONTH);
+        currentYear = calendar.get(Calendar.YEAR);
+
 
 
         backBtn.setOnClickListener(v -> {
             finish();
         });
 
+        populateCalendar();
 
         fetchEvents();
 
+        findViewById(R.id.prevMonthBtn).setOnClickListener(v -> {
+            if (currentMonth == 0) {
+                currentMonth = 11;  // December
+                currentYear--;
+            } else {
+                currentMonth--;
+            }
+            populateCalendar();
+        });
+
+        findViewById(R.id.nextMonthBtn).setOnClickListener(v -> {
+            if (currentMonth == 11) {
+                currentMonth = 0;
+                currentYear++;
+            } else {
+                currentMonth++;
+            }
+            populateCalendar();
+        });
+
+
 
     }
+
+    private void getCurrentDay(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("M/d/yyyy", Locale.getDefault());
+    }
+
+    private void populateCalendar() {
+
+        Calendar calendar = Calendar.getInstance();
+
+
+        calendar.set(currentYear, currentMonth, 1);
+
+        // Get the current day of the month
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Get the total number of days in the current month
+        int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        // Get the first day of the month (1 = Sunday, 7 = Saturday)
+        int firstDayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
+
+        // Clear any previous data from the daysOfMonth list
+        daysOfMonth.clear();
+
+        // Add empty spaces for padding before the 1st day of the month
+        for (int i = 1; i < firstDayOfMonth; i++) {
+            daysOfMonth.add("");  // Empty space for padding
+        }
+
+        // Add the actual days of the month to the list
+        for (int i = 1; i <= daysInMonth; i++) {
+            daysOfMonth.add(String.valueOf(i));
+        }
+
+        // Set the month name (e.g., "January 2025")
+        String monthNameText = new DateFormatSymbols().getMonths()[currentMonth] + " " + currentYear;
+        monthName.setText(monthNameText);
+
+        // Fetch the reminder dates asynchronously
+        getReminderDates(new OnReminderDatesFetchedListener() {
+            @Override
+            public void onReminderDatesFetched(List<String> reminderDates) {
+                CalendarAdapter adapter = new CalendarAdapter(daysOfMonth, currentDay, reminderDates, currentMonth, currentYear);
+                calendarRecyclerView.setAdapter(adapter);
+            }
+        });
+    }
+
+
+
+
+    private void getReminderDates(final OnReminderDatesFetchedListener listener) {
+        List<String> reminderDates = new ArrayList<>();
+        remindersRef.whereEqualTo("userId", mUser.getUid())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    remindersList.clear();
+                    for (DocumentSnapshot document : queryDocumentSnapshots) {
+                        Reminder reminder = document.toObject(Reminder.class);
+                        assert reminder != null;
+                        reminderDates.add(reminder.getDate()); // assuming getDate() returns the date in "day/month/year" format
+                        remindersList.add(reminder);
+                    }
+                    // Notify listener once data is fetched
+                    listener.onReminderDatesFetched(reminderDates);
+                    updateRecyclerView(remindersList); // Show all events initially
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("CalendarActivity", "Error fetching events", e);
+                });
+    }
+
+    // Interface for callback when reminder dates are fetched
+    public interface OnReminderDatesFetchedListener {
+        void onReminderDatesFetched(List<String> reminderDates);
+    }
+
+
 
     private void fetchEvents() {
 
@@ -100,34 +221,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
 
-    private void filterRemindersByDate(String selectedDate) {
-        List<Reminder> filteredReminders = new ArrayList<>();
-        for (Reminder reminder : remindersList) {
-            if (reminder.getDate().equals(selectedDate)) {
-                filteredReminders.add(reminder);
-            }
-        }
-        updateRecyclerView(filteredReminders);
-    }
 
 
-    private void highlightReminderDates() {
-        // Create a red circle drawable
-        ShapeDrawable circleDrawable = new ShapeDrawable(new OvalShape());
-        circleDrawable.getPaint().setColor(Color.RED);
-
-
-        for (Reminder reminder : remindersList) {
-            String[] dateParts = reminder.getDate().split("/");
-            int day = Integer.parseInt(dateParts[0]);
-            int month = Integer.parseInt(dateParts[1]) - 1;
-            int year = Integer.parseInt(dateParts[2]);
-
-            CalendarDay calendarDay = CalendarDay.from(year, month, day);
-
-            // Add the decorator to highlight this date
-            calendarView.addDecorator(new RedCircleDecorator(calendarDay, circleDrawable));
-        }
-    }
 
 }

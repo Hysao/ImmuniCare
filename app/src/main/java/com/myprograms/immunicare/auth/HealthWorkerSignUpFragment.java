@@ -1,12 +1,16 @@
 package com.myprograms.immunicare.auth;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Base64;
@@ -38,6 +42,7 @@ import java.util.Map;
 public class HealthWorkerSignUpFragment extends Fragment {
 
     private static final int REQUEST_IMAGE_CAPTURE = 1;
+    private static final int REQUEST_CAMERA_PERMISSION = 2;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference hwRef = db.collection("users");
@@ -69,10 +74,18 @@ public class HealthWorkerSignUpFragment extends Fragment {
         photoAdded = view.findViewById(R.id.photoAdded);
 
         // Add Photo Click Listener
+        // Add Photo Click Listener
         photoImageView.setOnClickListener(v -> {
-            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            // Check if camera permission is granted
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                // Request camera permission
+                ActivityCompat.requestPermissions(requireActivity(), new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            } else {
+                // Permission already granted, launch the camera
+                launchCamera();
+            }
         });
+
 
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Saving changes...");
@@ -133,6 +146,32 @@ public class HealthWorkerSignUpFragment extends Fragment {
         }
     }
 
+    private void launchCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(requireActivity().getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        } else {
+            Toast.makeText(requireContext(), "No camera app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    // Handle the permission result
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, launch the camera
+                launchCamera();
+            } else {
+                // Permission denied, show a message to the user
+                Toast.makeText(requireContext(), "Camera permission is required to take photos", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
     private String encodeImageToBase64(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
@@ -185,7 +224,7 @@ public class HealthWorkerSignUpFragment extends Fragment {
         Calendar calendar = Calendar.getInstance();
         int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
 
-        // Allowed hours: 8 AM to 5 PM (17 in 24-hour format)
+
         return currentHour >= 8 && currentHour < 17;
     }
 }

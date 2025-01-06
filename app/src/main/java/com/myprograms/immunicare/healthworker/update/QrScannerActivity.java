@@ -69,10 +69,10 @@ public class QrScannerActivity extends AppCompatActivity {
         mUser = mAuth.getCurrentUser();
 
         previewView = findViewById(R.id.previewView);
-
         qrOverlay = findViewById(R.id.qrOverlay);
-
         qrOverlay.setClickable(false);
+
+        cameraExecutor = Executors.newSingleThreadExecutor();
 
         // Check for camera permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -83,35 +83,74 @@ public class QrScannerActivity extends AppCompatActivity {
     }
 
     private void initializeCamera() {
-        cameraExecutor = Executors.newSingleThreadExecutor();
         cameraProviderFuture = ProcessCameraProvider.getInstance(this);
-        analyzer = new MyImageAnalyzer(this);
 
         cameraProviderFuture.addListener(() -> {
             try {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
 
-                // Camera preview setup
+
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
 
-                CameraSelector cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA;
 
-                // Image analysis for QR code scanning
+                analyzer = new MyImageAnalyzer(this::handleScannedQrCode);
+
                 ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
                 imageAnalysis.setAnalyzer(cameraExecutor, analyzer);
 
-                // Bind lifecycle
+                // Select back camera
+                CameraSelector cameraSelector = new CameraSelector.Builder()
+                        .requireLensFacing(CameraSelector.LENS_FACING_BACK)
+                        .build();
+
+                // Bind to lifecycle
                 cameraProvider.unbindAll();
                 cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
 
             } catch (ExecutionException | InterruptedException e) {
                 e.printStackTrace();
-                Toast.makeText(this, "Failed to initialize camera", Toast.LENGTH_SHORT).show();
             }
         }, ContextCompat.getMainExecutor(this));
+    }
+
+    public static class MyImageAnalyzer implements ImageAnalysis.Analyzer {
+
+        private final QrCodeListener qrCodeListener;
+
+        public MyImageAnalyzer(QrCodeListener qrCodeListener) {
+            this.qrCodeListener = qrCodeListener;
+        }
+
+        @Override
+        public void analyze(@NonNull ImageProxy image) {
+            @SuppressLint("UnsafeOptInUsageError")
+            Image mediaImage = image.getImage();
+            if (mediaImage != null) {
+                InputImage inputImage = InputImage.fromMediaImage(mediaImage, image.getImageInfo().getRotationDegrees());
+
+                BarcodeScanning.getClient().process(inputImage)
+                        .addOnSuccessListener(barcodes -> {
+                            for (Barcode barcode : barcodes) {
+                                String rawValue = barcode.getRawValue();
+                                if (rawValue != null) {
+                                    qrCodeListener.onQrCodeScanned(rawValue);
+                                    break; // Stop processing after the first barcode
+                                }
+                            }
+                        })
+                        .addOnFailureListener(Throwable::printStackTrace)
+                        .addOnCompleteListener(task -> image.close());
+            } else {
+                image.close();
+            }
+        }
+
+        public interface QrCodeListener {
+            void onQrCodeScanned(String qrCodeValue);
+        }
     }
 
     private void handleScannedQrCode(String documentId) {
@@ -140,60 +179,6 @@ public class QrScannerActivity extends AppCompatActivity {
         super.onDestroy();
         if (cameraExecutor != null) {
             cameraExecutor.shutdown();
-        }
-    }
-
-
-    public static class MyImageAnalyzer implements ImageAnalysis.Analyzer {
-
-        private final QrScannerActivity activity;
-
-        public MyImageAnalyzer(QrScannerActivity activity) {
-            this.activity = activity;
-        }
-
-        @Override
-        public void analyze(@NonNull ImageProxy image) {
-            @SuppressLint("UnsafeOptInUsageError") Image mediaImage = image.getImage();
-            if (mediaImage != null) {
-                InputImage inputImage = InputImage.fromMediaImage(mediaImage, image.getImageInfo().getRotationDegrees());
-
-                BarcodeScanning.getClient()
-                        .process(inputImage)
-                        .addOnSuccessListener(barcodes -> {
-                            for (Barcode barcode : barcodes) {
-                                if (barcode.getBoundingBox() != null && isBarcodeInOverlay(barcode.getBoundingBox())) {
-                                    String rawValue = barcode.getRawValue();
-                                    if (rawValue != null && !rawValue.isEmpty()) {
-                                        activity.handleScannedQrCode(rawValue);
-                                        break;
-                                    }
-                                }
-                            }
-                        })
-                        .addOnFailureListener(e -> {
-                            e.printStackTrace();
-                            Toast.makeText(activity, "Failed to process QR code", Toast.LENGTH_SHORT).show();
-                        })
-                        .addOnCompleteListener(task -> image.close());
-            } else {
-                image.close();
-            }
-        }
-
-        private boolean isBarcodeInOverlay(Rect barcodeBounds) {
-            int[] overlayPosition = new int[2];
-            activity.qrOverlay.getLocationOnScreen(overlayPosition);
-
-            Rect overlayBounds = new Rect(
-                    overlayPosition[0],
-                    overlayPosition[1],
-                    overlayPosition[0] + activity.qrOverlay.getWidth(),
-                    overlayPosition[1] + activity.qrOverlay.getHeight()
-            );
-
-
-            return overlayBounds.contains(barcodeBounds);
         }
     }
 

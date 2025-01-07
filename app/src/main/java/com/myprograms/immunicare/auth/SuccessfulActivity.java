@@ -10,6 +10,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.myprograms.immunicare.R;
 
 public class SuccessfulActivity extends AppCompatActivity {
@@ -28,6 +29,16 @@ public class SuccessfulActivity extends AppCompatActivity {
         });
 
         backLoginButton = findViewById(R.id.backLoginButton);
+
+        LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
+
+
+        animationView.playAnimation();
+
+
+        //animationView.cancelAnimation();
+
+        animationView.setSpeed(0.75f); // Speed up
 
         backLoginButton.setOnClickListener(v -> {
 

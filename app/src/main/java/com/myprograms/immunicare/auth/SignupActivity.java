@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.tabs.TabLayout;
 import com.myprograms.immunicare.MainActivity;
@@ -57,6 +58,15 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
 
+        LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
+
+
+        animationView.playAnimation();
+
+
+        //animationView.cancelAnimation();
+
+        animationView.setSpeed(0.5f); // Speed up
 
 
         userBtn.setOnClickListener(v -> showFragment(new UserSignUpFragment()));

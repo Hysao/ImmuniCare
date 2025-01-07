@@ -15,6 +15,7 @@ junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 appcompat = "1.7.0"
 lifecycleLivedata = "2.8.6"
+lottie = "6.0.0"
 material = "1.12.0"
 activity = "1.9.1"
 constraintlayout = "2.1.4"
@@ -40,6 +41,7 @@ firebase-storage = { module = "com.google.firebase:firebase-storage" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 google-firebase-auth = { module = "com.google.firebase:firebase-auth", version.ref = "firebaseAuth" }
 google-firebase-firestore = { module = "com.google.firebase:firebase-firestore", version.ref = "firebaseFirestore" }
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 material-v190 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
 play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuth" }

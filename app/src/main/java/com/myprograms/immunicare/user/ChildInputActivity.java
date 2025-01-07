@@ -3,6 +3,7 @@ package com.myprograms.immunicare.user;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -55,6 +56,7 @@ public class ChildInputActivity extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference childRef = db.collection("children");
     private String encodedImage;
+    private ProgressDialog progressDialog;
 
     private static final int CAMERA_REQUEST_CODE = 100;
     private static final int GALLERY_REQUEST_CODE = 101;
@@ -99,6 +101,9 @@ public class ChildInputActivity extends AppCompatActivity {
 
         cancelButton.setOnClickListener(v -> finish());
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Adding child data...");
+
 
         childAddphoto.setOnClickListener(v -> showPhotoOptionsDialog());
 
@@ -135,7 +140,7 @@ public class ChildInputActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        progressDialog.show();
         Random random = new Random();
         
         int randomNum1 = 1000 + random.nextInt(9000);

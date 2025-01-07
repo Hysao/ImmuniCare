@@ -88,7 +88,7 @@ public class HealthWorkerSignUpFragment extends Fragment {
 
 
         progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Saving changes...");
+        progressDialog.setMessage("Setting up account...");
 
 
         // Submit Button Click Listener

@@ -8,6 +8,15 @@
     android:background="@color/white"
     tools:context=".auth.LoginActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_rawRes="@raw/house_anim"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="true"
+        />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"

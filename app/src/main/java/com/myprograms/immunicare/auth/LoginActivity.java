@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,6 +67,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
+
+
+        animationView.playAnimation();
+
+
+        //animationView.cancelAnimation();
+
+        animationView.setSpeed(1.5f); // Speed up
+
 
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();

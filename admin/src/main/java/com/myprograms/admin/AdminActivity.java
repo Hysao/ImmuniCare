@@ -13,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -45,6 +46,15 @@ public class AdminActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
 
+        LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
+
+
+        animationView.playAnimation();
+
+
+        //animationView.cancelAnimation();
+
+        animationView.setSpeed(1f); // Speed up
 
         login.setOnClickListener(v -> {
             String username = userName.getText().toString().trim();

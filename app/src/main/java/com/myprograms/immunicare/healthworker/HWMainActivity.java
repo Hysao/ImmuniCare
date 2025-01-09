@@ -91,55 +91,56 @@ public class HWMainActivity extends AppCompatActivity {
             }
         });
 
-        Query query = historyRef.whereEqualTo("hWorkerId", mUser.getUid());
+//        Query query = historyRef.whereEqualTo("hWorkerId", mUser.getUid());
+//
+//        query.get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                int total = 0;
+//                int today = 0;
+//
+//                // Get current date to compare with document timestamps
+//                Calendar calendar = Calendar.getInstance();
+//                int currentYear = calendar.get(Calendar.YEAR);
+//                int currentMonth = calendar.get(Calendar.MONTH);
+//                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+//
+//                for (QueryDocumentSnapshot document : task.getResult()) {
+//                    Object changes = document.get("changes");
+//                    Long timestamp = document.getLong("timestamp");
+//
+//                    if (changes instanceof List && timestamp != null) {
+//                        List<String> changeList = (List<String>) changes;
+//
+//                        // Check if the change occurred today
+//                        Calendar changeCalendar = Calendar.getInstance();
+//                        changeCalendar.setTimeInMillis(timestamp);
+//
+//                        boolean isToday = (changeCalendar.get(Calendar.YEAR) == currentYear &&
+//                                changeCalendar.get(Calendar.MONTH) == currentMonth &&
+//                                changeCalendar.get(Calendar.DAY_OF_MONTH) == currentDay);
+//
+//                        for (String change : changeList) {
+//                            if (change.contains("is updated to checked")) {
+//                                total++;
+//                                if (isToday) {
+//                                    today++;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                // Update UI with counts
+//                totalGivenVaccine.setText(String.valueOf(total));
+//                todayGivenVaccine.setText(String.valueOf(today));
+//            } else {
+//                // Handle potential errors
+//                totalGivenVaccine.setText("00");
+//                todayGivenVaccine.setText("00");
+//            }
+//        });
 
-        query.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                int total = 0;
-                int today = 0;
-
-                // Get current date to compare with document timestamps
-                Calendar calendar = Calendar.getInstance();
-                int currentYear = calendar.get(Calendar.YEAR);
-                int currentMonth = calendar.get(Calendar.MONTH);
-                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
-
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    Object changes = document.get("changes");
-                    Long timestamp = document.getLong("timestamp");
-
-                    if (changes instanceof List && timestamp != null) {
-                        List<String> changeList = (List<String>) changes;
-
-                        // Check if the change occurred today
-                        Calendar changeCalendar = Calendar.getInstance();
-                        changeCalendar.setTimeInMillis(timestamp);
-
-                        boolean isToday = (changeCalendar.get(Calendar.YEAR) == currentYear &&
-                                changeCalendar.get(Calendar.MONTH) == currentMonth &&
-                                changeCalendar.get(Calendar.DAY_OF_MONTH) == currentDay);
-
-                        for (String change : changeList) {
-                            if (change.contains("is updated to checked")) {
-                                total++;
-                                if (isToday) {
-                                    today++;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                // Update UI with counts
-                totalGivenVaccine.setText(String.valueOf(total));
-                todayGivenVaccine.setText(String.valueOf(today));
-            } else {
-                // Handle potential errors
-                totalGivenVaccine.setText("00");
-                todayGivenVaccine.setText("00");
-            }
-        });
-
+        fetchData();
 
         Query query1 = userRef.whereEqualTo("userId", mUser.getUid());
 
@@ -194,6 +195,63 @@ public class HWMainActivity extends AppCompatActivity {
                 hwMainTab.selectTab(hwMainTab.getTabAt(position));
             }
 
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchData();
+    }
+
+    private void fetchData(){
+        Query query = historyRef.whereEqualTo("hWorkerId", mUser.getUid());
+
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                int total = 0;
+                int today = 0;
+
+                // Get current date to compare with document timestamps
+                Calendar calendar = Calendar.getInstance();
+                int currentYear = calendar.get(Calendar.YEAR);
+                int currentMonth = calendar.get(Calendar.MONTH);
+                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Object changes = document.get("changes");
+                    Long timestamp = document.getLong("timestamp");
+
+                    if (changes instanceof List && timestamp != null) {
+                        List<String> changeList = (List<String>) changes;
+
+                        // Check if the change occurred today
+                        Calendar changeCalendar = Calendar.getInstance();
+                        changeCalendar.setTimeInMillis(timestamp);
+
+                        boolean isToday = (changeCalendar.get(Calendar.YEAR) == currentYear &&
+                                changeCalendar.get(Calendar.MONTH) == currentMonth &&
+                                changeCalendar.get(Calendar.DAY_OF_MONTH) == currentDay);
+
+                        for (String change : changeList) {
+                            if (change.contains("is updated to checked")) {
+                                total++;
+                                if (isToday) {
+                                    today++;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Update UI with counts
+                totalGivenVaccine.setText(String.valueOf(total));
+                todayGivenVaccine.setText(String.valueOf(today));
+            } else {
+                // Handle potential errors
+                totalGivenVaccine.setText("00");
+                todayGivenVaccine.setText("00");
+            }
         });
     }
 }

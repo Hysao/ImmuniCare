@@ -2,6 +2,7 @@ package com.myprograms.immunicare.user.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private TextView reminderBtn, notificationBtn;
+    private ImageButton backBtn;
 
 
     @Override
@@ -42,6 +44,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         reminderBtn = findViewById(R.id.reminderBtn);
         notificationBtn = findViewById(R.id.notificationBtn);
+        backBtn = findViewById(R.id.settingsBack);
+
+        backBtn.setOnClickListener(v -> {
+            finish();
+        });
 
         reminderBtn.setOnClickListener(v -> {
             Intent i = new Intent(SettingsActivity.this, AddReminderActivity.class);

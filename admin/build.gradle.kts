@@ -70,6 +70,8 @@ dependencies {
 
     implementation (libs.firebase.functions)
 
+    implementation(libs.lottie)
+
 
 
 }

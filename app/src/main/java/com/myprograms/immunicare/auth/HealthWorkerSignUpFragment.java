@@ -204,6 +204,9 @@ public class HealthWorkerSignUpFragment extends Fragment {
         userData.put("address", address);
         userData.put("isHw", true);
         userData.put("isVerified", "pending");
+        userData.put("notification", false);
+        userData.put("terms", false);
+
         if (encodedImage != null) {
             userData.put("photo", encodedImage);
         }

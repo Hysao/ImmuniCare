@@ -36,6 +36,8 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notification);
+
+        // Set edge-to-edge UI
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -52,14 +54,24 @@ public class NotificationActivity extends AppCompatActivity {
             String userId = mUser.getUid();
             DocumentReference userDoc = userRef.document(userId);
 
-            userDoc.get().addOnSuccessListener(documentSnapshot -> {
-                if (documentSnapshot.exists() && documentSnapshot.contains("notification")) {
-                    boolean isNotificationEnabled = documentSnapshot.getBoolean("notification");
-                    notificationSwitch.setChecked(isNotificationEnabled);
-                }
-            }).addOnFailureListener(e -> {
-                Toast.makeText(this, "Failed to fetch notification settings.", Toast.LENGTH_SHORT).show();
-            });
+            userDoc.get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists() && documentSnapshot.contains("notification")) {
+                            Boolean isNotificationEnabled = documentSnapshot.getBoolean("notification");
+                            notificationSwitch.setChecked(isNotificationEnabled != null ? isNotificationEnabled : false);
+                            // If the field is null, set it to false by default
+                            if (isNotificationEnabled == null) {
+                                userDoc.update("notification", false);
+                            }
+                        } else {
+                            // Field doesn't exist, set default to false
+                            userDoc.update("notification", false);
+                            notificationSwitch.setChecked(false);
+                        }
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(this, "Failed to fetch notification settings.", Toast.LENGTH_SHORT).show();
+                    });
         }
 
         // Handle switch toggle
@@ -78,7 +90,7 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
 
+        // Handle back button
         notificationBackBtn.setOnClickListener(v -> finish());
     }
-
 }

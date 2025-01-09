@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,10 +22,12 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.user.announcement.AnnouncementAdapter;
 import com.myprograms.immunicare.user.announcement.Announcements;
 import com.myprograms.immunicare.user.setting.UserMenuActivity;
@@ -47,6 +51,7 @@ public class UserMainActivity extends AppCompatActivity {
     private AnnouncementAdapter announcementAdapter;
     private RecyclerView announcementRecycler;
     private CollectionReference userRef = db.collection("users");
+    private DocumentReference userDocRef;
 
     private TextView dayTxt, userNameTxt;
 
@@ -62,7 +67,7 @@ public class UserMainActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        mAuth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
 
         btn_menu = findViewById(R.id.userMenuBtn);
         dayTxt = findViewById(R.id.dayTxt);
@@ -83,14 +88,22 @@ public class UserMainActivity extends AppCompatActivity {
 
 
 
-//        Query query1 = userRef.whereEqualTo("userId", mUser.getUid());
-//
-//        query1.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//            @Override
-//            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-//                userNameTxt.setText(queryDocumentSnapshots.getDocuments().get(0).get("name").toString());
-//            }
-//        });
+        userDocRef = userRef.document(mUser.getUid());
+
+        userDocRef.get().addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String userName = documentSnapshot.getString("name");
+                        userNameTxt.setText(userName);
+                    }
+
+                    if (Boolean.FALSE.equals(documentSnapshot.getBoolean("terms"))){
+                        showTermsAndConditionsDialog();
+                    }
+
+                });
+
+
+
 
 
 
@@ -107,6 +120,51 @@ public class UserMainActivity extends AppCompatActivity {
 
 
 
+    }
+
+    private void showTermsAndConditionsDialog() {
+        // Use ScrollView for large text content
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Terms and Conditions");
+        builder.setMessage(getString(R.string.terms_and_conditions)); // Load from strings.xml
+        builder.setCancelable(true);
+        View termsView = getLayoutInflater().inflate(R.layout.terms_dialog, null);
+        //builder.setView(termsView);
+
+        builder.setPositiveButton("Agree", (dialog, which) -> {
+            userDocRef.update("terms", true)
+                    .addOnSuccessListener(aVoid -> {
+                        // Optional: Show a toast or confirmation message
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle the failure (e.g., show a toast or log the error)
+                        Toast.makeText(UserMainActivity.this, "Failed to update terms. Please try again.", Toast.LENGTH_SHORT).show();
+                    });
+            dialog.dismiss();
+        });
+
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            new AlertDialog.Builder(UserMainActivity.this)
+                    .setTitle("Are you sure?")
+                    .setMessage("Disagreeing with the terms will log you out.")
+                    .setPositiveButton("Logout", (logoutDialog, logoutWhich) -> {
+                        mAuth.signOut();
+                        Intent intent = new Intent(UserMainActivity.this, LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish(); // Ensures the user cannot return to this activity
+                    })
+                    .setNegativeButton("Back", (logoutDialog, logoutWhich) -> {
+                        // Reopen the Terms and Conditions dialog
+                        showTermsAndConditionsDialog();
+                    })
+                    .show();
+            dialog.dismiss();
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
 

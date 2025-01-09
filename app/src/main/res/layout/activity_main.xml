@@ -137,23 +137,47 @@
             android:backgroundTint="@color/immuniCareBlue"
             >
 
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Visit Our FB Page"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="8dp"
-                />
+                android:orientation="vertical"
+                >
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginVertical="8dp"
-                />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Visit Our FB Page"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginTop="8dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/facebookPage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@drawable/facebook"
+                    />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:id="@+id/visitPage"
+                    android:text="Visit"
+                    android:textColor="@color/immuniCareBlue"
+                    android:backgroundTint="@color/white"
+                    app:strokeColor="@color/immuniCareBlue"
+                    app:strokeWidth="2dp"
+                    android:layout_gravity="end"
+                    />
+
+            </LinearLayout>
+
+
 
 
         </androidx.cardview.widget.CardView>

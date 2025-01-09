@@ -1,11 +1,14 @@
 package com.myprograms.immunicare;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -20,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
     private MapView mapView;
     private List<LatLng> healthCenterLocations;
     private List<String> healthCenterNames;
+    private MaterialButton visitPage;
+    private ImageView facebookPage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +85,26 @@ public class MainActivity extends AppCompatActivity {
         signUpBtn = findViewById(R.id.signUpButton);
         loginBtn = findViewById(R.id.loginButton);
         announcementRecycler = findViewById(R.id.announcementRecycler);
+        visitPage = findViewById(R.id.visitPage);
+        facebookPage = findViewById(R.id.facebookPage);
+
+        visitPage.setOnClickListener(v -> {
+
+            new AlertDialog.Builder(this)
+                    .setTitle("Open Facebook Page")
+                    .setMessage("Do you allow this app to open the Facebook page?")
+                    .setPositiveButton("Allow", (dialog, which) -> {
+
+                        String fbPageUrl = "https://www.facebook.com/profile.php?id=100069787952022&mibextid=ZbWKwL";
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(fbPageUrl));
+                        startActivity(intent);
+                    })
+                    .setNegativeButton("Deny", (dialog, which) -> {
+
+                        dialog.dismiss();
+                    })
+                    .show();
+        });
 
 
 //        mapView = findViewById(R.id.mapView);

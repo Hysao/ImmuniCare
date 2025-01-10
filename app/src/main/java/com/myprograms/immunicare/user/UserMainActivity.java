@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.user;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +55,7 @@ public class UserMainActivity extends AppCompatActivity {
     private DocumentReference userDocRef;
 
     private TextView dayTxt, userNameTxt;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +70,17 @@ public class UserMainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+
+        if (mUser != null){
+            String uid = mUser.getUid();
+        }else {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading Data...");
 
         btn_menu = findViewById(R.id.userMenuBtn);
         dayTxt = findViewById(R.id.dayTxt);
@@ -172,7 +185,18 @@ public class UserMainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        if (mUser != null){
+            String uid = mUser.getUid();
+        }else {
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+            finish();
+        }
+
         loadAnnouncements();
+
+
     }
 
     //Announcement

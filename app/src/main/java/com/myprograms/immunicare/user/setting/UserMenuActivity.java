@@ -19,6 +19,7 @@ import com.myprograms.immunicare.MainActivity;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.auth.LoginActivity;
 import com.myprograms.immunicare.calendar.CalendarActivity;
+import com.myprograms.immunicare.terms.TermsActivity;
 import com.myprograms.immunicare.user.AddMoreActivity;
 import com.myprograms.immunicare.user.ArticleActivity;
 import com.myprograms.immunicare.user.ImmunizationRecordListActivity;
@@ -29,7 +30,7 @@ public class UserMenuActivity extends AppCompatActivity {
 
     private TextView menuChildProfile,
             menuImmunizationRecord, menuArticles, menuCalendar,
-            menuConcern, menuSettings, menuLogout;
+            menuConcern, menuSettings, menuLogout, menuTerms;
 
     private Intent i;
     private ImageButton menuCloseButton;
@@ -67,6 +68,15 @@ public class UserMenuActivity extends AppCompatActivity {
         menuSettings = findViewById(R.id.menuSettings);
         menuLogout = findViewById(R.id.menuLogout);
         menuCloseButton = findViewById(R.id.menuCloseButton);
+        menuTerms = findViewById(R.id.menuTermsAndCondition);
+
+
+        menuTerms.setOnClickListener(v -> {
+            i = new Intent(UserMenuActivity.this, TermsActivity.class);
+            startActivity(i);
+            finish();
+        });
+
 
         menuCloseButton.setOnClickListener(v -> {
             finish();

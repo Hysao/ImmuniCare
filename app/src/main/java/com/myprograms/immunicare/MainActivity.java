@@ -107,22 +107,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        mapView = findViewById(R.id.mapView);
-
-//        healthCenterLocations = Arrays.asList(
-//                new LatLng(14.599512, 120.984222), // Barangay A
-//                new LatLng(14.609512, 120.974222)  // Health Center B
-//        );
-//
-//        healthCenterNames = Arrays.asList(
-//                "Barangay 389",
-//                "San Sebastian Health Center"
-//        );
-//
-//        mapView = findViewById(R.id.mapView);
-//        mapView.onCreate(savedInstanceState);
-//        mapView.getMapAsync((OnMapReadyCallback) MainActivity.this);
-
 
         signUpBtn.setOnClickListener(v -> {
             Intent i = new Intent(MainActivity.this, SignupActivity.class);
@@ -140,42 +124,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-//    public void onMapReady(GoogleMap googleMap) {
-//        // Add markers to the map
-//        for (int i = 0; i < healthCenterLocations.size(); i++) {
-//            googleMap.addMarker(new MarkerOptions()
-//                    .position(healthCenterLocations.get(i))
-//                    .title(healthCenterNames.get(i)));
-//        }
-//
-//        // Move the camera to the first location
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(healthCenterLocations.get(0), 12));
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        mapView.onResume();
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        mapView.onPause();
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        mapView.onDestroy();
-//    }
-//
-//    @Override
-//    public void onLowMemory() {
-//        super.onLowMemory();
-//        mapView.onLowMemory();
-//    }
 
 
 

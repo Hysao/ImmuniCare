@@ -66,6 +66,15 @@ public class AccountViewAdapter extends RecyclerView.Adapter<AccountViewAdapter.
             intent.putExtra("documentId", documentId);
             context.startActivity(intent);
         });
+
+        if (user.getIsVerified().equals("approved")) {
+            holder.cardView.setStrokeColor(context.getResources().getColor(R.color.immuniCareGreen));
+
+        } else if (user.getIsVerified().equals("pending")) {
+            holder.cardView.setStrokeColor(context.getResources().getColor(R.color.immuniCareGrey));
+        } else {
+            holder.cardView.setStrokeColor(context.getResources().getColor(R.color.immuniCareRed));
+        }
     }
 
 

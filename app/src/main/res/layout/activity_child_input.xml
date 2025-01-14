@@ -301,6 +301,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cm"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
                 android:textColor="@color/white"
@@ -324,7 +325,6 @@
                     android:id="@+id/childWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_regular"
                     android:backgroundTint="@color/white"
@@ -340,6 +340,7 @@
                 android:layout_weight="1"
                 android:text="@string/kg"
                 android:fontFamily="@font/poppins_regular"
+                android:layout_marginStart="10dp"
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 />
@@ -384,19 +385,22 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginVertical="8dp">
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="24dp">
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelBtn"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/cancel"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="16sp"
-                android:textColor="@color/white"
-                android:background="@color/immuniCareBlue"
+                android:textColor="@color/immuniCareRed"
+                android:backgroundTint="@color/white"
+                app:strokeColor="@color/immuniCareRed"
+                app:strokeWidth="2dp"
+                android:layout_marginEnd="8dp"
                 android:layout_gravity="center" />
 
             <Button

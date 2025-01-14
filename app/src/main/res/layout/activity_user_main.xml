@@ -66,8 +66,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="200dp"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
@@ -96,6 +95,7 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/reminderRecycler"
                     android:layout_width="match_parent"
                     android:layout_height="fill_parent"
                     android:layout_marginBottom="8dp"
@@ -108,13 +108,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="200dp"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             android:backgroundTint="@color/white"
-            android:maxHeight="250dp"
             app:strokeWidth="2dp"
             app:strokeColor="@color/immuniCareBlue"
             >
@@ -153,7 +151,6 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginBottom="8dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
@@ -180,10 +177,21 @@
                     android:layout_marginStart="8dp"
                     />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginBottom="8dp"
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="fill_parent"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    />-->
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/viewArticle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:text="View Article"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="8dp"
                     />
 
             </LinearLayout>

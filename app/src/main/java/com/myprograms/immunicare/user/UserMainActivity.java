@@ -3,6 +3,7 @@ package com.myprograms.immunicare.user;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -20,19 +21,25 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.myprograms.immunicare.R;
 import com.myprograms.immunicare.auth.LoginActivity;
+import com.myprograms.immunicare.calendar.CalendarActivity;
+import com.myprograms.immunicare.calendar.EventAdapter;
+import com.myprograms.immunicare.calendar.Reminder;
 import com.myprograms.immunicare.user.announcement.AnnouncementAdapter;
 import com.myprograms.immunicare.user.announcement.Announcements;
 import com.myprograms.immunicare.user.setting.UserMenuActivity;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -50,12 +57,15 @@ public class UserMainActivity extends AppCompatActivity {
     //Announcements
     private List<Announcements> announcements;
     private AnnouncementAdapter announcementAdapter;
-    private RecyclerView announcementRecycler;
+    private RecyclerView announcementRecycler, reminderRecycler;
+    private List<Reminder> remindersList = new ArrayList<>();
+    private CollectionReference remindersRef = db.collection("reminders");
     private CollectionReference userRef = db.collection("users");
     private DocumentReference userDocRef;
 
     private TextView dayTxt, userNameTxt;
     private ProgressDialog progressDialog;
+    private MaterialButton viewArticle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +96,12 @@ public class UserMainActivity extends AppCompatActivity {
         dayTxt = findViewById(R.id.dayTxt);
         userNameTxt = findViewById(R.id.userNameTxt);
 
+        reminderRecycler = findViewById(R.id.reminderRecycler);
+
+        reminderRecycler.setLayoutManager(new LinearLayoutManager(this));
+
+        fetchEvents();
+
         //Announcement
         announcementRecycler = findViewById(R.id.announcementList);
         announcementRecycler.setLayoutManager(new LinearLayoutManager(this));
@@ -99,7 +115,13 @@ public class UserMainActivity extends AppCompatActivity {
 
         });
 
+        viewArticle = findViewById(R.id.viewArticle);
 
+
+        viewArticle.setOnClickListener(v -> {
+            Intent intent = new Intent(UserMainActivity.this, ArticleActivity.class);
+            startActivity(intent);
+        });
 
         userDocRef = userRef.document(mUser.getUid());
 
@@ -223,7 +245,28 @@ public class UserMainActivity extends AppCompatActivity {
         });
     }
 
-    //Appointment
 
+    //Appointment
+    private void fetchEvents() {
+
+        remindersRef.whereEqualTo("userId", mUser.getUid())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    remindersList.clear();
+                    for (DocumentSnapshot document : queryDocumentSnapshots) {
+                        Reminder reminder = document.toObject(Reminder.class);
+                        remindersList.add(reminder);
+                    }
+                    updateRecyclerView(remindersList); // Show all events initially
+                })
+                .addOnFailureListener(e -> {
+                    Log.e("CalendarActivity", "Error fetching events", e);
+                });
+    }
+
+    private void updateRecyclerView(List<Reminder> filteredReminders) {
+        EventAdapter adapter = new EventAdapter(filteredReminders, UserMainActivity.this);
+       reminderRecycler.setAdapter(adapter);
+    }
 
 }

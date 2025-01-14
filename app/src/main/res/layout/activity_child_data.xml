@@ -224,12 +224,15 @@
             android:id="@+id/seeQrCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="See your QR Code"
+            android:text="SEE YOUR QR CODE"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            app:strokeWidth="2dp"
+            app:strokeColor="@color/immuniCareBlue"
             android:textSize="24sp"
             android:textColor="@color/immuniCareBlue"
             android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="8dp"
-            android:fontFamily="@font/poppins_regular"
+            android:fontFamily="@font/poppins_medium"
             android:backgroundTint="@color/white"
             tools:ignore="HardcodedText,RtlSymmetry" />
 

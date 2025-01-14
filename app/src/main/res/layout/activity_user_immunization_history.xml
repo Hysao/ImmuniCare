@@ -30,7 +30,7 @@
         android:textStyle="bold"
         android:textSize="24sp"
         android:gravity="center"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins_medium"
         />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -324,6 +324,7 @@
                     android:id="@+id/childWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_regular"
                     android:backgroundTint="@color/white"

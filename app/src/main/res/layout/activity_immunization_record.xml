@@ -858,15 +858,16 @@
             android:backgroundTint="@color/white"
             app:strokeWidth="2dp"
             app:strokeColor="@color/immuniCareBlue"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/immuniCareBlue"
             android:text="View History"
             android:id="@+id/viewHistory"
-            app:cornerRadius="10dp"
+            app:cornerRadius="20dp"
             app:elevation="10dp"
-            android:padding="10dp"
-            android:fontFamily="@font/poppins_regular"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="10dp"
+            android:fontFamily="@font/poppins_medium"
             />
         
     </LinearLayout>

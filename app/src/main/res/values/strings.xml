@@ -46,7 +46,10 @@
     <string name="height">Height</string>
     <string name="father_s_name">Father\'s Name</string>
     <string name="address">Address</string>
-    <string name="add_child_info">If you wish to edit your child information \n go here and you can also \n add more child information</string>
+    <string name="add_child_info">
+        If you wish to edit your child information
+        go here and you can also
+        add more child information</string>
     <string name="child_info">Add child info</string>
     <string name="barangay_389">Barangay 389</string>
     <string name="hepatitis_b_vaccine">Hepatitis B Vaccine</string>
@@ -93,74 +96,64 @@
     <string name="dpt_1">DIPHTHERIA, TETANUS, PERTUSSIS VACCINE (DTP)</string>
     <string name="dpt_2">Ideally, the minimum interval between booster doses should be at least 4 years</string>
     <string name="dpt_3">Full-dose DTP should preferably be used only until age 7 years, but package inserts should be consulted for maximum age indications of specific products</string>
-    <string name="settings_txt1">In this settings, you can set the \nreminder, notifications, \ndate</string>
+    <string name="settings_txt1">In this settings, you can set the reminder, notifications, date</string>
     <string name="reminder">Reminder</string>
     <string name="notification">Notification</string>
     <string name="notification_txt1">In this notification, you can turn on your\nnotification so that it can appear on your\ntop of your phone or on your lock screen\nfor the admin\'s announcement, etc</string>
 
     <string name="terms_and_conditions">
-    Welcome to ImmuniCare! By using the ImmuniCare mobile application, you agree to the following terms and conditions. Please read them carefully.
-\n\n
+    Welcome to ImmuniCare! By using the ImmuniCare mobile application, you agree to the following terms and conditions. Please read them carefully.\n
  \n   <b>1. Acceptance of Terms    </b>
- \n   By downloading, installing, or using the Application, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the Application. Your continued use constitutes your ongoing agreement.
+ \n\nBy downloading, installing, or using the Application, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please do not use the Application. Your continued use constitutes your ongoing agreement.
 \n
   \n  <b>2. User Eligibility    </b>
-  \n  The Application is intended for use by residents of Barangay 389, Philippines, specifically parents, guardians, health workers, and barangay administrators.
-   \n Users must be 18 years or older to create an account or access certain features. Minors may use the Application under the supervision of a parent or guardian, who assumes responsibility for their actions.
+  \n\nThe Application is intended for use by residents of Barangay 389, Philippines, specifically parents, guardians, health workers, and barangay administrators. Users must be 18 years or older to create an account or access certain features. Minors may use the Application under the supervision of a parent or guardian, who assumes responsibility for their actions.
 \n
    \n <b>3. User Accounts   </b>
-  \n  Users are required to provide accurate and complete information during registration. Providing false or misleading information is prohibited.
-  \n  You are responsible for maintaining the confidentiality of your account credentials. Sharing your credentials with others is strictly forbidden.
-   \n You agree to notify us immediately if you suspect unauthorized access to your account. ImmuniCare is not liable for damages resulting from unauthorized access caused by your failure to secure your credentials.
+  \n\nUsers are required to provide accurate and complete information during registration. Providing false or misleading information is prohibited.
+  You are responsible for maintaining the confidentiality of your account credentials. Sharing your credentials with others is strictly forbidden.
+        \n\nYou agree to notify us immediately if you suspect unauthorized access to your account. ImmuniCare is not liable for damages resulting from unauthorized access caused by your failure to secure your credentials.
 \n
         \n  <b>4. Use of the Application</b>
-   \n The Application is designed for the following purposes:
-   \n - Managing and viewing child immunization schedules and records.
-   \n - Receiving vaccination reminders and health-related notifications.
-   \n - Accessing educational materials about immunizations.
-   \n - Facilitating communication with barangay health workers and administrators.
-   \n Users agree to use the Application solely for its intended purposes and not to:
-   \n - Violate any applicable laws or regulations.
-    \n- Engage in unauthorized access, distribution, or modification of the Application’s data or features.
-    \n- Transmit harmful, malicious, or offensive content.
-   \n - Reverse engineer, decompile, or otherwise attempt to derive the source code of the Application.
+   \n\nThe Application is designed for the following purposes:
+   \n\n• Managing and viewing child immunization schedules and records.
+   \n• Receiving vaccination reminders and health-related notifications.
+   \n• Accessing educational materials about immunizations.
+   \n• Facilitating communication with barangay health workers and administrators.
+   \n\nUsers agree to use the Application solely for its intended purposes and not to:
+   \n\n• Violate any applicable laws or regulations.
+    \n• Engage in unauthorized access, distribution, or modification of the Application’s data or features.
+    \n• Transmit harmful, malicious, or offensive content.
+   \n• Reverse engineer, decompile, or otherwise attempt to derive the source code of the Application.
 \n
    \n <b>5. Privacy Policy    </b>
-   \n Your use of the Application is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information. By using the Application, you consent to the terms of our Privacy Policy. We do not share personal information with unauthorized third parties.
+   \n\nYour use of the Application is also governed by our Privacy Policy, which explains how we collect, use, and protect your personal information. By using the Application, you consent to the terms of our Privacy Policy. We do not share personal information with unauthorized third parties.
 \n
     \n<b> 6. Data Accuracy and Responsibility   </b>
-   \n Users are responsible for ensuring the accuracy of the data they provide.
-   \n ImmuniCare is not responsible for errors arising from incorrect or incomplete information entered by users.
-   \n Misuse or falsification of data may result in account suspension or termination.
+   \n\nUsers are responsible for ensuring the accuracy of the data they provide. ImmuniCare is not responsible for errors arising from incorrect or incomplete information entered by users. Misuse or falsification of data may result in account suspension or termination.
 \n
    \n <b>7. Limitation of Liability    </b>
-   \n ImmuniCare is provided "as is" without warranties of any kind, either express or implied.
-    \nTo the fullest extent permitted by law, we disclaim liability for any direct, indirect, incidental, or consequential damages, including but not limited to:
-    \n- Failure to follow vaccination schedules.
-    \n- Misuse of the Application.
-    \n- Technical issues, interruptions, or data breaches beyond our control.
-    \nUsers agree to use the Application at their own risk.
+   \n\nImmuniCare is provided "as is" without warranties of any kind, either express or implied. To the fullest extent permitted by law, we disclaim liability for any direct, indirect, incidental, or consequential damages, including but not limited to:
+    \n\n• Failure to follow vaccination schedules.
+    \n• Misuse of the Application.
+    \n• Technical issues, interruptions, or data breaches beyond our control. Users agree to use the Application at their own risk.
 \n
    \n <b>8. Intellectual Property    </b>
-   \n All content, features, and functionalities of the Application, including logos, graphics, and software, are the intellectual property of ImmuniCare or its licensors.
-   \n Users may not copy, distribute, or modify any part of the Application without prior written consent.
-   \n Any unauthorized use of the Application’s content may result in legal action.
+   \n\nAll content, features, and functionalities of the Application, including logos, graphics, and software, are the intellectual property of ImmuniCare or its licensors. Users may not copy, distribute, or modify any part of the Application without prior written consent. Any unauthorized use of the Application’s content may result in legal action.
 \n
   \n  <b>9. Modifications to Terms    </b>
-  \n  We reserve the right to update or modify these Terms and Conditions at any time. Changes will be effective upon posting in the Application. Continued use of the Application signifies your acceptance of the updated terms. Users are encouraged to review the terms periodically.
+  \n\nWe reserve the right to update or modify these Terms and Conditions at any time. Changes will be effective upon posting in the Application. Continued use of the Application signifies your acceptance of the updated terms. Users are encouraged to review the terms periodically.
 \n
   \n  <b>10. Termination    </b>
-  \n  ImmuniCare may terminate or suspend your access to the Application for violations of these Terms and Conditions or any applicable laws.
-  \n  Users may terminate their account by contacting our support team. Upon termination, all access to the Application and its features will cease immediately.
-  \n  ImmuniCare reserves the right to retain anonymized data for legal and research purposes.
+  \n\nImmuniCare may terminate or suspend your access to the Application for violations of these Terms and Conditions or any applicable laws. Users may terminate their account by contacting our support team. Upon termination, all access to the Application and its features will cease immediately. ImmuniCare reserves the right to retain anonymized data for legal and research purposes.
 \n
    \n <b>11. Governing Law    </b>
-   \n These Terms and Conditions are governed by the laws of the Philippines. Any disputes arising from these terms will be subject to the exclusive jurisdiction of the courts in Manila, Philippines. Users agree to resolve disputes through good faith discussions before seeking legal recourse.
+   \n\nThese Terms and Conditions are governed by the laws of the Philippines. Any disputes arising from these terms will be subject to the exclusive jurisdiction of the courts in Manila, Philippines. Users agree to resolve disputes through good faith discussions before seeking legal recourse.
 \n
   \n <b>12. Contact Information    </b>
-  \n  For questions, feedback, or concerns, please contact us at:
-  \n  - Email: Marvyjimenez970@gmail.com
-   \n - Facebook: Barangay 389 Zone 40
+  \n\nFor questions, feedback, or concerns, please contact us at:
+  \n\n  • Email: Marvyjimenez970@gmail.com
+   \n • Facebook: Barangay 389 Zone 40
 \n
    \nBy using the ImmuniCare Application, you acknowledge that you have read, understood, and agreed to these Terms and Conditions.
 \n

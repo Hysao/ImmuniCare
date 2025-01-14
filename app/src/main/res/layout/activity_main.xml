@@ -107,6 +107,7 @@
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
+               android:fontFamily="@font/poppins_medium"
                android:text="Latest Announcement"
                android:textSize="18sp"
                android:textColor="@color/white"
@@ -147,6 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Visit Our FB Page"
+                    android:fontFamily="@font/poppins_medium"
                     android:textSize="18sp"
                     android:textColor="@color/white"
                     android:layout_marginHorizontal="8dp"
@@ -202,6 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nearest Health Center"
+                android:fontFamily="@font/poppins_medium"
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_marginHorizontal="8dp"
@@ -209,12 +212,20 @@
                 />
 
 
-            <com.google.android.gms.maps.MapView
+<!--            <com.google.android.gms.maps.MapView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="200dp"-->
+<!--                android:id="@+id/mapView"-->
+<!--                android:layout_marginHorizontal="8dp"-->
+<!--                android:layout_marginVertical="8dp"-->
+<!--                />-->
+
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:id="@+id/mapView"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginVertical="8dp"
+                android:background="@drawable/healthcenter"
                 />
 
         </LinearLayout>

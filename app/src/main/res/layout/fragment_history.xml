@@ -23,17 +23,20 @@
             android:layout_weight="1"
             />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/viewHistoryBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="8dp"
-                android:background="@color/immuniCareBlue"
                 android:fontFamily="@font/poppins_medium"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:backgroundTint="@color/immuniCareBlue"
                 android:text="View History"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/immuniCareBlue"
                 android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
     </LinearLayout>

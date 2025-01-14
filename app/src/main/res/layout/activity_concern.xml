@@ -29,7 +29,7 @@
     android:textColor="@color/white"
     android:text="Concern"
     android:textSize="24sp"
-    android:fontFamily="@font/poppins_regular"
+    android:fontFamily="@font/poppins_medium"
     android:textStyle="bold"
       android:letterSpacing="0.1"
       android:layout_marginBottom="16dp"
@@ -191,9 +191,12 @@
       android:layout_marginHorizontal="64dp"
     android:textSize="20sp"
     android:textStyle="normal"
-    android:fontFamily="@font/poppins_regular"
+    android:fontFamily="@font/poppins_medium"
     android:text="SUBMIT"
-    android:backgroundTint="@color/white"
+      style="@style/Widget.Material3.Button.OutlinedButton"
+      app:strokeWidth="2dp"
+      app:strokeColor="@color/immuniCareBlue"
+      android:backgroundTint="@color/white"
     />
 
 

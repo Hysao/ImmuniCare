@@ -111,20 +111,18 @@
                 android:textColor="@color/black"
                 />
 
-
+            <TextView
+                android:id="@+id/updatedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:text="updatedDate"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/black"
+                />
 
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/updatedDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="normal"
-            android:text="updatedDate"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_regular"
-            android:textColor="@color/black"
-            />
 
     </LinearLayout>
 

@@ -28,7 +28,7 @@
         android:text="@string/immunization_record"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:fontFamily="@font/poppins_regular"
+        android:fontFamily="@font/poppins_medium"
         android:textSize="24sp"
         android:gravity="center"
         android:layout_marginBottom="32dp"

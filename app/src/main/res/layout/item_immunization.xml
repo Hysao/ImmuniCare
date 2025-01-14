@@ -28,7 +28,7 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_regular"
-        android:textSize="24sp"
+        android:textSize="20sp"
         />
 
 </com.google.android.material.card.MaterialCardView>

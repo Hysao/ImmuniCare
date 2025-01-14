@@ -37,7 +37,7 @@
             android:text="@string/good_day"
             android:textSize="24sp"
             android:textColor="@color/white"
-            android:layout_marginHorizontal="24dp"/>
+           />
 
         <TextView
             android:id="@+id/userNameTxt"
@@ -48,7 +48,7 @@
             android:textSize="24sp"
             android:layout_marginTop="-15dp"
             android:textColor="@color/white"
-            android:layout_marginHorizontal="24dp"
+
             />
 
 

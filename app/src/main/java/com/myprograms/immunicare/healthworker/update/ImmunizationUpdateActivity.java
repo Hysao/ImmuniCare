@@ -199,7 +199,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
         thirdPentaCheckbox.setChecked(document.getBoolean("tVPentavalentVaccine") != null && document.getBoolean("tVPentavalentVaccine"));
         thirdOPVCheckbox.setChecked(document.getBoolean("tVOpvVaccine") != null && document.getBoolean("tVOpvVaccine"));
         thirdPCVCheckbox.setChecked(document.getBoolean("tVpneumococcalVaccine") != null && document.getBoolean("tVpneumococcalVaccine"));
-        thirdInactivatedCheckbox.setChecked(document.getBoolean("tVInactivatedVaccine") != null && document.getBoolean("tVInactivatedVaccine"));
+        thirdInactivatedCheckbox.setChecked(document.getBoolean("tVinactivatePolioVaccine") != null && document.getBoolean("tVinactivatePolioVaccine"));
         fourthInactivatedCheckbox.setChecked(document.getBoolean("foVinactivatedPolio") != null && document.getBoolean("foVinactivatedPolio"));
         fourthMeaslesCheckbox.setChecked(document.getBoolean("foVmeasslesMumpsRubella") != null && document.getBoolean("foVmeasslesMumpsRubella"));
         fifthMeaslesCheckbox.setChecked(document.getBoolean("fiVmeasslesMumpsRubella") != null && document.getBoolean("fiVmeasslesMumpsRubella"));
@@ -244,7 +244,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
                         compareCheckboxChanges(document, changes, "tVPentavalentVaccine", thirdPenta, "thirdPenta");
                         compareCheckboxChanges(document, changes, "tVOpvVaccine", thirdOPV, "thirdOPV");
                         compareCheckboxChanges(document, changes, "tVpneumococcalVaccine", thirdPCV, "thirdPCV");
-                        compareCheckboxChanges(document, changes, "tVInactivatedVaccine", thirdInactivated, "thirdInactivated");
+                        compareCheckboxChanges(document, changes, "tVinactivatePolioVaccine", thirdInactivated, "thirdInactivated");
                         compareCheckboxChanges(document, changes, "foVinactivatedPolio", fourthInactivated, "fourthInactivated");
                         compareCheckboxChanges(document, changes, "foVmeasslesMumpsRubella", fourthMeasles, "fourthMeasles");
                         compareCheckboxChanges(document, changes, "fiVmeasslesMumpsRubella", fifthMeasles, "fifthMeasles");
@@ -262,7 +262,7 @@ public class ImmunizationUpdateActivity extends AppCompatActivity {
                         updatedData.put("tVPentavalentVaccine", thirdPenta);
                         updatedData.put("tVOpvVaccine", thirdOPV);
                         updatedData.put("tVpneumococcalVaccine", thirdPCV);
-                        updatedData.put("tVInactivatedVaccine", thirdInactivated);
+                        updatedData.put("tVinactivatePolioVaccine", thirdInactivated);
                         updatedData.put("foVinactivatedPolio", fourthInactivated);
                         updatedData.put("foVmeasslesMumpsRubella", fourthMeasles);
                         updatedData.put("fiVmeasslesMumpsRubella", fifthMeasles);

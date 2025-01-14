@@ -426,14 +426,18 @@
 
             </LinearLayout>
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/downloadQrCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="Download QR Code"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                app:strokeWidth="2dp"
+                app:strokeColor="@color/immuniCareBlue"
                 android:textColor="@color/white"
                 android:fontFamily="@font/poppins_regular"
+                android:backgroundTint="@color/immuniCareBlue"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"

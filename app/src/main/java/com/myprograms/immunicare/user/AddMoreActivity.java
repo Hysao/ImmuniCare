@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,7 +39,7 @@ public class AddMoreActivity extends AppCompatActivity {
 
     private RecyclerView rvChildInfo;
     private TextView addMoreTxt;
-    private Button addMoreBtn;
+    private MaterialButton addMoreBtn;
     private ImageButton backBtn;
 
     private FirebaseAuth mAuth;

@@ -64,8 +64,9 @@
             android:id="@+id/userBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Parent"
-            android:fontFamily="@font/poppins_regular"
+            android:text="PARENT"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:fontFamily="@font/poppins_medium"
             android:layout_marginVertical="8dp"
             android:textSize="18sp"
             android:textColor="@color/white"
@@ -79,8 +80,10 @@
             android:id="@+id/hwBtn"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Health Worker"
-            android:fontFamily="@font/poppins_regular"
+            android:text="HEALTH WORKER"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+
+            android:fontFamily="@font/poppins_medium"
             android:textSize="18sp"
             android:layout_marginVertical="8dp"
             android:textColor="@color/white"
@@ -134,8 +137,9 @@
                 android:textColor="@color/immuniCareBlue"
                 android:text="Login"
                 android:textAllCaps="true"
+                android:fontFamily="@font/poppins_medium"
                 android:layout_marginHorizontal="8dp"
-                android:textStyle="italic"
+                android:textStyle="bold"
                 android:textSize="20sp"
                 />
 
@@ -147,6 +151,7 @@
                 android:textColor="@color/black"
                 android:text="or"
                 android:textAllCaps="true"
+                android:fontFamily="@font/poppins_regular"
                 android:layout_marginHorizontal="8dp"
                 android:textSize="20sp"
                 />
@@ -159,7 +164,7 @@
                 android:text="Home page"
                 android:textAllCaps="true"
                 android:layout_marginHorizontal="8dp"
-                android:textStyle="italic"
+                android:textStyle="bold"
                 android:textSize="20sp"
 
                 />
@@ -178,7 +183,7 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/couch_anim"
-        android:layout_marginTop="64dp"/>
+        android:layout_marginTop="135dp"/>
 
 
 </RelativeLayout>

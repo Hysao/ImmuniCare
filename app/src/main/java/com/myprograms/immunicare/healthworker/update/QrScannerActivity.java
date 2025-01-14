@@ -53,6 +53,8 @@ public class QrScannerActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
+    private boolean isQrCodeScanned = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,10 +91,8 @@ public class QrScannerActivity extends AppCompatActivity {
             try {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
 
-
                 Preview preview = new Preview.Builder().build();
                 preview.setSurfaceProvider(previewView.getSurfaceProvider());
-
 
                 analyzer = new MyImageAnalyzer(this::handleScannedQrCode);
 
@@ -114,6 +114,37 @@ public class QrScannerActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }, ContextCompat.getMainExecutor(this));
+    }
+
+    private void handleScannedQrCode(String documentId) {
+        // Prevent multiple scans
+        if (!isQrCodeScanned && documentId != null && !documentId.isEmpty()) {
+            isQrCodeScanned = true; // Set flag to true after first scan
+            Intent intent = new Intent(this, ChildInfoActivity.class);
+            intent.putExtra("documentId", documentId);
+            startActivity(intent);
+            finish();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                initializeCamera();
+            } else {
+                Toast.makeText(this, "Camera permission is required to scan QR codes. Please enable it in settings.", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (cameraExecutor != null) {
+            cameraExecutor.shutdown();
+        }
     }
 
     public static class MyImageAnalyzer implements ImageAnalysis.Analyzer {
@@ -152,35 +183,5 @@ public class QrScannerActivity extends AppCompatActivity {
             void onQrCodeScanned(String qrCodeValue);
         }
     }
-
-    private void handleScannedQrCode(String documentId) {
-        if (documentId != null && !documentId.isEmpty()) {
-            Intent intent = new Intent(this, ChildInfoActivity.class);
-            intent.putExtra("documentId", documentId);
-            startActivity(intent);
-            finish();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                initializeCamera();
-            } else {
-                Toast.makeText(this, "Camera permission is required to scan QR codes. Please enable it in settings.", Toast.LENGTH_LONG).show();
-            }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (cameraExecutor != null) {
-            cameraExecutor.shutdown();
-        }
-    }
-
-
 }
+

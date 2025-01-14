@@ -137,7 +137,7 @@ public class VaccineEditActivity extends AppCompatActivity {
 
         // Update Firestore document
         vaccinesRef.document(documentId).update(
-                "stock", stock,
+                "stock", Integer.parseInt(stock),
                 "manufacturedDate", selectedManufacturedDate,
                 "expiryDate", selectedExpiryDate
         ).addOnSuccessListener(aVoid -> {

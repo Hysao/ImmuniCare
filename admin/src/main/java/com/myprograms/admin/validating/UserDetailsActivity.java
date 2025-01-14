@@ -133,7 +133,7 @@ public class UserDetailsActivity extends AppCompatActivity {
     private void approveUser(String documentId, String userEmail) {
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("isVerified", "approved");
-        updateData.put("notification", "Your account has been approved.");
+        updateData.put("notification", false);
 
         db.collection("users").document(documentId)
                 .update(updateData)

@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.functions.FirebaseFunctions;
 import com.myprograms.admin.R;
@@ -194,11 +195,41 @@ public class UserDetailsActivity extends AppCompatActivity {
         db.collection("users").document(documentId)
                 .update(updateData)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "User rejected", Toast.LENGTH_SHORT).show();
-                    finish();
+                    deleteUserFromFirebaseAuth(documentId);
                 })
                 .addOnFailureListener(e ->
                         Toast.makeText(this, "Error rejecting user: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                );
+    }
+
+    private void deleteUserFromFirebaseAuth(String documentId) {
+        db.collection("users").document(documentId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String email = documentSnapshot.getString("email");
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+
+                        // Authenticate the admin if needed to delete the user
+                        auth.fetchSignInMethodsForEmail(email)
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful() && task.getResult() != null) {
+                                        auth.getCurrentUser().delete()
+                                                .addOnSuccessListener(aVoid -> {
+                                                    Toast.makeText(this, "User account deleted", Toast.LENGTH_SHORT).show();
+                                                    finish();
+                                                })
+                                                .addOnFailureListener(e ->
+                                                        Toast.makeText(this, "Error deleting user account: " + e.getMessage(), Toast.LENGTH_SHORT).show()
+                                                );
+                                    } else {
+                                        Toast.makeText(this, "Unable to find user for deletion", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Error fetching user: " + e.getMessage(), Toast.LENGTH_SHORT).show()
                 );
     }
 

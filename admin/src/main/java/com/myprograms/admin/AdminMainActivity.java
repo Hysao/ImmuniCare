@@ -3,6 +3,7 @@ package com.myprograms.admin;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +19,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.myprograms.admin.announcements.AnnouncementActivity;
 import com.myprograms.admin.concerns.ConcernsActivity;
+import com.myprograms.admin.menu.AdminMenuActivity;
 import com.myprograms.admin.records.ImmunizationRecordActivity;
 import com.myprograms.admin.vaccines.VaccinesActivity;
 import com.myprograms.admin.validating.ValidatingUserActivity;
@@ -30,6 +32,7 @@ public class AdminMainActivity extends AppCompatActivity {
     private CardView immunizationRecords, announcements,
             concerns, scheduleAnnouncement, accountVerification, listOfVaccines;
     private TextView totalVaccination, vaccinationGivenToday;
+    private ImageButton menuButton;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference historyRef = db.collection("history");
@@ -53,6 +56,15 @@ public class AdminMainActivity extends AppCompatActivity {
         totalVaccination = findViewById(R.id.totalVaccination);
         vaccinationGivenToday = findViewById(R.id.vaccinationGivenToday);
         listOfVaccines = findViewById(R.id.listOfVaccines);
+        menuButton = findViewById(R.id.menuButton);
+
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminMainActivity.this, AdminMenuActivity.class);
+                startActivity(i);
+            }
+        });
 
         accountVerification.setOnClickListener(new View.OnClickListener() {
             @Override

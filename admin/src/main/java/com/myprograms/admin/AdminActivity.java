@@ -52,7 +52,6 @@ public class AdminActivity extends AppCompatActivity {
         animationView.playAnimation();
 
 
-        //animationView.cancelAnimation();
 
         animationView.setSpeed(1f); // Speed up
 
@@ -61,41 +60,39 @@ public class AdminActivity extends AppCompatActivity {
             String pass = password.getText().toString().trim();
 
             if (username.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(AdminActivity.this, "Put username and password", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminActivity.this, "Please enter both username and password", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // Query Firestore for admin with matching username and password
+            // Query Firestore for the user with the provided username
             Query query = usersRef.whereEqualTo("userName", username);
             query.get().addOnSuccessListener(queryDocumentSnapshots -> {
                 if (!queryDocumentSnapshots.isEmpty()) {
-                    // Assuming you expect only one document with the given username
+                    // Get the first matching document
                     DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(0);
                     Admin user = document.toObject(Admin.class);
 
-                    // Now you have the user object, you can access its properties
                     assert user != null;
-                    String name = user.getUserName();
-                    String password1 = user.getPassword();
+                    String storedUsername = user.getUserName();
+                    String storedPassword = user.getPassword();
 
-                    if (!username.equals(name) && !pass.equals(password1)){
-                        Toast.makeText(AdminActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
-                    }else {
+                    // Corrected condition for username and password matching
+                    if (username.equals(storedUsername) && pass.equals(storedPassword)) {
+                        // Credentials are correct, navigate to AdminMainActivity
                         Intent i = new Intent(AdminActivity.this, AdminMainActivity.class);
                         startActivity(i);
+                    } else {
+                        // Invalid password
+                        Toast.makeText(AdminActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                     }
-
-                    // ... access other properties
                 } else {
-                    // Handle the case where no document is found with the given username
+                    // No user found with the provided username
                     Toast.makeText(AdminActivity.this, "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(e -> {
-                // Handle error
+                // Handle Firestore query failure
+                Toast.makeText(AdminActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
-
-
-
         });
 
     }

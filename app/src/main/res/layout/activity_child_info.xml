@@ -463,7 +463,6 @@
                     app:strokeColor="@color/immuniCareBlue"
                     />
 
-
             </LinearLayout>
 
         </ScrollView>

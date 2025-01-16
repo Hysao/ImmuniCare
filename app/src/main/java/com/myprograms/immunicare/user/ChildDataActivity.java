@@ -33,7 +33,7 @@ public class ChildDataActivity extends AppCompatActivity {
             dataChildAddress, dataChildBarangay,
             dataChildMother, dataChildFather,
             dataChildHeight, dataChildWeight;
-    private Button seeQrCode;
+    private Button seeQrCode, delete;
     private ImageView dataChildPhoto;
 
     private ImageButton backBtn;
@@ -81,6 +81,7 @@ public class ChildDataActivity extends AppCompatActivity {
         backBtn.setOnClickListener(v -> finish());
 
         seeQrCode = findViewById(R.id.seeQrCode);
+        delete = findViewById(R.id.delete);
 
         seeQrCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +89,31 @@ public class ChildDataActivity extends AppCompatActivity {
                 Intent i = new Intent(ChildDataActivity.this, ChildQRCodeActivity.class);
                 i.putExtra("documentId", documentId);
                 startActivity(i);
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show confirmation dialog
+                new androidx.appcompat.app.AlertDialog.Builder(ChildDataActivity.this)
+                        .setTitle("Delete Confirmation")
+                        .setMessage("Are you sure you want to delete this?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+
+                            DocumentReference documentRef = childRef.document(documentId);
+                            documentRef.delete().addOnSuccessListener(unused -> {
+                                finish();
+                            }).addOnFailureListener(e -> {
+                                e.printStackTrace();
+
+                            });
+                        })
+                        .setNegativeButton("No", (dialog, which) -> {
+                            // Dismiss dialog and do nothing
+                            dialog.dismiss();
+                        })
+                        .show();
             }
         });
 

@@ -78,6 +78,12 @@ public class LoginActivity extends AppCompatActivity {
 
         animationView.setSpeed(1.5f); // Speed up
 
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showForgotPasswordDialog();
+            }
+        });
 
         loginButton.setOnClickListener(v -> {
             String email = emailEditText.getText().toString().trim();
@@ -142,6 +148,45 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> {
                     // Handle error fetching user data
                     Toast.makeText(LoginActivity.this, "Error checking admin approval.", Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void showForgotPasswordDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setTitle("Reset Password");
+
+        // Add an EditText to the dialog
+        final EditText emailInput = new EditText(this);
+        emailInput.setHint("Enter your email");
+        emailInput.setInputType(android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+        builder.setView(emailInput);
+
+        // Add buttons to the dialog
+        builder.setPositiveButton("Submit", (dialog, which) -> {
+            String email = emailInput.getText().toString().trim();
+
+            if (email.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "Please enter an email address.", Toast.LENGTH_SHORT).show();
+            } else {
+                sendPasswordResetEmail(email);
+            }
+        });
+
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+
+        // Show the dialog
+        builder.create().show();
+    }
+
+    private void sendPasswordResetEmail(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this, "Password reset email sent. Check your inbox.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        String errorMessage = task.getException() != null ? task.getException().getMessage() : "Failed to send reset email.";
+                        Toast.makeText(LoginActivity.this, "Error: " + errorMessage, Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 }

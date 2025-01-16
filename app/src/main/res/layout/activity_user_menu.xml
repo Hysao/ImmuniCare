@@ -39,7 +39,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="500dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="10dp"
             android:backgroundTint="@color/white"
@@ -128,6 +128,23 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/poppins_medium"
                     android:text="@string/concern"
+                    android:textSize="24sp"
+                    android:layout_marginVertical="8dp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="8dp"
+                    app:drawableStartCompat="@drawable/vc_32_concern_black"
+                    android:drawablePadding="8dp"
+                    android:paddingStart="8dp"
+                    tools:ignore="RtlSymmetry"
+                    />
+
+                <TextView
+                    android:id="@+id/menuChange"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Change Password"
                     android:textSize="24sp"
                     android:layout_marginVertical="8dp"
                     android:textColor="@color/black"

@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.myprograms.immunicare.MainActivity;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.password.ChangePasswordActivity;
 
 public class HwMenuActivity extends AppCompatActivity {
 
@@ -52,6 +53,15 @@ public class HwMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showLogoutConfirmationDialog();
+            }
+        });
+
+        changePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HwMenuActivity.this, ChangePasswordActivity.class);
+                startActivity(i);
+                finish();
             }
         });
     }

@@ -28,6 +28,9 @@
         android:theme="@style/Theme.ImmuniCare"
         tools:targetApi="32">
         <activity
+            android:name=".password.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.schedule.UserScheduleActivity"
             android:exported="false" />
         <activity

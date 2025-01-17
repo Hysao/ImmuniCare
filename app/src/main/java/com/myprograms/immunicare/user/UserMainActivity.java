@@ -217,7 +217,7 @@ public class UserMainActivity extends AppCompatActivity {
         }
 
         loadAnnouncements();
-
+        fetchEvents();
 
     }
 

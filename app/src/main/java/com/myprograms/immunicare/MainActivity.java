@@ -124,8 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchAnnouncement();
+    }
 
     private void fetchAnnouncement() {
 

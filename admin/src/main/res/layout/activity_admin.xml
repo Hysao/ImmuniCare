@@ -12,14 +12,15 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/baby_anim" />
+        app:lottie_rawRes="@raw/baby_anim"
+        android:layout_marginTop="100dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -63,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="center"
         android:text="Welcome Admin!"

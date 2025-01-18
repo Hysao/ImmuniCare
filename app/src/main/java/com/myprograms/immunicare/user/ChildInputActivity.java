@@ -27,6 +27,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,6 +81,15 @@ public class ChildInputActivity extends AppCompatActivity {
             finish();
             return;
         }
+
+        LottieAnimationView animationView = findViewById(R.id.lottieAnimationView);
+
+
+        animationView.playAnimation();
+
+
+
+        animationView.setSpeed(1f); // Speed up
 
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);

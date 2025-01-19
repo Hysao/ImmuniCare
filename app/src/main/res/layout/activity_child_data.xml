@@ -22,7 +22,7 @@
             android:background="@drawable/vc_back_48_white"
             android:layout_marginStart="8dp"
             android:layout_marginVertical="8dp"
-            />
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="match_parent"
@@ -66,14 +66,14 @@
             android:fontFamily="@font/poppins_regular"
             android:background="@drawable/txt_bg"
             android:paddingStart="10dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="8dp"
             tools:ignore="HardcodedText,RtlSymmetry" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginVertical="4dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="8dp"
             >
 
@@ -110,7 +110,7 @@
             android:id="@+id/dataChildBirthPlace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
+            android:layout_marginVertical="8dp"
             android:text="Birth Place"
             android:textSize="24sp"
             android:textColor="@color/black"
@@ -122,6 +122,7 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/dataChildAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -137,6 +138,7 @@
             />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/dataChildBarangay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -155,7 +157,7 @@
             android:id="@+id/dataChildMother"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
+            android:layout_marginVertical="8dp"
             android:text="Mother's Name"
             android:textSize="24sp"
             android:textColor="@color/black"
@@ -170,7 +172,7 @@
             android:id="@+id/dataChildFather"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
+            android:layout_marginVertical="8dp"
             android:text="Father's Name"
             android:textSize="24sp"
             android:textColor="@color/black"
@@ -186,7 +188,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginVertical="4dp"
+            android:layout_marginVertical="8dp"
             android:layout_marginHorizontal="8dp"
             >
 

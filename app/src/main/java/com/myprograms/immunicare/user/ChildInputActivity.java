@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ public class ChildInputActivity extends AppCompatActivity {
     private RadioButton male, female;
 
    private ImageView childAddphoto;
+   private ImageButton helpBtn;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -109,6 +111,16 @@ public class ChildInputActivity extends AppCompatActivity {
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         childAddphoto = findViewById(R.id.childPhoto);
+        helpBtn = findViewById(R.id.helpBtn);
+
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showHelpDialog();
+
+            }
+        });
 
         dateButton.setText(getTodaysDate());
 
@@ -125,13 +137,28 @@ public class ChildInputActivity extends AppCompatActivity {
                 male.isChecked() ? "Male" : "Female",
                 childPlaceOfBirth.getText().toString(),
                 dateButton.getText().toString(),
-                childAddress.getText().toString(),
                 childMotherName.getText().toString(),
                 childFatherName.getText().toString(),
                 childHeight.getText().toString(),
-                childWeight.getText().toString(),
-                childBarangay.getText().toString()
+                childWeight.getText().toString()
         ));
+    }
+
+    private void showHelpDialog(){
+
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setTitle("Height and Weight Detail");
+        builder.setMessage(getString(R.string.help_info));
+        builder.setCancelable(true);
+
+
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 
     private void showTermsAndConditionsDialog() {
@@ -163,17 +190,14 @@ public class ChildInputActivity extends AppCompatActivity {
             String childGender,
             String childPlaceOfBirth,
             String childDateOfBirth,
-            String childAddress,
             String childMotherName,
             String childFatherName,
             String childHeight,
-            String childWeight,
-            String childBarangay
+            String childWeight
     ) {
 
-        if (childName.isEmpty() || childPlaceOfBirth.isEmpty() || childDateOfBirth.isEmpty() || childAddress.isEmpty() ||
-                childMotherName.isEmpty() || childFatherName.isEmpty() || childHeight.isEmpty() || childWeight.isEmpty() ||
-                childBarangay.isEmpty()) {
+        if (childName.isEmpty() || childPlaceOfBirth.isEmpty() || childDateOfBirth.isEmpty()  ||
+                childMotherName.isEmpty() || childFatherName.isEmpty() || childHeight.isEmpty() || childWeight.isEmpty()) {
             Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
             return;
         }

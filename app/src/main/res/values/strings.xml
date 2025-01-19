@@ -213,4 +213,11 @@
         <b>By using this application, you confirm that you have read, understood, and agreed to these Terms and Conditions.</b>\n
   \n
     </string>
+
+    <string name="help_info">
+        If you are unsure about your child\'s height and/or weight,
+        you can make an assumption. During the vaccination, the health worker will
+        accurately measure and update the height and weight using their equipment.
+
+    </string>
 </resources>

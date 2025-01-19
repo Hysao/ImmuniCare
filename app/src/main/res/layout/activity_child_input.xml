@@ -191,6 +191,7 @@
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
             android:hint="@string/address"
+            android:visibility="gone"
 
             >
 
@@ -345,6 +346,16 @@
                 android:textColor="@color/white"
                 />
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/helpBtn"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/vc_help"
+                android:backgroundTint="@color/immuniCareGrey"
+                />
+
         </LinearLayout>
 
 
@@ -360,6 +371,7 @@
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
             android:hint="@string/barangay"
+            android:visibility="gone"
 
             >
 

@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -100,21 +101,24 @@ public class ChildQRCodeActivity extends AppCompatActivity {
 
         downloadBtn = findViewById(R.id.downloadQrCode);
 
-
         documentId = getIntent().getStringExtra("documentId");
+
+        if (documentId == null) {
+            finish();
+            return;
+        }
+
         String fileName = documentId + ".png";
 
         Bitmap qrCodeBitmap = loadQrCode(fileName);
 
         if (qrCodeBitmap == null) {
-
             qrCodeBitmap = generateQrCode(documentId);
 
             if (qrCodeBitmap != null) {
                 saveQrCode(qrCodeBitmap, fileName); // Save the QR code for future use
             }
         }
-
 
         if (qrCodeBitmap != null) {
             qrCodeImage.setImageBitmap(qrCodeBitmap);
@@ -125,25 +129,36 @@ public class ChildQRCodeActivity extends AppCompatActivity {
         docChild.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 String childName = documentSnapshot.getString("childName");
-
                 String childSex = documentSnapshot.getString("childGender");
-
                 String childBirthDate = documentSnapshot.getString("childDateOfBirth");
-
                 String childPlaceOfBirth = documentSnapshot.getString("childPlaceOfBirth");
-
                 String childAddress = documentSnapshot.getString("childAddress");
-
                 String childBarangay = documentSnapshot.getString("childBarangay");
-
                 String childMotherName = documentSnapshot.getString("childMotherName");
-
                 String childFatherName = documentSnapshot.getString("childFatherName");
-
                 String childWeight = documentSnapshot.getString("childWeight");
                 String childHeight = documentSnapshot.getString("childHeight");
 
-                childID.setText(documentId);
+
+                String maskedChildID = documentId.replaceAll(".", "*");
+                childID.setText(maskedChildID);
+
+
+                childID.setOnClickListener(new View.OnClickListener() {
+                    boolean isMasked = true;
+
+                    @Override
+                    public void onClick(View v) {
+                        if (isMasked) {
+                            childID.setText(documentId);
+                            isMasked = false;
+                        } else {
+                            childID.setText(maskedChildID);
+                            isMasked = true;
+                        }
+                    }
+                });
+
                 qrChildName.setText(childName);
                 qrChildSex.setText(childSex);
                 qrChildBirthDate.setText(childBirthDate);
@@ -154,7 +169,6 @@ public class ChildQRCodeActivity extends AppCompatActivity {
                 qrChildFatherName.setText(childFatherName);
                 qrChildWeight.setText(childWeight + "kg");
                 qrChildHeight.setText(childHeight + "cm");
-
             }
         });
 

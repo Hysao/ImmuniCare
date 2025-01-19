@@ -97,6 +97,12 @@ public class AddMoreActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadChildren();
+    }
+
     private void loadChildren() {
         Query query = childRef.whereEqualTo("accountUid", mUser.getUid());
         childrenList = new ArrayList<>();

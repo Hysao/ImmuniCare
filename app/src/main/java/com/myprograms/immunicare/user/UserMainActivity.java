@@ -89,6 +89,8 @@ public class UserMainActivity extends AppCompatActivity {
             finish();
         }
 
+
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading Data...");
 

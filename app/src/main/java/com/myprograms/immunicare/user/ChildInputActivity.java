@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
+import com.myprograms.immunicare.auth.LoginActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -91,6 +92,8 @@ public class ChildInputActivity extends AppCompatActivity {
 
         animationView.setSpeed(1f); // Speed up
 
+        showTermsAndConditionsDialog();
+
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         submitButton = findViewById(R.id.submitBtn);
@@ -129,6 +132,30 @@ public class ChildInputActivity extends AppCompatActivity {
                 childWeight.getText().toString(),
                 childBarangay.getText().toString()
         ));
+    }
+
+    private void showTermsAndConditionsDialog() {
+        // Use ScrollView for large text content
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
+        builder.setTitle("Data Privacy Policy");
+        //builder.setMessage(getString(R.string.term_condition)); // Load from strings.xml
+        builder.setCancelable(true);
+        View termsView = getLayoutInflater().inflate(R.layout.terms_condition_dialog, null);
+        builder.setView(termsView);
+
+        builder.setPositiveButton("Agree", (dialog, which) -> {
+            dialog.dismiss();
+        });
+
+        builder.setNegativeButton("Disagree", (dialog, which) -> {
+            Intent intent = new Intent(ChildInputActivity.this, AddMoreActivity.class);
+            startActivity(intent);
+            finish();
+            dialog.dismiss();
+        });
+
+        androidx.appcompat.app.AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void addChild(

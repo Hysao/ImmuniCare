@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ImmuniCare">
         <activity
+            android:name=".schedule.ScheduleDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".schedule.RequestedScheduleActivity"
+            android:exported="false" />
+        <activity
             android:name=".menu.ChangePasswordActivity"
             android:exported="false" />
         <activity

@@ -21,6 +21,7 @@ import com.myprograms.admin.announcements.AnnouncementActivity;
 import com.myprograms.admin.concerns.ConcernsActivity;
 import com.myprograms.admin.menu.AdminMenuActivity;
 import com.myprograms.admin.records.ImmunizationRecordActivity;
+import com.myprograms.admin.schedule.RequestedScheduleActivity;
 import com.myprograms.admin.vaccines.VaccinesActivity;
 import com.myprograms.admin.validating.ValidatingUserActivity;
 
@@ -57,6 +58,16 @@ public class AdminMainActivity extends AppCompatActivity {
         vaccinationGivenToday = findViewById(R.id.vaccinationGivenToday);
         listOfVaccines = findViewById(R.id.listOfVaccines);
         menuButton = findViewById(R.id.menuButton);
+
+        scheduleAnnouncement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(AdminMainActivity.this, RequestedScheduleActivity.class);
+                startActivity(i);
+
+            }
+        });
 
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override

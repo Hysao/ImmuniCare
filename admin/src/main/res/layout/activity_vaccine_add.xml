@@ -55,7 +55,6 @@
                 android:layout_marginBottom="16dp"
                 android:id="@+id/vaccineSpinner"
                 android:fontFamily="@font/poppins_regular"
-                android:background="@color/white"
                 />
 
             <com.google.android.material.textfield.TextInputLayout

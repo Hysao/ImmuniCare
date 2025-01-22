@@ -159,7 +159,6 @@ public class UserDetailsActivity extends AppCompatActivity {
         emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userEmail});
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Account Approved");
         emailIntent.putExtra(Intent.EXTRA_TEXT, approvedMessage);
-
         startActivity(Intent.createChooser(emailIntent, "Send approval email"));
     }
 

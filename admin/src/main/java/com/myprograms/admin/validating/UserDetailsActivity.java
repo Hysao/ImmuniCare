@@ -1,5 +1,6 @@
 package com.myprograms.admin.validating;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -152,17 +153,14 @@ public class UserDetailsActivity extends AppCompatActivity {
         Map<String, Object> data = new HashMap<>();
         data.put("email", userEmail);
 
-        FirebaseFunctions.getInstance()
-                .getHttpsCallable("sendApprovalEmail")
-                .call(data)
-                .addOnSuccessListener(httpsCallableResult -> {
-                    // Handle success
-                    Log.d("Email", "Email sent successfully");
-                })
-                .addOnFailureListener(e -> {
-                    // Handle failure
-                    Log.e("Email", "Error sending email: " + e.getMessage());
-                });
+        String approvedMessage = "Your account has been approved in ImmuniCare Application!";
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{userEmail});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Account Approved");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, approvedMessage);
+
+        startActivity(Intent.createChooser(emailIntent, "Send approval email"));
     }
 
 
@@ -187,14 +185,25 @@ public class UserDetailsActivity extends AppCompatActivity {
                 .show();
     }
 
+    private void sendEmail(String recipient, String subject, String message) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{recipient});
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+
+        startActivity(Intent.createChooser(emailIntent, "Send email"));
+    }
+
     private void rejectUser(String documentId, String reason) {
         Map<String, Object> updateData = new HashMap<>();
         updateData.put("isVerified", "rejected");
-        updateData.put("notification", "Your account has been rejected. Reason: " + reason);
 
         db.collection("users").document(documentId)
                 .update(updateData)
                 .addOnSuccessListener(aVoid -> {
+                    String rejectionMessage = "Your account has been rejected. Reason: " + reason;
+                    sendEmail(userEmail.getText().toString(), "Account Rejected", rejectionMessage);
                     deleteUserFromFirebaseAuth(documentId);
                 })
                 .addOnFailureListener(e ->
@@ -210,22 +219,18 @@ public class UserDetailsActivity extends AppCompatActivity {
                         String email = documentSnapshot.getString("email");
                         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                        // Authenticate the admin if needed to delete the user
                         auth.fetchSignInMethodsForEmail(email)
                                 .addOnCompleteListener(task -> {
                                     if (task.isSuccessful() && task.getResult() != null) {
-                                        auth.getCurrentUser().delete()
-                                                .addOnSuccessListener(aVoid -> {
-                                                    Toast.makeText(this, "User account deleted", Toast.LENGTH_SHORT).show();
-                                                    finish();
-                                                })
-                                                .addOnFailureListener(e ->
-                                                        Toast.makeText(this, "Error deleting user account: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                                                );
+                                        // Log success but user deletion requires admin privileges in Firebase
+                                        Toast.makeText(this, "User marked as rejected in the database.", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     } else {
-                                        Toast.makeText(this, "Unable to find user for deletion", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(this, "Unable to find user for deletion in FirebaseAuth", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+                    } else {
+                        Toast.makeText(this, "User document does not exist.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e ->

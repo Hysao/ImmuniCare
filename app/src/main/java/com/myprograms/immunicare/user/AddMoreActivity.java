@@ -1,5 +1,6 @@
 package com.myprograms.immunicare.user;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -103,6 +104,7 @@ public class AddMoreActivity extends AppCompatActivity {
         loadChildren();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadChildren() {
         Query query = childRef.whereEqualTo("accountUid", mUser.getUid());
         childrenList = new ArrayList<>();
@@ -134,4 +136,6 @@ public class AddMoreActivity extends AppCompatActivity {
                     Toast.makeText(this, "Failed to load data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+
 }

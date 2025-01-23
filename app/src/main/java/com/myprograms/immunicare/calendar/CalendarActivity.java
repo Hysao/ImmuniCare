@@ -23,8 +23,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.myprograms.immunicare.R;
-import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
 
 import java.text.DateFormatSymbols;
 import java.time.LocalDate;
@@ -228,7 +227,6 @@ public class CalendarActivity extends AppCompatActivity {
             String date1 = reminder1.getDate();
             String date2 = reminder2.getDate();
 
-            // Preprocess dates to add leading zero for single-digit day or month
             date1 = preprocessDate(date1);
             date2 = preprocessDate(date2);
 

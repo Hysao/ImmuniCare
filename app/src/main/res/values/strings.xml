@@ -161,57 +161,48 @@
 </string>
 
     <string name="term_condition">
-
-
         <b>Terms and Conditions</b>\n
-        <b>Introduction</b>\n
-        Welcome to [Your Application Name], a vaccine tracker designed to help monitor and manage children’s vaccination schedules. By using this application, you agree to the following Terms and Conditions. Please read them carefully.\n
+            <b>Introduction</b>\n
+            Welcome to ImmuniCare, a vaccine tracker designed to help monitor and manage children’s vaccination schedules. By clicking "Agree," you confirm that you have read, understood, and accepted the following Terms and Conditions. If you do not agree, you may not proceed with using this application.\n
+           \n
+            <b>Data Privacy Commitment</b>\n
+            We are committed to protecting your personal data in compliance with the Data Privacy Act of 2012 (RA 10173). This document explains how we collect, use, and protect your information.\n
+            \n
+            <b>Data Collection and Usage</b>\n
+            By clicking "Agree," you consent to the collection and processing of the following personal data:\n
+            \n
+            Child’s full name\n
+            Date of birth\n
+            Vaccination history\n
+            Parent or guardian’s contact information\n
+        \n
+            <b>User Responsibilities</b>\n
+            Ensure that the information you provide is accurate and up-to-date.\n
+            Inform us promptly if there are changes to your personal data.\n
+            <b>Sharing of Data</b>\n
+            Your personal data will not be shared with third parties without your explicit consent unless required by law or necessary to protect public health.\n
+            \n
+            <b>Retention of Data</b>\n
+            Your data will be retained only as long as it is necessary for the purposes outlined above. Upon request, we will delete your data if it is no longer required.\n
+            \n
+            <b>User Rights</b>\n
+            Under the Data Privacy Act, you have the right to:\n
+            \n
+            Access your personal data\n
+            Correct inaccurate or incomplete data\n
+            Object to the processing of your data\n
+            Request the deletion of your data\n
+            To exercise these rights, contact us at 09123456789.\n
+            \n
+            <b>Amendments</b>\n
+            We may update these Terms and Conditions from time to time to comply with legal requirements or enhance our services. We encourage you to review this page periodically.\n
+            \n
+            <b>Contact Us</b>\n
+            For questions or concerns about your data, you can contact us at: youremail@gmail.com\n
+            09123456789\n
+            \n
+            <b>By clicking "Agree," you confirm that you have read, understood, and accepted these Terms and Conditions.</b>\n
 \n
-        <b>Data Privacy Commitment</b>\n
-        We are committed to protecting your personal data in compliance with the Data Privacy Act of 2012 (RA 10173). This document explains how we collect, use, and protect your information.\n
-\n
-        <b>Data Collection and Usage</b>\n
-        By using [Your Application Name], you consent to the collection and processing of the following personal data:\n
-\n
-          •Child’s full name\n
-          •Date of birth\n
-          •Vaccination history\n
-          •Parent or guardian’s contact information\n
-        We assure you that the data collected will be used solely for purposes related to:\n
-\n
-          •Monitoring vaccination schedules\n
-          •Sending reminders and updates about upcoming vaccinations\n
-          •Generating vaccination reports for your personal use\n
-        Data Protection\n
-        We employ strict measures to protect your personal data, including encryption and secure storage methods. Access to your data is restricted to authorized personnel only.\n
-\n
-        <b>Responsibilities</b> \n
-          •Ensure that the information you provide is accurate and up-to-date.\n
-          •Inform us promptly if there are changes to your personal data.\n
-        Sharing of Data\n
-        Your personal data will not be shared with third parties without your explicit consent unless required by law or necessary to protect public health.\n
-\n
-        <b>Retention of Data</b>\n
-        Your data will be retained only as long as it is necessary for the purposes outlined above. Upon request, we will delete your data if it is no longer required.\n
-\n
-        <b>User Rights</b>\n
-        Under the Data Privacy Act, you have the right to:\n
-\n
-          •Access your personal data\n
-          •Correct inaccurate or incomplete data\n
-          •Object to the processing of your data\n
-          •Request the deletion of your data\n
-        To exercise these rights, contact us at [Your Contact Information].\n
-\n
-        <b>Amendments</b>\n
-        We may update these Terms and Conditions from time to time to comply with legal requirements or enhance our services. We encourage you to review this page periodically.\n
-\n
-        <b>Contact Us</b>\n
-        For questions or concerns about your data, you can contact us at: [Your Email Address]\n
-        [Your Phone Number]\n
-\n
-        <b>By using this application, you confirm that you have read, understood, and agreed to these Terms and Conditions.</b>\n
-  \n
     </string>
 
     <string name="help_info">

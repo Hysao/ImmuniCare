@@ -1,5 +1,6 @@
 package com.myprograms.admin.schedule;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
     private String userId;
     private String documentId;
 
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,9 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
         userId = getIntent().getStringExtra("userId");
         documentId = getIntent().getStringExtra("documentId");
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading detail...");
+
         // Validate received extras
         if (userId == null || documentId == null) {
             throw new IllegalArgumentException("Missing required extras: userId or documentId");
@@ -82,6 +88,12 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
             rejectSchedule();
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fetchScheduleDetails();
     }
 
     private void approveSchedule() {
@@ -184,6 +196,8 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
 
     private void fetchScheduleDetails() {
 
+        progressDialog.show();
+
         schedulesRef.document(documentId).get()
                 .addOnSuccessListener(documentSnapshot -> {
                     if (documentSnapshot.exists()) {
@@ -200,7 +214,15 @@ public class ScheduleDetailsActivity extends AppCompatActivity {
                         } else {
                             buttons.setVisibility(View.GONE);
                             status.setVisibility(View.VISIBLE);
+
+                            if ("rejected".equals(status.getText().toString())) {
+                                status.setTextColor(getResources().getColor(R.color.immuniCareRed, getTheme()));
+                            } else {
+                                status.setTextColor(getResources().getColor(R.color.immuniCareGreen, getTheme()));
+                            }
                         }
+
+                        progressDialog.dismiss();
 
                     } else {
 

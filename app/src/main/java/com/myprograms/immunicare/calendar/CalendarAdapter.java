@@ -17,18 +17,22 @@ import java.util.List;
 import java.util.Locale;
 
 public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder> {
-    private List<String> daysOfMonth; // Store days of month (1, 2, 3, ..., 31)
-    private int currentDay; // Current day to highlight
-    private List<String> reminderDates; // List of reminder dates in "day/month/year" format
-    private int currentMonth; // Current month for formatting the reminder dates
-    private int currentYear; // Current year for formatting the reminder dates
+    private List<String> daysOfMonth;
+    private int currentDay;
+    private List<String> reminderDates;
+    private int currentMonth;
+    private int currentYear;
+    private int todayMonth, todayYear;
 
-    public CalendarAdapter(List<String> daysOfMonth, int currentDay, List<String> reminderDates, int currentMonth, int currentYear) {
+    public CalendarAdapter(List<String> daysOfMonth, int currentDay, List<String> reminderDates,
+                           int currentMonth, int currentYear, int todayMonth, int todayYear) {
         this.daysOfMonth = daysOfMonth;
         this.currentDay = currentDay;
         this.reminderDates = reminderDates;
         this.currentMonth = currentMonth;
         this.currentYear = currentYear;
+        this.todayMonth = todayMonth;
+        this.todayYear = todayYear;
     }
 
     @NonNull
@@ -51,7 +55,11 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
 
         // Check if day is valid and non-empty
         if (!day.isEmpty()) {
-            boolean isCurrentDay = Integer.parseInt(day) == currentDay;
+            // Check if the displayed month/year matches today's month/year
+            boolean isCurrentDay = Integer.parseInt(day) == currentDay &&
+                    currentMonth == todayMonth &&
+                    currentYear == todayYear;
+
             boolean isReminderDay = hasReminder(day);
 
             // Highlight current day
@@ -64,22 +72,22 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.Calend
             if (isReminderDay) {
                 holder.dayText.setBackgroundColor(holder.itemView.getContext().getResources().getColor(R.color.immuniCareOrange));
 
-                // Optional: Combine styles for current day + reminder
+
                 if (isCurrentDay) {
-                    holder.dayText.setTextColor(Color.YELLOW); // Example: Use a different text color
+                    holder.dayText.setTextColor(Color.YELLOW);
                 }
             }
         }
     }
 
     private boolean hasReminder(String day) {
-        // Check if the given day has a reminder
+
         if (day.isEmpty()) return false;
 
-        // Format the current day as "day/month/year" for comparison
+
         String dayMonthYear = day + "/" + (currentMonth + 1) + "/" + currentYear;
 
-        // Check if this date matches any reminder date
+
         for (String reminder : reminderDates) {
             if (reminder.equals(dayMonthYear)) {
                 return true;

@@ -97,12 +97,14 @@ public class CalendarActivity extends AppCompatActivity {
 
         findViewById(R.id.prevMonthBtn).setOnClickListener(v -> {
             if (currentMonth == 0) {
-                currentMonth = 11;  // December
+                currentMonth = 11;
                 currentYear--;
             } else {
                 currentMonth--;
             }
             populateCalendar();
+            Log.d("CalendarActivity", "Month: " + currentMonth + ", Year: " + currentYear);
+
         });
 
         findViewById(R.id.nextMonthBtn).setOnClickListener(v -> {
@@ -113,6 +115,7 @@ public class CalendarActivity extends AppCompatActivity {
                 currentMonth++;
             }
             populateCalendar();
+            Log.d("CalendarActivity", "Month: " + currentMonth + ", Year: " + currentYear);
         });
 
 
@@ -121,44 +124,42 @@ public class CalendarActivity extends AppCompatActivity {
 
 
     private void populateCalendar() {
-
         Calendar today = Calendar.getInstance();
         int currentDay = today.get(Calendar.DAY_OF_MONTH);
-        int currentMonth = today.get(Calendar.MONTH);
-        int currentYear = today.get(Calendar.YEAR);
 
-        // Set calendar to the first day of the current month
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(currentYear, currentMonth, 1);
 
-        // Get the total number of days in the current month
+
         int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        // Get the first day of the month (1 = Sunday, 7 = Saturday)
+
         int firstDayOfMonth = calendar.get(Calendar.DAY_OF_WEEK);
 
-        // Clear any previous data from the daysOfMonth list
+
         daysOfMonth.clear();
 
-        // Add empty spaces for padding before the 1st day of the month
+
         for (int i = 1; i < firstDayOfMonth; i++) {
-            daysOfMonth.add("");  // Empty space for padding
+            daysOfMonth.add("");
         }
 
-        // Add the actual days of the month to the list
+
         for (int i = 1; i <= daysInMonth; i++) {
             daysOfMonth.add(String.valueOf(i));
         }
 
-        // Set the month name (e.g., "January 2025")
+
         String monthNameText = new DateFormatSymbols().getMonths()[currentMonth] + " " + currentYear;
         monthName.setText(monthNameText);
 
-        // Fetch the reminder dates asynchronously
+
         getReminderDates(new OnReminderDatesFetchedListener() {
             @Override
             public void onReminderDatesFetched(List<String> reminderDates) {
-                CalendarAdapter adapter = new CalendarAdapter(daysOfMonth, currentDay, reminderDates, currentMonth, currentYear);
+
+                CalendarAdapter adapter = new CalendarAdapter(daysOfMonth, currentDay, reminderDates, currentMonth, currentYear, today.get(Calendar.MONTH), today.get(Calendar.YEAR));
                 calendarRecyclerView.setAdapter(adapter);
             }
         });
@@ -196,7 +197,6 @@ public class CalendarActivity extends AppCompatActivity {
 
 
     private void fetchEvents() {
-
         remindersRef.whereEqualTo("userId", mUser.getUid())
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
@@ -205,7 +205,11 @@ public class CalendarActivity extends AppCompatActivity {
                         Reminder reminder = document.toObject(Reminder.class);
                         remindersList.add(reminder);
                     }
-                    updateRecyclerView(remindersList); // Show all events initially
+
+
+                    sortRemindersByDate(remindersList);
+
+                    updateRecyclerView(remindersList);
                 })
                 .addOnFailureListener(e -> {
                     Log.e("CalendarActivity", "Error fetching events", e);
@@ -217,6 +221,40 @@ public class CalendarActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    private void sortRemindersByDate(List<Reminder> remindersList) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        remindersList.sort((reminder1, reminder2) -> {
+            String date1 = reminder1.getDate();
+            String date2 = reminder2.getDate();
+
+            // Preprocess dates to add leading zero for single-digit day or month
+            date1 = preprocessDate(date1);
+            date2 = preprocessDate(date2);
+
+            LocalDate localDate1 = LocalDate.parse(date1, formatter);
+            LocalDate localDate2 = LocalDate.parse(date2, formatter);
+
+            return localDate1.compareTo(localDate2);
+        });
+    }
+
+    private String preprocessDate(String date) {
+        String[] parts = date.split("/");
+
+
+        if (parts[0].length() == 1) {
+            parts[0] = "0" + parts[0];
+        }
+
+
+        if (parts[1].length() == 1) {
+            parts[1] = "0" + parts[1];
+        }
+
+
+        return parts[0] + "/" + parts[1] + "/" + parts[2];
+    }
 
 
 

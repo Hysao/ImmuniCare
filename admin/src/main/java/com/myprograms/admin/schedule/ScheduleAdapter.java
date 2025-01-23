@@ -57,7 +57,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
 
         android.util.Log.d("ScheduleAdapter", "userId: " + userId + ", documentId: " + documentId);
 
-        if (status == null || userId == null || documentId == null) {
+        if (userId == null || documentId == null) {
             android.util.Log.e("ScheduleAdapter", "Missing required data in schedule.");
         }
 
